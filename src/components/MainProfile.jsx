@@ -3,6 +3,7 @@ import { Button, Card, CardLink, Modal } from "react-bootstrap";
 import { PatchCheck } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
+import Bio from "./Bio";
 
 function MainProfile() {
   const dispatch = useDispatch();
@@ -68,7 +69,11 @@ function MainProfile() {
           </Button>
           <Card.Body style={{ backgroundColor: "#DDE7F1" }} className=" rounded-3 mt-3">
             <Card.Text>
-              {profile.bio || "Nessuna bio disponibile."}
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ea amet inventore ullam impedit vero
+                alias aliquid autem. Dolor corrupti temporibus modi? Aut dignissimos molestias incidunt ullam delectus
+                quos quia?
+              </p>
               <Card.Text>
                 <CardLink>Mostra Dettagli</CardLink>
               </Card.Text>
@@ -76,7 +81,7 @@ function MainProfile() {
           </Card.Body>
         </Card.Body>
       </Card>
-
+      <Bio />
       {/* MODALE */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>

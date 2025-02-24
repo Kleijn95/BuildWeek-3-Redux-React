@@ -20,7 +20,7 @@ function Aside2() {
 
   return (
     <Container className="bg-white">
-      <h5 className="pt-3 mb-4 ms-auto">Persone che potresti conoscere</h5>
+      <h4 className="pt-3 mb-4 ms-auto fs-5">Persone che potresti conoscere</h4>
       {aside.map((element) => (
         <div key={element._id}>
           <Row className="mb-3 d-flex align-items-start ms-auto">

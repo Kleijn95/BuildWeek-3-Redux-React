@@ -1,15 +1,21 @@
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { PencilSquare } from "react-bootstrap-icons";
 
 function Aside1() {
   return (
     <Card className="mb-3">
-      <Card.Img variant="top" src="holder.js/100px180" />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of the cards content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Card.Title className="d-flex justify-content-between">
+          <p>Lingua Profilo</p>
+          <PencilSquare />
+        </Card.Title>
+        <p className="text-secondary">Italiano</p>
+        <hr style={{ borderColor: "lightgray" }} />
+        <Card.Title className="d-flex justify-content-between">
+          <p>Profilo pubblico e URL</p>
+          <PencilSquare />
+        </Card.Title>
+        <p className="text-secondary">www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7</p>
       </Card.Body>
     </Card>
   );

@@ -1,7 +1,20 @@
-import { Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { BellFill, ChatDotsFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
+import { Card, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import {
+  BellFill,
+  ChatDotsFill,
+  HouseFill,
+  Linkedin,
+  PencilSquare,
+  PeopleFill,
+  SuitcaseLgFill,
+} from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 
 function TopBar() {
+  const profile = useSelector((state) => state.myprofile.data);
+  if (!profile) {
+    return <p>Caricamento...</p>;
+  }
   return (
     <Navbar bg="white">
       <Container>
@@ -32,8 +45,31 @@ function TopBar() {
             <BellFill className="fs-5" fill="grey" />
             Notifiche
           </Nav.Link>
-          <NavDropdown title="Tu" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+          <NavDropdown
+            title={
+              <img
+                style={{
+                  width: "35px",
+                  height: "35px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+                src={profile.image}
+              ></img>
+            }
+            id="navbarScrollingDropdown"
+          >
+            <NavDropdown.Item href="#action3">
+              <Card className="mt-3">
+                <Card.Body>
+                  <Card.Title className="d-flex justify-content-between">
+                    <p>Informazioni</p>
+                    <PencilSquare />
+                  </Card.Title>
+                  <p>{profile.bio}</p>
+                </Card.Body>
+              </Card>
+            </NavDropdown.Item>
             <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
@@ -51,3 +87,5 @@ function TopBar() {
 }
 
 export default TopBar;
+
+<p></p>;
