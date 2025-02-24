@@ -1,7 +1,7 @@
-export const fetchProfile = () => {
+export const fetchProfile = (url) => {
   return async (dispatch) => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+      const response = await fetch(url, {
         headers: {
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
