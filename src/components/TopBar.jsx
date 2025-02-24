@@ -16,7 +16,7 @@ function TopBar() {
         <Form className="d-flex">
           <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
         </Form>
-        <Nav className="me-auto">
+        <Nav className="me-auto align-items-center gap-3 ms-5">
           <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
             <HouseFill className="fs-5" fill="grey" />
             Home
@@ -39,19 +39,31 @@ function TopBar() {
           </Nav.Link>
           <NavDropdown
             title={
-              <img
-                style={{
-                  width: "35px",
-                  height: "35px",
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                }}
-                src={profile.image}
-              ></img>
+              <div className="d-flex flex-column align-items-center position-relative">
+                {/* Immagine sopra */}
+                <img
+                  src={profile.image}
+                  alt="Profile"
+                  style={{
+                    width: "24px", // Dimensione dell'immagine
+                    height: "24px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    marginBottom: "4px", // Spazio tra l'immagine e il testo
+                  }}
+                />
+                {/* Testo "Tu" con freccia */}
+                <div className="d-flex align-items-center">
+                  Tu
+                  {/* Freccia del dropdown (aggiunta manualmente) */}
+                  <span className="dropdown-arrow"></span>
+                </div>
+              </div>
             }
             id="navbarScrollingDropdown"
+            className="custom-dropdown pt-0" // Aggiungi una classe per il CSS personalizzato
           >
-            <NavDropdown.Item href="#action3">
+            <NavDropdown.Item href="#profile">
               <div className="d-flex align-items-center mt-3">
                 <img
                   src={profile.image || "https://via.placeholder.com/50"}
@@ -59,7 +71,6 @@ function TopBar() {
                   className="rounded-circle me-3"
                   style={{ width: "50px", height: "50px" }}
                 />
-
                 <div>
                   <p className="mb-0 fw-bold">
                     {profile.name} {profile.surname}
@@ -71,30 +82,38 @@ function TopBar() {
               <Button className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100">
                 Visualizza Profilo
               </Button>
+            </NavDropdown.Item>
+            <hr style={{ borderColor: "lightgray" }} className="mb-0" />
 
-              <hr style={{ borderColor: "lightgray" }} />
+            {/* Sezione Account */}
+            <NavDropdown.Header className="dropdown-header">Account</NavDropdown.Header>
+            <NavDropdown.Item href="#settings" className="dropdown-item">
+              Impostazioni e privacy
             </NavDropdown.Item>
-            <NavDropdown.Item href="#action4">
-              <h5>Account</h5>
-              <Nav.Link>Impostazioni e privacy</Nav.Link>
-              <Nav.Link>Guida</Nav.Link>
-              <Nav.Link>Lingua</Nav.Link>
+            <NavDropdown.Item href="#help" className="dropdown-item">
+              Guida
             </NavDropdown.Item>
+            <NavDropdown.Item href="#language" className="dropdown-item">
+              Lingua
+            </NavDropdown.Item>
+
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action5">
-              <h5>Gestisci</h5>
-              <Nav.Link>Post e attività</Nav.Link>
-              <Nav.Link>Account per la pubblicazione</Nav.Link>
+
+            {/* Sezione Gestisci */}
+            <NavDropdown.Header className="dropdown-header">Gestisci</NavDropdown.Header>
+            <NavDropdown.Item href="#posts" className="dropdown-item">
+              Post e attività
             </NavDropdown.Item>
-            <NavDropdown.Item href="#action6">
-              <Nav.Link>Esci</Nav.Link>
+            <NavDropdown.Item href="#publishing" className="dropdown-item">
+              Account per la pubblicazione
             </NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown title="Per le Aziende" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+
+            {/* Esci */}
+            <NavDropdown.Item href="#logout" className="dropdown-item">
+              Esci
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Container>
@@ -103,5 +122,3 @@ function TopBar() {
 }
 
 export default TopBar;
-
-<p></p>;
