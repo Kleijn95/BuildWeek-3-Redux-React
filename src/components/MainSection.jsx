@@ -7,10 +7,10 @@ function MainSection() {
     <>
       <Container className="mt-5">
         <Row>
-          <Col className="col-8">
+          <Col className="col-9">
             <MainProfile />
           </Col>
-          <Col className="col-4">
+          <Col className="col-3">
             <AsideProfile />
           </Col>
         </Row>

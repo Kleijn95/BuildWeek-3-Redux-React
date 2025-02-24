@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAside } from "../redux/actions/profileActions";
+import { PersonPlus } from "react-bootstrap-icons";
 
 function Aside2() {
   const dispatch = useDispatch();
@@ -18,22 +19,34 @@ function Aside2() {
   }
 
   return (
-    <Container className="bg-white ">
-      <Row>
-        {aside.map((element) => (
-          <Col key={element._id} className="mb-3 d-flex">
-            <div>
-              <Image className="w-50" fluid variant="top" src={element.image} />
-            </div>
-            <div>
-              <h4>{element.title}</h4>
-              <p>{element.name}</p>
-              <p>{element.surname}</p>
-              <Button variant="primary">Go somewhere</Button>
-            </div>
-          </Col>
-        ))}
-      </Row>
+    <Container className="bg-white">
+      <h5 className="pt-3 mb-4 ms-auto">Persone che potresti conoscere</h5>
+      {aside.map((element) => (
+        <div key={element._id}>
+          <Row className="mb-3 d-flex align-items-start ms-auto">
+            {" "}
+            <Col xs={3} className="me-3">
+              <Image
+                className="w-100 rounded-circle"
+                fluid
+                variant="top"
+                src={element.image}
+                style={{ objectFit: "cover", aspectRatio: "1/1" }}
+              />
+            </Col>
+            <Col>
+              <div>
+                <strong>{element.name}</strong> <strong>{element.surname}</strong>
+              </div>
+              <p>{element.title}</p>
+              <Button className="rounded-pill bg-white border-black border text-black asideButton">
+                <PersonPlus /> Collegati
+              </Button>
+            </Col>
+          </Row>
+          <hr style={{ borderColor: "lightgray" }} />
+        </div>
+      ))}
     </Container>
   );
 }
