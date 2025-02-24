@@ -53,14 +53,13 @@ function TopBar() {
           >
             <NavDropdown.Item href="#action3">
               <div className="d-flex align-items-center mt-3">
-                {/* Immagine a sinistra */}
                 <img
                   src={profile.image || "https://via.placeholder.com/50"}
                   alt="Profile"
                   className="rounded-circle me-3"
                   style={{ width: "50px", height: "50px" }}
                 />
-                {/* Nome e cognome a destra */}
+
                 <div>
                   <p className="mb-0 fw-bold">
                     {profile.name} {profile.surname}
@@ -68,13 +67,11 @@ function TopBar() {
                   <p className="mb-0">{profile.title}</p>
                 </div>
               </div>
-              {/* Bottone sotto il div */}
 
               <Button className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100">
                 Visualizza Profilo
               </Button>
 
-              {/* Linea di separazione */}
               <hr style={{ borderColor: "lightgray" }} />
             </NavDropdown.Item>
             <NavDropdown.Item href="#action4">
