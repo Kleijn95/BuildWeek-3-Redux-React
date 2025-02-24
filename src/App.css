@@ -5,3 +5,8 @@ body {
 .asideButton:hover {
   border: solid black 2px !important;
 }
+
+.dropLinkButton:hover {
+  border: solid 2px !important;
+  background-color: rgb(55 143 233/0.1) !important;
+}

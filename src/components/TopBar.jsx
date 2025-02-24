@@ -1,7 +1,6 @@
-import { Button, Card, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { BellFill, ChatDotsFill, HouseFill, Linkedin, PencilSquare, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
+import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { BellFill, ChatDotsFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 function TopBar() {
   const profile = useSelector((state) => state.myprofile.data);
@@ -53,21 +52,30 @@ function TopBar() {
             id="navbarScrollingDropdown"
           >
             <NavDropdown.Item href="#action3">
-              <Card className="mt-3">
-                <Card.Body>
-                  <Card.Title className="d-flex justify-content-between">
-                    <p>
-                      {profile.name} {profile.surname}
-                    </p>
+              <div className="d-flex align-items-center mt-3">
+                {/* Immagine a sinistra */}
+                <img
+                  src={profile.image || "https://via.placeholder.com/50"}
+                  alt="Profile"
+                  className="rounded-circle me-3"
+                  style={{ width: "50px", height: "50px" }}
+                />
+                {/* Nome e cognome a destra */}
+                <div>
+                  <p className="mb-0 fw-bold">
+                    {profile.name} {profile.surname}
+                  </p>
+                  <p className="mb-0">{profile.title}</p>
+                </div>
+              </div>
+              {/* Bottone sotto il div */}
 
-                    <PencilSquare />
-                  </Card.Title>
-                  <p>{profile.title}</p>
-                  <Button variant="primary" className="me-2 rounded-pill">
-                    Visualizza Profilo
-                  </Button>
-                </Card.Body>
-              </Card>
+              <Button className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100">
+                Visualizza Profilo
+              </Button>
+
+              {/* Linea di separazione */}
+              <hr style={{ borderColor: "lightgray" }} />
             </NavDropdown.Item>
             <NavDropdown.Item href="#action4">
               <h5>Account</h5>
@@ -81,10 +89,10 @@ function TopBar() {
               <Nav.Link>Post e attività</Nav.Link>
               <Nav.Link>Account per la pubblicazione</Nav.Link>
             </NavDropdown.Item>
-            <NavDropdown.Item href="#action5">
+            <NavDropdown.Item href="#action6">
               <Nav.Link>Esci</Nav.Link>
             </NavDropdown.Item>
-          </NavDropdown>{" "}
+          </NavDropdown>
           <NavDropdown title="Per le Aziende" id="navbarScrollingDropdown">
             <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
