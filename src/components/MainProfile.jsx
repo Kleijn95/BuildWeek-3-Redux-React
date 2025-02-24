@@ -3,20 +3,33 @@ import { PatchCheck } from "react-bootstrap-icons";
 
 function MainProfile() {
   return (
-    <Card>
+    <Card style={{ position: "relative" }}>
+      {/* Primo Card.Body con immagine di sfondo */}
       <Card.Body
         style={{
           backgroundImage:
             'url("https://images.unsplash.com/photo-1487088678257-3a541e6e3922?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "200px", // Altezza fissa
         }}
       ></Card.Body>
 
-      <Card.Body className="mt-4">
+      {/* Secondo Card.Body con l'immagine del profilo */}
+      <Card.Body className="mt-4" style={{ position: "relative", zIndex: 1 }}>
         <img
-          className="rounded-pill img-fluid object-fit-cover w-25"
+          className="rounded-pill img-fluid object-fit-cover"
           src="https://images.unsplash.com/photo-1589140915708-20ff586fe767?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ></img>
-        <Card.Title className="d-flex justify-content-between">
+          style={{
+            width: "150px", // Larghezza fissa per l'immagine
+            height: "150px", // Altezza fissa per l'immagine
+            position: "absolute", // Posiziona l'immagine in modo assoluto
+            top: "-75px", // Sposta l'immagine verso l'alto (metà dell'altezza)
+            left: "20px", // Distanza dal bordo sinistro
+            border: "4px solid white", // Aggiungi un bordo per separare l'immagine dallo sfondo
+          }}
+        />
+        <Card.Title className="d-flex justify-content-between mt-5 pt-4">
           <p>
             name Antonio Kleijn <PatchCheck />
           </p>
