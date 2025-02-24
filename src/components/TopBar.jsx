@@ -1,4 +1,4 @@
-import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { BellFill, ChatDotsFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
 
 function TopBar() {
@@ -8,28 +8,27 @@ function TopBar() {
         <Navbar.Brand href="#home">
           <Linkedin fill="blue" className="text-white fs-1" />
         </Navbar.Brand>
+        <Form className="d-flex">
+          <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+        </Form>
         <Nav className="me-auto">
-          <Form className="d-flex">
-            <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center">
+          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
             <HouseFill className="fs-5" fill="grey" />
             Home
           </Nav.Link>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center">
+          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
             <PeopleFill className="fs-5" fill="grey" />
             Rete
           </Nav.Link>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center">
+          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
             <SuitcaseLgFill className="fs-5" fill="grey" />
             Lavoro
           </Nav.Link>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center">
+          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
             <ChatDotsFill className="fs-5" fill="grey" />
             Messaggistica
           </Nav.Link>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center">
+          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
             <BellFill className="fs-5" fill="grey" />
             Notifiche
           </Nav.Link>
