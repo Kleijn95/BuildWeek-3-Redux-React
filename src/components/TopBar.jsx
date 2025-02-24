@@ -1,14 +1,7 @@
-import { Card, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import {
-  BellFill,
-  ChatDotsFill,
-  HouseFill,
-  Linkedin,
-  PencilSquare,
-  PeopleFill,
-  SuitcaseLgFill,
-} from "react-bootstrap-icons";
+import { Button, Card, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { BellFill, ChatDotsFill, HouseFill, Linkedin, PencilSquare, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function TopBar() {
   const profile = useSelector((state) => state.myprofile.data);
@@ -63,16 +56,34 @@ function TopBar() {
               <Card className="mt-3">
                 <Card.Body>
                   <Card.Title className="d-flex justify-content-between">
-                    <p>Informazioni</p>
+                    <p>
+                      {profile.name} {profile.surname}
+                    </p>
+
                     <PencilSquare />
                   </Card.Title>
-                  <p>{profile.bio}</p>
+                  <p>{profile.title}</p>
+                  <Button variant="primary" className="me-2 rounded-pill">
+                    Visualizza Profilo
+                  </Button>
                 </Card.Body>
               </Card>
             </NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+            <NavDropdown.Item href="#action4">
+              <h5>Account</h5>
+              <Nav.Link>Impostazioni e privacy</Nav.Link>
+              <Nav.Link>Guida</Nav.Link>
+              <Nav.Link>Lingua</Nav.Link>
+            </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+            <NavDropdown.Item href="#action5">
+              <h5>Gestisci</h5>
+              <Nav.Link>Post e attività</Nav.Link>
+              <Nav.Link>Account per la pubblicazione</Nav.Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#action5">
+              <Nav.Link>Esci</Nav.Link>
+            </NavDropdown.Item>
           </NavDropdown>{" "}
           <NavDropdown title="Per le Aziende" id="navbarScrollingDropdown">
             <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
