@@ -66,7 +66,7 @@ function MainProfile() {
           <Button variant="primary" className="me-2 rounded-pill">
             Risorse
           </Button>
-          <Card.Body className="bg-danger rounded-3 mt-3">
+          <Card.Body style={{ backgroundColor: "#DDE7F1" }} className=" rounded-3 mt-3">
             <Card.Text>
               {profile.bio || "Nessuna bio disponibile."}
               <Card.Text>
