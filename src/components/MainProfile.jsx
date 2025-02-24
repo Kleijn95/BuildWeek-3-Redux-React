@@ -10,7 +10,7 @@ function MainProfile() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchProfile());
+    dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
   }, [dispatch]);
 
   if (!profile) {
