@@ -1,3 +1,7 @@
 body {
   background-color: #f4f2ee;
 }
+
+.asideButton:hover {
+  border: solid black 2px !important;
+}
