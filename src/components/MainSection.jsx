@@ -1,6 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import MainProfile from "./MainProfile";
 import AsideProfile from "./AsideProfile";
+import Experience from "./Experience";
 
 function MainSection() {
   return (
@@ -9,6 +10,7 @@ function MainSection() {
         <Row>
           <Col className="col-9">
             <MainProfile />
+            <Experience />
           </Col>
           <Col className="col-3">
             <AsideProfile />
