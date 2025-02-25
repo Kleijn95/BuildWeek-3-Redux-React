@@ -10,3 +10,53 @@ body {
   border: solid 2px !important;
   background-color: rgb(55 143 233/0.1) !important;
 }
+.footer {
+  background-color: #f3f2ef;
+  padding: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.footer-sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Distribuisce le colonne */
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px; /* Evita che le colonne diventino troppo strette */
+  margin: 10px;
+}
+
+.footer-column a {
+  display: block;
+  text-decoration: none;
+  color: #666;
+  margin: 5px 0;
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+  color: #0a66c2;
+}
+
+/* Stile per le sezioni con icona */
+.footer-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.footer-item .icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
