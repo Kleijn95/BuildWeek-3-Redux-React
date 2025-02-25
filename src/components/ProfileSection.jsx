@@ -1,9 +1,9 @@
 import { Col, Container, Row } from "react-bootstrap";
 
 import AsideProfile from "./AsideProfile";
-import Experience from "./Experience";
 import { useParams } from "react-router-dom";
 import UtenteProfile from "./UtenteProfile";
+import UtenteExperience from "./UtenteExperience";
 
 function ProfileSection() {
   const { userId } = useParams();
@@ -13,7 +13,7 @@ function ProfileSection() {
         <Row>
           <Col className="col-9">
             <UtenteProfile userId={userId} />
-            <Experience />
+            <UtenteExperience />
           </Col>
           <Col className="col-3">
             <AsideProfile />
