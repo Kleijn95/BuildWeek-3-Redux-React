@@ -3,6 +3,7 @@ import { BellFill, ChatDotsFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function TopBar() {
   const dispatch = useDispatch();
@@ -87,7 +88,11 @@ function TopBar() {
                 </div>
               </div>
 
-              <Button className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100">
+              <Button
+                as={Link} // Usa il Link come componente
+                to="/"
+                className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100"
+              >
                 Visualizza Profilo
               </Button>
             </NavDropdown.Item>
