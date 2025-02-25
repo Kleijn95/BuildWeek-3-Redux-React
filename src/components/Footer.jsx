@@ -1,4 +1,5 @@
 import { Dropdown } from "react-bootstrap";
+import { GearFill, QuestionCircleFill, ShieldShaded } from "react-bootstrap-icons";
 
 const Footer = () => {
   return (
@@ -9,8 +10,13 @@ const Footer = () => {
           <a href="https://it.linkedin.com/legal/professional-community-policies?">
             Informativa sulla community professionale
           </a>
-          <Dropdown>
-            <Dropdown.Toggle variant="white" id="dropdown-privacy">
+          <Dropdown className="p-0 m-0 border-0" style={{ fontSize: "0.9rem", color: "#666" }}>
+            <Dropdown.Toggle
+              className="p-0 m-0 border-0"
+              style={{ fontSize: "0.9rem", color: "#666" }}
+              variant="white"
+              id="dropdown-privacy"
+            >
               Privacy e condizioni
             </Dropdown.Toggle>
 
@@ -57,24 +63,30 @@ const Footer = () => {
         <div className="footer-column">
           <div className="footer-item">
             <span className="icon">
-              <i className="bi bi-question-circle-fill"></i>{" "}
+              <QuestionCircleFill />
             </span>
-            <p>Domande?</p>
-            <small>Visita il nostro Centro assistenza.</small>
+            <div className="footer-text">
+              <p>Domande?</p>
+              <small>Visita il nostro Centro assistenza.</small>
+            </div>
           </div>
           <div className="footer-item">
             <span className="icon">
-              <i className="bi bi-gear-fill"></i>
+              <GearFill />
             </span>
-            <p>Gestisci il tuo account e la tua privacy</p>
-            <small>Vai alle impostazioni</small>
+            <div className="footer-text">
+              <p>Gestisci il tuo account e la tua privacy</p>
+              <small>Vai alle impostazioni</small>
+            </div>
           </div>
           <div className="footer-item">
             <span className="icon">
-              <i className="bi bi-shield-shaded"></i>
+              <ShieldShaded />
             </span>
-            <p>Trasparenza sui contenuti consigliati</p>
-            <small>Scopri di più sui contenuti consigliati.</small>
+            <div className="footer-text">
+              <p>Trasparenza sui contenuti consigliati</p>
+              <small>Scopri di più sui contenuti consigliati.</small>
+            </div>
           </div>
         </div>
         <div className="footer-dropdown"></div>

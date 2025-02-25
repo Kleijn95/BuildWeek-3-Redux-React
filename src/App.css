@@ -60,3 +60,33 @@ body {
   margin-top: 20px;
   color: #666;
 }
+/* footer icone  */
+.footer-item {
+  display: flex;
+  align-items: flex-start; /* Allinea icona e testo in alto */
+  gap: 8px; /* Distanza tra icona e testo */
+  margin-bottom: 10px;
+}
+
+.icon-style {
+  font-size: 20px;
+  color: #666; /* Colore icona */
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column; /* Metti il <small> sotto il <p> */
+}
+
+.footer-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #915edb; /* Colore viola */
+  margin: 0;
+}
+
+.footer-item small {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px; /* Spazio tra <p> e <small> */
+}
