@@ -9,8 +9,6 @@ function Experience() {
   const experiences = useSelector((state) => state.experience.content);
   useEffect(() => {
     dispatch(fetchExperience());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
   return (
     <Container style={{ backgroundColor: "white" }} className="border rounded-3 mt-3 px-3 pt-3">
