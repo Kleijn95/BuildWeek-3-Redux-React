@@ -1,8 +1,10 @@
+/* eslint-disable no-undef */
 import { useEffect } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAside } from "../redux/actions/profileActions";
 import { PersonPlus } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 function Aside2() {
   const dispatch = useDispatch();
@@ -26,13 +28,9 @@ function Aside2() {
           <Row className="mb-3 d-flex align-items-start ms-auto">
             {" "}
             <Col xs={3} className="me-3">
-              <Image
-                className="w-100 rounded-circle"
-                fluid
-                variant="top"
-                src={element.image}
-                style={{ objectFit: "cover", aspectRatio: "1/1" }}
-              />
+              <Link to={`/${element._id}`}>
+                <Image className="w-100 rounded-circle" fluid variant="top" src={element.image} style={{ objectFit: "cover", aspectRatio: "1/1" }} />
+              </Link>
             </Col>
             <Col>
               <div>
