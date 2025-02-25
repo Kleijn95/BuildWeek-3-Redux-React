@@ -131,3 +131,15 @@ body {
 #navbarScrollingDropdown {
   padding-top: 0 !important;
 }
+
+footer a:visited {
+  color: #8443ce99; /* Colore per i link visitati */
+}
+
+footer a {
+  font-weight: 600;
+}
+
+footer a:visited:hover {
+  color: purple;
+}

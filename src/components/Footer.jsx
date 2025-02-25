@@ -6,8 +6,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-sections">
         <div className="footer-column">
-          <a href="https://about.linkedin.com/it-it">Informazioni</a>
-          <a href="https://it.linkedin.com/legal/professional-community-policies?">
+          <a target="_blank" href="https://about.linkedin.com/it-it">
+            Informazioni
+          </a>
+          <a target="_blank" href="https://it.linkedin.com/legal/professional-community-policies?">
             Informativa sulla community professionale
           </a>
           <Dropdown className="p-0 m-0 border-0" style={{ fontSize: "0.9rem", color: "#666" }}>
@@ -21,44 +23,69 @@ const Footer = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu variant="white">
-              <Dropdown.Item href="https://it.linkedin.com/legal/privacy-policy?">
+              <Dropdown.Item target="_blank" href="https://it.linkedin.com/legal/privacy-policy?">
                 Informativa sulla privacy
               </Dropdown.Item>
-              <Dropdown.Item href="https://it.linkedin.com/legal/user-agreement?">Contratto di licenza</Dropdown.Item>
-              <Dropdown.Item href="https://it.linkedin.com/legal/l/linkedin-pages-terms?">
+              <Dropdown.Item target="_blank" href="https://it.linkedin.com/legal/user-agreement?">
+                Contratto di licenza
+              </Dropdown.Item>
+              <Dropdown.Item target="_blank" href="https://it.linkedin.com/legal/l/linkedin-pages-terms?">
                 Termini e condizioni della pagina
               </Dropdown.Item>
-              <Dropdown.Item href="https://it.linkedin.com/legal/cookie-policy?">informativa sui cookie</Dropdown.Item>
-              <Dropdown.Item href="https://it.linkedin.com/legal/copyright-policy?">
+              <Dropdown.Item target="_blank" href="https://it.linkedin.com/legal/cookie-policy?">
+                informativa sui cookie
+              </Dropdown.Item>
+              <Dropdown.Item target="_blank" href="https://it.linkedin.com/legal/copyright-policy?">
                 informativa sul copyright
               </Dropdown.Item>
-              <Dropdown.Item href="https://it.linkedin.com/legal/california-privacy-disclosure?">
+              <Dropdown.Item target="_blank" href="https://it.linkedin.com/legal/california-privacy-disclosure?">
                 Opzioni relative all&apos;informativa sulla privacy (Stato della California)
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <a href="https://business.linkedin.com/sales-solutions?trk=flagship_nav&veh=li-footer-lss-control&src=li-footer">
+          <a
+            target="_blank"
+            href="https://business.linkedin.com/sales-solutions?trk=flagship_nav&veh=li-footer-lss-control&src=li-footer"
+          >
             sales Solutions
           </a>
-          <a href="https://about.linkedin.com/transparency">Centro di sicurezza</a>
+          <a target="_blank" href="https://about.linkedin.com/transparency">
+            Centro di sicurezza
+          </a>
         </div>
         <div className="footer-column">
-          <a href="https://it.linkedin.com/accessibility?">Accessibilità</a>
-          <a href="https://careers.linkedin.com/">Carriera</a>
-          <a href="https://www.linkedin.com/help/linkedin/answer/a1342443/?lang=it">
+          <a target="_blank" href="https://it.linkedin.com/accessibility?">
+            Accessibilità
+          </a>
+          <a target="_blank" href="https://careers.linkedin.com/">
+            Carriera
+          </a>
+          <a target="_blank" href="https://www.linkedin.com/help/linkedin/answer/a1342443/?lang=it">
             Opzioni per gli annunci pubblicitari
           </a>
-          <a href="https://mobile.linkedin.com/it-it">Mobile</a>
+          <a target="_blank" href="https://mobile.linkedin.com/it-it">
+            Mobile
+          </a>
         </div>
         <div className="footer-column">
-          <a href="https://business.linkedin.com/it-it/talent-solutions?trk=flagship_nav&veh=li-footer-lts-control-it-it&src=li-footer">
+          <a
+            target="_blank"
+            href="https://business.linkedin.com/it-it/talent-solutions?trk=flagship_nav&veh=li-footer-lts-control-it-it&src=li-footer"
+          >
             Talent Solutions
           </a>
-          <a href="https://business.linkedin.com/it-it/marketing-solutions?trk=n_nav_lms_f&src=li-footer">
+          <a
+            target="_blank"
+            href="https://business.linkedin.com/it-it/marketing-solutions?trk=n_nav_lms_f&src=li-footer"
+          >
             Soluzioni di Marketing
           </a>
-          <a href="https://business.linkedin.com/it-it/marketing-solutions/ads?trk=n_nav_ads_f">Pubblicità</a>
-          <a href="https://business.linkedin.com/small-business?&src=li-footer">Piccole imprese</a>
+          <a target="_blank" href="https://business.linkedin.com/it-it/marketing-solutions/ads?trk=n_nav_ads_f">
+            Pubblicità
+          </a>
+          <a target="_blank" href="https://business.linkedin.com/small-business?&src=li-footer">
+            Piccole imprese
+          </a>
         </div>
         <div className="footer-column">
           <div className="footer-item">
