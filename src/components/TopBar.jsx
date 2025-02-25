@@ -1,9 +1,17 @@
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { BellFill, ChatDotsFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "../redux/actions/profileActions";
+import { useEffect } from "react";
 
 function TopBar() {
+  const dispatch = useDispatch();
   const profile = useSelector((state) => state.myprofile.data);
+
+  useEffect(() => {
+    dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
+  }, [dispatch]);
+
   if (!profile) {
     return <p>Caricamento...</p>;
   }
