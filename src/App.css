@@ -60,6 +60,7 @@ body {
   margin-top: 20px;
   color: #666;
 }
+<<<<<<< HEAD
 /* footer icone  */
 .footer-item {
   display: flex;
@@ -89,4 +90,45 @@ body {
   font-size: 12px;
   color: #666;
   margin-top: 2px; /* Spazio tra <p> e <small> */
+=======
+.custom-dropdown .dropdown-toggle::after {
+  display: none; /* Nascondi la freccia predefinita di Bootstrap */
+  padding-top: 0;
+}
+
+.custom-dropdown .dropdown-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 4px; /* Spazio tra il testo "Tu" e la freccia */
+  vertical-align: middle;
+  border-top: 4px solid; /* Stile della freccia */
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+/* Stile per gli header */
+.dropdown-header {
+  color: black; /* Colore del testo */
+  font-size: 1.1rem; /* Dimensione del testo */
+  font-weight: 500; /* Grassetto */
+  padding: 8px 16px; /* Padding per allineare con i dropdown item */
+}
+
+/* Stile per i dropdown item */
+.dropdown-item {
+  color: grey; /* Colore del testo */
+  padding: 8px 16px; /* Padding per allineare con gli header */
+  text-decoration: none; /* Rimuove la sottolineatura predefinita */
+}
+
+/* Effetto hover sui dropdown item */
+.dropdown-item:hover {
+  text-decoration: underline; /* Aggiunge la sottolineatura */
+  background-color: transparent; /* Rimuove lo sfondo al passaggio del mouse */
+  color: grey;
+}
+
+#navbarScrollingDropdown {
+  padding-top: 0 !important;
+>>>>>>> 22cb85bdcbf3a64cfc3c032eedf3a0f667427c86
 }
