@@ -20,14 +20,14 @@ body {
 .footer-sections {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Distribuisce le colonne */
-  max-width: 1100px;
+  /* Distribuisce le colonne */
+
   margin: 0 auto;
 }
 
 .footer-column {
   flex: 1;
-  min-width: 200px; /* Evita che le colonne diventino troppo strette */
+  max-width: 200px; /* Evita che le colonne diventino troppo strette */
   margin: 10px;
 }
 
@@ -48,6 +48,7 @@ body {
   display: flex;
   align-items: center;
   margin: 10px 0;
+  margin-top: 0;
 }
 
 .footer-item .icon {
@@ -59,4 +60,87 @@ body {
   text-align: center;
   margin-top: 20px;
   color: #666;
+}
+/* footer icone  */
+.footer-item {
+  display: flex;
+  align-items: flex-start; /* Allinea icona e testo in alto */
+  gap: 8px; /* Distanza tra icona e testo */
+  margin-bottom: 10px;
+}
+
+.icon-style {
+  font-size: 20px;
+  color: #666; /* Colore icona */
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column; /* Metti il <small> sotto il <p> */
+}
+
+.footer-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #915edb; /* Colore viola */
+  margin: 0;
+}
+
+.footer-item small {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+/* Spazio tra <p> e <small> */
+.custom-dropdown .dropdown-toggle::after {
+  display: none; /* Nascondi la freccia predefinita di Bootstrap */
+  padding-top: 0;
+}
+
+.custom-dropdown .dropdown-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 4px; /* Spazio tra il testo "Tu" e la freccia */
+  vertical-align: middle;
+  border-top: 4px solid; /* Stile della freccia */
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+/* Stile per gli header */
+.dropdown-header {
+  color: black; /* Colore del testo */
+  font-size: 1.1rem; /* Dimensione del testo */
+  font-weight: 500; /* Grassetto */
+  padding: 8px 16px; /* Padding per allineare con i dropdown item */
+}
+
+/* Stile per i dropdown item */
+.dropdown-item {
+  color: grey; /* Colore del testo */
+  padding: 8px 16px; /* Padding per allineare con gli header */
+  text-decoration: none; /* Rimuove la sottolineatura predefinita */
+}
+
+/* Effetto hover sui dropdown item */
+.dropdown-item:hover {
+  text-decoration: underline; /* Aggiunge la sottolineatura */
+  background-color: transparent; /* Rimuove lo sfondo al passaggio del mouse */
+  color: grey;
+}
+
+#navbarScrollingDropdown {
+  padding-top: 0 !important;
+}
+
+.footer a:visited {
+  color: #8443ce99; /* Colore per i link visitati */
+}
+
+.footer a {
+  font-weight: 600;
+}
+
+.footer a:visited:hover {
+  color: purple;
 }
