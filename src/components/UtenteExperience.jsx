@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { PencilSquare, Plus } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUtenteExperience } from "../redux/actions/profileActions";
 import { useParams } from "react-router-dom";
@@ -25,21 +24,13 @@ function Experience() {
 
   return (
     <Container style={{ backgroundColor: "white" }} className="border rounded-3 mt-3 px-3 pt-3">
-      <div className="d-flex justify-content-between">
-        <h4>Esperienze</h4>
-        <div>
-          <Plus className="fs-2 mx-2" />
-          <PencilSquare className="fs-5 mx-2" />
-        </div>
-      </div>
+      <h4>Esperienze</h4>
+
       <Container fluid>
         {experiences.map((exp) => (
           <Row key={exp._id}>
             <Col xs="2">
-              <Image
-                fluid
-                src={exp.image || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
-              />
+              <Image fluid src={exp.image || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"} />
             </Col>
             <Col xs="10" className="ps-0">
               <h5>{exp.role}</h5>
