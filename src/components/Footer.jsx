@@ -1,9 +1,9 @@
-import { Dropdown } from "react-bootstrap";
+import { Container, Dropdown, Form } from "react-bootstrap";
 import { GearFill, QuestionCircleFill, ShieldShaded } from "react-bootstrap-icons";
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <Container className="footer">
       <div className="footer-sections">
         <div className="footer-column">
           <a target="_blank" href="https://about.linkedin.com/it-it">
@@ -52,6 +52,8 @@ const Footer = () => {
           <a target="_blank" href="https://about.linkedin.com/transparency">
             Centro di sicurezza
           </a>
+
+          <p className="mt-5">LinkedIn Corporation © 2025</p>
         </div>
         <div className="footer-column">
           <a target="_blank" href="https://it.linkedin.com/accessibility?">
@@ -93,7 +95,7 @@ const Footer = () => {
               <QuestionCircleFill />
             </span>
             <div className="footer-text">
-              <p>Domande?</p>
+              <p className="mt-0 mb-0">Domande?</p>
               <small>Visita il nostro Centro assistenza.</small>
             </div>
           </div>
@@ -102,7 +104,7 @@ const Footer = () => {
               <GearFill />
             </span>
             <div className="footer-text">
-              <p>Gestisci il tuo account e la tua privacy</p>
+              <p className="mt-0 mb-0">Gestisci il tuo account e la tua privacy</p>
               <small>Vai alle impostazioni</small>
             </div>
           </div>
@@ -111,17 +113,21 @@ const Footer = () => {
               <ShieldShaded />
             </span>
             <div className="footer-text">
-              <p>Trasparenza sui contenuti consigliati</p>
+              <p className="mt-0 mb-0">Trasparenza sui contenuti consigliati</p>
               <small>Scopri di più sui contenuti consigliati.</small>
             </div>
           </div>
         </div>
-        <div className="footer-dropdown"></div>
+        <div className="footer-column">
+          <p className="mb-0">Seleziona Lingua</p>
+          <Form.Select aria-label="Lingua">
+            <option value="1">Italiano</option>
+            <option value="2">Inglese</option>
+            <option value="3">Francese</option>
+          </Form.Select>
+        </div>
       </div>
-      <div className="footer-bottom">
-        <p>LinkedIn Corporation © 2025</p>
-      </div>
-    </footer>
+    </Container>
   );
 };
 export default Footer;

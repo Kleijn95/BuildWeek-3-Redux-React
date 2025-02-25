@@ -20,14 +20,14 @@ body {
 .footer-sections {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Distribuisce le colonne */
-  max-width: 1100px;
+  /* Distribuisce le colonne */
+
   margin: 0 auto;
 }
 
 .footer-column {
   flex: 1;
-  min-width: 200px; /* Evita che le colonne diventino troppo strette */
+  max-width: 200px; /* Evita che le colonne diventino troppo strette */
   margin: 10px;
 }
 
@@ -48,6 +48,7 @@ body {
   display: flex;
   align-items: center;
   margin: 10px 0;
+  margin-top: 0;
 }
 
 .footer-item .icon {
@@ -132,14 +133,14 @@ body {
   padding-top: 0 !important;
 }
 
-footer a:visited {
+.footer a:visited {
   color: #8443ce99; /* Colore per i link visitati */
 }
 
-footer a {
+.footer a {
   font-weight: 600;
 }
 
-footer a:visited:hover {
+.footer a:visited:hover {
   color: purple;
 }
