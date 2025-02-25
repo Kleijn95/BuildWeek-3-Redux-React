@@ -1,15 +1,18 @@
 import { Col, Container, Row } from "react-bootstrap";
-import MainProfile from "./MainProfile";
+
 import AsideProfile from "./AsideProfile";
 import Experience from "./Experience";
+import { useParams } from "react-router-dom";
+import UtenteProfile from "./UtenteProfile";
 
-function MainSection() {
+function ProfileSection() {
+  const { userId } = useParams();
   return (
     <>
       <Container className="mt-5">
         <Row>
           <Col className="col-9">
-            <MainProfile />
+            <UtenteProfile userId={userId} />
             <Experience />
           </Col>
           <Col className="col-3">
@@ -21,4 +24,4 @@ function MainSection() {
   );
 }
 
-export default MainSection;
+export default ProfileSection;
