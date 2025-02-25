@@ -1,3 +1,5 @@
+import { Dropdown } from "react-bootstrap";
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -7,7 +9,28 @@ const Footer = () => {
           <a href="https://it.linkedin.com/legal/professional-community-policies?">
             Informativa sulla community professionale
           </a>
-          <a href="#">Privacy e condizioni</a> {/* c'è un alert */}
+          <Dropdown>
+            <Dropdown.Toggle variant="white" id="dropdown-privacy">
+              Privacy e condizioni
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu variant="white">
+              <Dropdown.Item href="https://it.linkedin.com/legal/privacy-policy?">
+                Informativa sulla privacy
+              </Dropdown.Item>
+              <Dropdown.Item href="https://it.linkedin.com/legal/user-agreement?">Contratto di licenza</Dropdown.Item>
+              <Dropdown.Item href="https://it.linkedin.com/legal/l/linkedin-pages-terms?">
+                Termini e condizioni della pagina
+              </Dropdown.Item>
+              <Dropdown.Item href="https://it.linkedin.com/legal/cookie-policy?">informativa sui cookie</Dropdown.Item>
+              <Dropdown.Item href="https://it.linkedin.com/legal/copyright-policy?">
+                informativa sul copyright
+              </Dropdown.Item>
+              <Dropdown.Item href="https://it.linkedin.com/legal/california-privacy-disclosure?">
+                Opzioni relative all&apos;informativa sulla privacy (Stato della California)
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           <a href="https://business.linkedin.com/sales-solutions?trk=flagship_nav&veh=li-footer-lss-control&src=li-footer">
             sales Solutions
           </a>
