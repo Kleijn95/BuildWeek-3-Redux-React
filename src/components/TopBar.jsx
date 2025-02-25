@@ -1,7 +1,12 @@
-import { Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { BellFill, ChatDotsFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 
 function TopBar() {
+  const profile = useSelector((state) => state.myprofile.data);
+  if (!profile) {
+    return <p>Caricamento...</p>;
+  }
   return (
     <Navbar bg="white">
       <Container>
@@ -32,12 +37,59 @@ function TopBar() {
             <BellFill className="fs-5" fill="grey" />
             Notifiche
           </Nav.Link>
-          <NavDropdown title="Tu" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+          <NavDropdown
+            title={
+              <img
+                style={{
+                  width: "35px",
+                  height: "35px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+                src={profile.image}
+              ></img>
+            }
+            id="navbarScrollingDropdown"
+          >
+            <NavDropdown.Item href="#action3">
+              <div className="d-flex align-items-center mt-3">
+                <img
+                  src={profile.image || "https://via.placeholder.com/50"}
+                  alt="Profile"
+                  className="rounded-circle me-3"
+                  style={{ width: "50px", height: "50px" }}
+                />
+
+                <div>
+                  <p className="mb-0 fw-bold">
+                    {profile.name} {profile.surname}
+                  </p>
+                  <p className="mb-0">{profile.title}</p>
+                </div>
+              </div>
+
+              <Button className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100">
+                Visualizza Profilo
+              </Button>
+
+              <hr style={{ borderColor: "lightgray" }} />
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#action4">
+              <h5>Account</h5>
+              <Nav.Link>Impostazioni e privacy</Nav.Link>
+              <Nav.Link>Guida</Nav.Link>
+              <Nav.Link>Lingua</Nav.Link>
+            </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
-          </NavDropdown>{" "}
+            <NavDropdown.Item href="#action5">
+              <h5>Gestisci</h5>
+              <Nav.Link>Post e attività</Nav.Link>
+              <Nav.Link>Account per la pubblicazione</Nav.Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#action6">
+              <Nav.Link>Esci</Nav.Link>
+            </NavDropdown.Item>
+          </NavDropdown>
           <NavDropdown title="Per le Aziende" id="navbarScrollingDropdown">
             <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
@@ -51,3 +103,5 @@ function TopBar() {
 }
 
 export default TopBar;
+
+<p></p>;
