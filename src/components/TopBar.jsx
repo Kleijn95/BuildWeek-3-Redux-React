@@ -36,7 +36,7 @@ function TopBar() {
             }}
           />
         </Navbar.Brand>
-        <Form className=" me-5">
+        <Form className=" ">
           <div className="input-group bg-light">
             <span className="input-group-text bg-transparent border-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#666" viewBox="0 0 16 16">
@@ -51,7 +51,7 @@ function TopBar() {
             />
           </div>
         </Form>
-        <Nav className="me-auto ms-5 align-items-center gap-1">
+        <Nav className="ms-auto  align-items-center flex-end gap-1">
           {/* Elementi navigazione */}
           {[
             { icon: HouseFill, text: "Home", link: "/" },
@@ -174,7 +174,7 @@ function TopBar() {
             {/* ... contenuto dropdown ... */}
           </NavDropdown>
         </Nav>
-        <p style={{ color: "#CC7E09", textDecoration: "underline" }}>Prova premium per 0 euro</p>
+        <p style={{ color: "#CC7E09", textDecoration: "underline", fontSize: "0.75rem" }}>Prova premium per 0 euro</p>
       </Container>
     </Navbar>
   );
