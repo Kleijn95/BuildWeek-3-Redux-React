@@ -8,6 +8,11 @@ const ExperienceReducer = (state = initialState, action) => {
       return { ...state, content: action.payload };
     case "ADD_EXPERIENCE":
       return { ...state, content: [...state.content, action.payload] };
+    case "PUT_EXPERIENCE":
+      return {
+        ...state,
+        content: state.content.map((exp) => (exp._id === action.payload._id ? action.payload : exp)),
+      };
     default:
       return state;
   }
