@@ -1,0 +1,146 @@
+{
+  "jobs": [
+    {
+      "lavoro": "Sviluppatore Frontend",
+      "competenze": [
+        { "skill": "JavaScript", "dove": "Progetto personale" },
+        { "skill": "React", "dove": "Azienda XYZ" }
+      ]
+    },
+    {
+      "lavoro": "Sviluppatore Backend",
+      "competenze": [
+        { "skill": "Node.js", "dove": "Freelance" },
+        { "skill": "MongoDB", "dove": "Startup ABC" }
+      ]
+    },
+    {
+      "lavoro": "Full Stack Developer",
+      "competenze": [
+        { "skill": "JavaScript", "dove": "Corso online" },
+        { "skill": "Express.js", "dove": "Progetto aziendale" }
+      ]
+    },
+    {
+      "lavoro": "DevOps Engineer",
+      "competenze": [
+        { "skill": "Docker", "dove": "Progetto open source" },
+        { "skill": "Kubernetes", "dove": "Lavoro attuale" }
+      ]
+    },
+    {
+      "lavoro": "Data Scientist",
+      "competenze": [
+        { "skill": "Python", "dove": "Università" },
+        { "skill": "Pandas", "dove": "Tesi di laurea" }
+      ]
+    },
+    {
+      "lavoro": "Cyber Security Analyst",
+      "competenze": [
+        { "skill": "Ethical Hacking", "dove": "Master in Cyber Security" },
+        { "skill": "Networking", "dove": "Esperienza lavorativa" }
+      ]
+    },
+    {
+      "lavoro": "Game Developer",
+      "competenze": [
+        { "skill": "Unity", "dove": "Progetto indipendente" },
+        { "skill": "C#", "dove": "Sviluppo di un videogioco" }
+      ]
+    },
+    {
+      "lavoro": "AI Engineer",
+      "competenze": [
+        { "skill": "Machine Learning", "dove": "Ricerca accademica" },
+        { "skill": "TensorFlow", "dove": "Esperienza in azienda" }
+      ]
+    },
+    {
+      "lavoro": "Mobile Developer",
+      "competenze": [
+        { "skill": "Flutter", "dove": "App personale" },
+        { "skill": "Dart", "dove": "Sviluppo aziendale" }
+      ]
+    },
+    {
+      "lavoro": "IT Project Manager",
+      "competenze": [
+        { "skill": "Agile", "dove": "Gestione di team" },
+        { "skill": "Scrum", "dove": "Corso di formazione" }
+      ]
+    }
+  ],
+  "formazione": [
+    {
+      "scuola": "Politecnico di Milano",
+      "indirizzo": "Ingegneria Informatica",
+      "start_date": "Set 2015",
+      "end_date": "Giu 2020",
+      "logo": "https://upload.wikimedia.org/wikipedia/it/archive/b/be/20151029123608%21Logo_Politecnico_Milano.png"
+    },
+    {
+      "scuola": "Università di Bologna",
+      "indirizzo": "Scienze Informatiche",
+      "start_date": "Ott 2016",
+      "end_date": "Lug 2021",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFhNcnMqUo22tQrSCytBdGuya84O9ufm_AhQ&s"
+    },
+    {
+      "scuola": "Sapienza Università di Roma",
+      "indirizzo": "Cyber Security",
+      "start_date": "Mar 2014",
+      "end_date": "Dic 2019",
+      "logo": "https://upload.wikimedia.org/wikipedia/it/d/d6/Sapienza_stemma.png"
+    },
+    {
+      "scuola": "Università degli Studi di Padova",
+      "indirizzo": "Data Science",
+      "start_date": "Feb 2017",
+      "end_date": "Nov 2022",
+      "logo": "https://cdn.sociale.network/cache/accounts/avatars/000/351/763/original/9bd4dbc00c486a5d.png"
+    },
+    {
+      "scuola": "Università degli Studi di Torino",
+      "indirizzo": "Ingegneria del Software",
+      "start_date": "Gen 2013",
+      "end_date": "Set 2018",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzBiuPX_zXqfXOBqET35ZrWRu76Wp39FC5Bw&s"
+    },
+    {
+      "scuola": "Università di Pisa",
+      "indirizzo": "Intelligenza Artificiale",
+      "start_date": "Apr 2015",
+      "end_date": "Ago 2020",
+      "logo": "https://upload.wikimedia.org/wikipedia/it/thumb/e/e2/Stemma_unipi.svg/1200px-Stemma_unipi.svg.png"
+    },
+    {
+      "scuola": "Università degli Studi di Firenze",
+      "indirizzo": "Sicurezza Informatica",
+      "start_date": "Dic 2012",
+      "end_date": "Mag 2017",
+      "logo": "https://firenze.repubblica.it/images/2013/01/04/193440091-c564d53d-e597-497d-818e-68976ea2ca6e.jpg"
+    },
+    {
+      "scuola": "Università di Trento",
+      "indirizzo": "Computer Science",
+      "start_date": "Lug 2016",
+      "end_date": "Ott 2021",
+      "logo": "https://upload.wikimedia.org/wikipedia/it/e/e4/Sigillo_Universit%C3%A0_di_Trento.svg"
+    },
+    {
+      "scuola": "Università degli Studi di Napoli Federico II",
+      "indirizzo": "Ingegneria Elettronica",
+      "start_date": "Giu 2014",
+      "end_date": "Set 2019",
+      "logo": "https://www.neapolisinnovation.info/blog/wp-content/uploads/2016/08/Logo-UNINA.jpg"
+    },
+    {
+      "scuola": "Università degli Studi di Catania",
+      "indirizzo": "Automazione e Robotica",
+      "start_date": "Mag 2015",
+      "end_date": "Dic 2020",
+      "logo": "https://cyberchallenge.it/media/public/venue/logo/unict.png"
+    }
+  ]
+}
