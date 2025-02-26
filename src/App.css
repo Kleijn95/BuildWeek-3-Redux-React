@@ -168,3 +168,13 @@ body {
 .button-style:hover {
   background-color: #f0f0f0; /* Colore grigio al passaggio del mouse */
 }
+
+.custom-link {
+  text-decoration: none; /* Rimuove la sottolineatura */
+  color: inherit; /* Mantiene il colore del testo di default */
+}
+
+/* Linea nera al passaggio del mouse */
+.custom-link:hover {
+  border-bottom: 2px solid black; /* Linea nera quando si passa sopra */
+}
