@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { Button, Card, CardLink, Modal } from "react-bootstrap";
+import { Button, Card, CardLink, ListGroup, Modal } from "react-bootstrap";
 import { PatchCheck } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
 import Bio from "./Bio";
+import { Link } from "react-router-dom";
 
 function MainProfile() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.myprofile.data);
   const [showModal, setShowModal] = useState(false);
+  const [showAddSectionsModal, setShowAddSectionsModal] = useState(false);
 
   useEffect(() => {
     dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
@@ -58,7 +60,7 @@ function MainProfile() {
           <Button variant="primary" className="me-2 rounded-pill">
             Disponibile per
           </Button>
-          <Button variant="primary" className="me-2 rounded-pill">
+          <Button variant="primary" className="me-2 rounded-pill" onClick={() => setShowAddSectionsModal(true)} style={{ cursor: "pointer" }}>
             Aggiorna sezione del Profilo
           </Button>
           <Button variant="primary" className="me-2 rounded-pill">
@@ -67,12 +69,64 @@ function MainProfile() {
           <Button variant="primary" className="me-2 rounded-pill">
             Risorse
           </Button>
+
+          <Modal show={showAddSectionsModal} onHide={() => setShowAddSectionsModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>AGGIUNGI AL PROFILO</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h6 className="fs-5">Sezioni principali</h6>
+              <p>Iniziamo dalle basi. Se compili queste sezioni, sarà più facile trovarti per i recruiter e le persone che potresti conoscere</p>
+
+              <ListGroup variant="flush">
+                <ListGroup.Item className="mb-3 ">
+                  <Link className="nodecoration" to="#">
+                    Aggiungi foto del profilo
+                  </Link>
+                </ListGroup.Item>
+                <ListGroup.Item className="mb-3">
+                  <Link className="nodecoration" to="#">
+                    Aggiungi informazioni
+                  </Link>
+                </ListGroup.Item>
+                <ListGroup.Item className="mb-3">
+                  <Link className="nodecoration" to="#">
+                    Aggiungi grado di formazione
+                  </Link>
+                </ListGroup.Item>
+                <ListGroup.Item className="mb-3">
+                  <Link className="nodecoration" to="#">
+                    Aggiungi posizione lavorativa
+                  </Link>
+                </ListGroup.Item>
+                <ListGroup.Item className="mb-3">
+                  <Link className="nodecoration" to="#">
+                    Aggiungi servizi
+                  </Link>
+                </ListGroup.Item>
+                <ListGroup.Item className="mb-3">
+                  <Link className="nodecoration" to="#">
+                    Aggiungi pausa lavorativa
+                  </Link>
+                </ListGroup.Item>
+                <ListGroup.Item className="mb-3">
+                  <Link className="nodecoration" to="#">
+                    Aggiungi competenze
+                  </Link>
+                </ListGroup.Item>
+              </ListGroup>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowAddSectionsModal(false)}>
+                Chiudi
+              </Button>
+            </Modal.Footer>
+          </Modal>
           <Card.Body style={{ backgroundColor: "#DDE7F1" }} className=" rounded-3 mt-3">
             <Card.Text>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ea amet inventore ullam impedit vero
-                alias aliquid autem. Dolor corrupti temporibus modi? Aut dignissimos molestias incidunt ullam delectus
-                quos quia?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ea amet inventore ullam impedit vero alias aliquid autem. Dolor corrupti
+                temporibus modi? Aut dignissimos molestias incidunt ullam delectus quos quia?
               </p>
               <Card.Text>
                 <CardLink>Mostra Dettagli</CardLink>
@@ -102,11 +156,7 @@ function MainProfile() {
           </p>
           <p>
             <strong>LinkedIn:</strong>
-            <a
-              href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7" target="_blank" rel="noopener noreferrer">
               {" "}
               Vai al profilo{" "}
             </a>

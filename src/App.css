@@ -144,3 +144,14 @@ body {
 .footer a:visited:hover {
   color: purple;
 }
+
+.nodecoration {
+  text-decoration: none !important; /* Rimuove la sottolineatura */
+  color: inherit !important; /* Eredita il colore del testo del genitore */
+}
+
+/* (Opzionale) Cambia il colore del link al passaggio del mouse */
+.nodecoration:hover {
+  color: #000000 !important; /* Aggiungi il colore desiderato durante l'hover */
+  text-decoration: underline !important; /* (Opzionale) Sottolineatura al passaggio del mouse */
+}
