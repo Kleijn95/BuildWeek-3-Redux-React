@@ -11,6 +11,7 @@ function MainProfile() {
   const profile = useSelector((state) => state.myprofile.data);
   const [showModal, setShowModal] = useState(false);
   const [showAddSectionsModal, setShowAddSectionsModal] = useState(false);
+  const competenzeData = useSelector((state) => state.education.jobs) || []; // Fai in modo che sia un array vuoto se undefined
 
   useEffect(() => {
     dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
@@ -20,6 +21,15 @@ function MainProfile() {
     return <p>Caricamento...</p>;
   }
 
+  // Funzione per ottenere un numero casuale di lavori
+  const getRandomJobs = (data) => {
+    const randomCount = Math.floor(Math.random() * data.length) + 1;
+    const shuffled = [...data].sort(() => 0.5 - Math.random()); // Crea una copia dell'array e mescola
+    return shuffled.slice(0, randomCount); // Restituisci un numero casuale di lavori
+  };
+
+  // Ottieni lavori casuali
+  const randomJobs = getRandomJobs(competenzeData); // Cambia da initialState.jobs a competenzeData
   return (
     <>
       <Card style={{ position: "relative" }}>
@@ -60,7 +70,12 @@ function MainProfile() {
           <Button variant="primary" className="me-2 rounded-pill">
             Disponibile per
           </Button>
-          <Button variant="primary" className="me-2 rounded-pill" onClick={() => setShowAddSectionsModal(true)} style={{ cursor: "pointer" }}>
+          <Button
+            variant="primary"
+            className="me-2 rounded-pill"
+            onClick={() => setShowAddSectionsModal(true)}
+            style={{ cursor: "pointer" }}
+          >
             Aggiorna sezione del Profilo
           </Button>
           <Button variant="primary" className="me-2 rounded-pill">
@@ -76,7 +91,10 @@ function MainProfile() {
             </Modal.Header>
             <Modal.Body>
               <h6 className="fs-5">Sezioni principali</h6>
-              <p>Iniziamo dalle basi. Se compili queste sezioni, sarà più facile trovarti per i recruiter e le persone che potresti conoscere</p>
+              <p>
+                Iniziamo dalle basi. Se compili queste sezioni, sarà più facile trovarti per i recruiter e le persone
+                che potresti conoscere.
+              </p>
 
               <ListGroup variant="flush">
                 <ListGroup.Item className="mb-3 ">
@@ -122,11 +140,14 @@ function MainProfile() {
               </Button>
             </Modal.Footer>
           </Modal>
+
           <Card.Body style={{ backgroundColor: "#DDE7F1" }} className=" rounded-3 mt-3">
             <Card.Text>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ea amet inventore ullam impedit vero alias aliquid autem. Dolor corrupti
-                temporibus modi? Aut dignissimos molestias incidunt ullam delectus quos quia?
+                <strong>Disponibile a lavorare</strong>
+              </p>
+              <p>
+                <strong>Ruoli di:</strong> {randomJobs.map((job) => job.lavoro).join(", ")}
               </p>
               <Card.Text>
                 <CardLink>Mostra Dettagli</CardLink>
@@ -156,7 +177,11 @@ function MainProfile() {
           </p>
           <p>
             <strong>LinkedIn:</strong>
-            <a href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {" "}
               Vai al profilo{" "}
             </a>

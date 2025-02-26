@@ -3,8 +3,8 @@
     {
       "lavoro": "Sviluppatore Frontend",
       "competenze": [
-        { "skill": "JavaScript", "dove": "Progetto personale" },
-        { "skill": "React", "dove": "Azienda XYZ" }
+        { "skill": "JavaScript", "dove": "Insegnante JavaScript per azienda" },
+        { "skill": "React", "dove": "Insegnante React per azienda" }
       ]
     },
     {
@@ -17,57 +17,57 @@
     {
       "lavoro": "Full Stack Developer",
       "competenze": [
-        { "skill": "JavaScript", "dove": "Corso online" },
-        { "skill": "Express.js", "dove": "Progetto aziendale" }
+        { "skill": "JavaScript", "dove": "Tutor JavaScript per corso online" },
+        { "skill": "Express.js", "dove": "Sviluppatore Express.js per progetto aziendale" }
       ]
     },
     {
       "lavoro": "DevOps Engineer",
       "competenze": [
-        { "skill": "Docker", "dove": "Progetto open source" },
-        { "skill": "Kubernetes", "dove": "Lavoro attuale" }
+        { "skill": "Docker", "dove": "Contributore progetto open source" },
+        { "skill": "Kubernetes", "dove": "Ingegnere DevOps presso lavoro attuale" }
       ]
     },
     {
       "lavoro": "Data Scientist",
       "competenze": [
-        { "skill": "Python", "dove": "Università" },
-        { "skill": "Pandas", "dove": "Tesi di laurea" }
+        { "skill": "Python", "dove": "Docente Python all'università" },
+        { "skill": "Pandas", "dove": "Analista dati per tesi di laurea" }
       ]
     },
     {
       "lavoro": "Cyber Security Analyst",
       "competenze": [
-        { "skill": "Ethical Hacking", "dove": "Master in Cyber Security" },
-        { "skill": "Networking", "dove": "Esperienza lavorativa" }
+        { "skill": "Ethical Hacking", "dove": "Specialista Ethical Hacking per Master in Cyber Security" },
+        { "skill": "Networking", "dove": "Esperto di networking con esperienza lavorativa" }
       ]
     },
     {
       "lavoro": "Game Developer",
       "competenze": [
-        { "skill": "Unity", "dove": "Progetto indipendente" },
-        { "skill": "C#", "dove": "Sviluppo di un videogioco" }
+        { "skill": "Unity", "dove": "Sviluppatore Unity per progetto indipendente" },
+        { "skill": "C#", "dove": "Programmatore C# per sviluppo di un videogioco" }
       ]
     },
     {
       "lavoro": "AI Engineer",
       "competenze": [
-        { "skill": "Machine Learning", "dove": "Ricerca accademica" },
-        { "skill": "TensorFlow", "dove": "Esperienza in azienda" }
+        { "skill": "Machine Learning", "dove": "Ricercatore accademico in Machine Learning" },
+        { "skill": "TensorFlow", "dove": "Sviluppatore TensorFlow in azienda" }
       ]
     },
     {
       "lavoro": "Mobile Developer",
       "competenze": [
-        { "skill": "Flutter", "dove": "App personale" },
-        { "skill": "Dart", "dove": "Sviluppo aziendale" }
+        { "skill": "Flutter", "dove": "Sviluppatore Flutter per app personale" },
+        { "skill": "Dart", "dove": "Programmatore Dart per sviluppo aziendale" }
       ]
     },
     {
       "lavoro": "IT Project Manager",
       "competenze": [
-        { "skill": "Agile", "dove": "Gestione di team" },
-        { "skill": "Scrum", "dove": "Corso di formazione" }
+        { "skill": "Agile", "dove": "Project Manager Agile per gestione di team" },
+        { "skill": "Scrum", "dove": "Formatore Scrum per corso di formazione" }
       ]
     }
   ],

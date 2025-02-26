@@ -1,6 +1,6 @@
 import data from "../../skillsEformazione.json";
 
-const initialState = data;
+const initialState = JSON.parse(JSON.stringify(data)); // Crea una copia profonda
 
 const educationReducer = (state = initialState, action) => {
   switch (action.type) {
