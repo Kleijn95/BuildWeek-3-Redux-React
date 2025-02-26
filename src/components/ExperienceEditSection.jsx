@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Image, Modal, Row, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { ArrowLeft, PencilSquare, Plus } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchExperience, postExperience } from "../redux/actions/profileActions";
+import { fetchExperience, postExperience, putExperience } from "../redux/actions/profileActions";
 import { useNavigate } from "react-router-dom";
 
 function ExperienceEditSection() {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const [expId, setExpId] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
     role: "",
@@ -21,23 +23,57 @@ function ExperienceEditSection() {
   // const [imageForm, setImageForm] = useState(null);
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
+    setFormData(() => ({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
-    });
+      //   endDate: name === "currentRole" && checked ? "" : prevForm.endDate,
+    }));
     // setImageForm(URL.createObjectURL(imageForm));
   };
+  const handleShowModal = (experience = null) => {
+    if (experience) {
+      setFormData({
+        role: experience.role,
+        company: experience.company,
+        startDate: experience.startDate.slice(0, 10),
+        endDate: experience.endDate ? experience.endDate.slice(0, 10) : "",
+        area: experience.area,
+        description: experience.description,
+        currentRole: experience.endDate ? false : true,
+      });
+      setExpId(experience._id);
+    } else {
+      setFormData({
+        role: "",
+        company: "",
+        startDate: "",
+        endDate: "",
+        area: "",
+        description: "",
+      });
+      setExpId(null);
+    }
+    setShowModal(true);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postExperience(formData));
+    if (expId) {
+      dispatch(putExperience(expId, formData));
+    } else {
+      dispatch(postExperience(formData));
+    }
     setShowModal(false);
+    setSubmitted(true);
   };
 
   const dispatch = useDispatch();
   const experiences = useSelector((state) => state.experience.content);
+
   useEffect(() => {
     dispatch(fetchExperience());
-  }, [dispatch]);
+    setSubmitted(false);
+  }, [submitted, dispatch]);
   return (
     <Container style={{ backgroundColor: "white" }} className="border rounded-3 px-3 pt-3">
       <div className="d-flex justify-content-between align-items-center">
@@ -48,7 +84,7 @@ function ExperienceEditSection() {
           <h4>Experience</h4>
         </div>
         <div>
-          <Button variant="outline-*" className="mx-2" onClick={() => setShowModal(true)}>
+          <Button variant="outline-*" className="mx-2" onClick={() => handleShowModal()}>
             <Plus className="fs-2" />
           </Button>
         </div>
@@ -69,7 +105,7 @@ function ExperienceEditSection() {
               <p className="mt-2">{exp.description}</p>
             </Col>
             <Col xs={1} className="pe-0">
-              <PencilSquare className="fs-5 mx-2" />
+              <PencilSquare className="fs-5 mx-2" onClick={() => handleShowModal(exp)} />
             </Col>
             <hr style={{ color: "gray" }} />
           </Row>
@@ -108,13 +144,14 @@ function ExperienceEditSection() {
                 <FormControl type="text" name="area" value={formData.area} onChange={handleChange} placeholder="ex. Rome, Italy" />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>Description</FormLabel>
+                <FormLabel>Description*</FormLabel>
                 <FormControl
                   as="textarea"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="List your major duties and successes, highlighting specific projects"
+                  required
                 />
               </FormGroup>
               <FormGroup className="mt-2">

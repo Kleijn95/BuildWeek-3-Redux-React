@@ -30,11 +30,20 @@ function Experience() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postExperience(formData));
+    setFormData({
+      role: "",
+      company: "",
+      startDate: "",
+      endDate: "",
+      area: "",
+      description: "",
+    });
     setShowModal(false);
   };
 
   const dispatch = useDispatch();
   const experiences = useSelector((state) => state.experience.content);
+
   useEffect(() => {
     dispatch(fetchExperience());
   }, [dispatch]);
@@ -104,13 +113,14 @@ function Experience() {
                 <FormControl type="text" name="area" value={formData.area} onChange={handleChange} placeholder="ex. Rome, Italy" />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>Description</FormLabel>
+                <FormLabel>Description*</FormLabel>
                 <FormControl
                   as="textarea"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="List your major duties and successes, highlighting specific projects"
+                  required
                 />
               </FormGroup>
               <FormGroup className="mt-2">
