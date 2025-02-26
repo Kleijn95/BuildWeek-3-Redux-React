@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Image, Modal, Row, FormControl, FormGroup, FormLabel } from "react-bootstrap";
-import { ArrowLeft, PencilSquare, Plus } from "react-bootstrap-icons";
+import { ArrowLeft, PencilSquare, Plus, Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchExperience, postExperience, putExperience } from "../redux/actions/profileActions";
+import { deleteExperience, fetchExperience, postExperience, putExperience } from "../redux/actions/profileActions";
 import { useNavigate } from "react-router-dom";
 
 function ExperienceEditSection() {
@@ -92,10 +92,10 @@ function ExperienceEditSection() {
       <Container fluid>
         {experiences.map((exp) => (
           <Row key={exp._id}>
-            <Col xs="2">
+            <Col xs={2}>
               <Image fluid src={exp.image} />
             </Col>
-            <Col xs="9" className="ps-0">
+            <Col xs={9} className="ps-0">
               <h5>{exp.role}</h5>
               <p className="mb-0">{exp.company}</p>
               <p className="mb-0">
@@ -104,8 +104,15 @@ function ExperienceEditSection() {
               <p className="mb-0">{exp.area}</p>
               <p className="mt-2">{exp.description}</p>
             </Col>
-            <Col xs={1} className="pe-0">
-              <PencilSquare className="fs-5 mx-2" onClick={() => handleShowModal(exp)} />
+            <Col xs={1} className="pe-0 d-flex">
+              <PencilSquare className=" mx-2" onClick={() => handleShowModal(exp)} />
+              <Trash
+                style={{ color: "red" }}
+                onClick={() => {
+                  dispatch(deleteExperience(exp._id));
+                  alert("Sei sicuro a voler cancellare l'esperienza?");
+                }}
+              />
             </Col>
             <hr style={{ color: "gray" }} />
           </Row>
@@ -154,10 +161,10 @@ function ExperienceEditSection() {
                   required
                 />
               </FormGroup>
-              <FormGroup className="mt-2">
+              {/* <FormGroup className="mt-2">
                 <FormLabel>Media</FormLabel>
                 <FormControl type="file" name="image" value={formData.image} onChange={handleChange} />
-              </FormGroup>
+              </FormGroup> */}
             </Container>
             <div className="d-flex justify-content-end">
               <Button className="me-3 mb-3 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
