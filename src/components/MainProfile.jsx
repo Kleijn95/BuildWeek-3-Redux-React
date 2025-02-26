@@ -317,6 +317,7 @@ function MainProfile() {
                   value={formData.username}
                   onChange={handleChange}
                   placeholder="Inserisci il tuo username"
+                  disabled
                   required
                 />
               </FormGroup>
