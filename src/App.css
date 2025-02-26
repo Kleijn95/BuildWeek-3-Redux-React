@@ -155,3 +155,16 @@ body {
   color: #000000 !important; /* Aggiungi il colore desiderato durante l'hover */
   text-decoration: underline !important; /* (Opzionale) Sottolineatura al passaggio del mouse */
 }
+
+.button-style {
+  background-color: white;
+  border: none; /* Rimuovi i bordi */
+  font-weight: bold;
+  color: #666;
+
+  transition: background-color 0.3s ease; /* Transizione fluida */
+}
+
+.button-style:hover {
+  background-color: #f0f0f0; /* Colore grigio al passaggio del mouse */
+}

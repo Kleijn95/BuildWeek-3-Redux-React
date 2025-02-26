@@ -4,6 +4,8 @@ import Footer from "./components/Footer";
 import MainSection from "./components/MainSection";
 import TopBar from "./components/TopBar";
 import ProfileSection from "./components/ProfileSection";
+import ExperienceSection from "./components/ExperienceSection";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -11,8 +13,10 @@ function App() {
       <BrowserRouter>
         <TopBar />
         <Routes>
-          <Route path="/" element={<MainSection />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/mainsection" element={<MainSection />} />
           <Route path="/:userId" element={<ProfileSection />} />
+          <Route path="/experience" element={<ExperienceSection />} />
         </Routes>
         <Footer />
       </BrowserRouter>
