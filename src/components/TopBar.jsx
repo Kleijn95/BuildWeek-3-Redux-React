@@ -1,5 +1,14 @@
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { BellFill, ChatDotsFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
+import {
+  BellFill,
+  CaretDownFill,
+  ChatDotsFill,
+  Grid3x3GapFill,
+  HouseFill,
+  Linkedin,
+  PeopleFill,
+  SuitcaseLgFill,
+} from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
 import { useEffect } from "react";
@@ -17,48 +26,86 @@ function TopBar() {
     return <p>Caricamento...</p>;
   }
   return (
-    <Navbar bg="white">
+    <Navbar bg="white py-0">
       <Container>
         <Navbar.Brand href="#home">
-          <Linkedin fill="blue" className="text-white fs-1" />
+          <Linkedin
+            style={{
+              color: "#0a66c2",
+              fontSize: "2.5rem",
+            }}
+          />
         </Navbar.Brand>
-        <Form className="d-flex">
-          <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+        <Form className=" me-5">
+          <div className="input-group bg-light">
+            <span className="input-group-text bg-transparent border-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#666" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+              </svg>
+            </span>
+            <Form.Control
+              type="search"
+              placeholder="Cerca"
+              className="border-0 bg-light rounded-pill py-2"
+              style={{ boxShadow: "none" }}
+            />
+          </div>
         </Form>
-        <Nav className="me-auto">
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
-            <HouseFill className="fs-5" fill="grey" />
-            Home
-          </Nav.Link>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
-            <PeopleFill className="fs-5" fill="grey" />
-            Rete
-          </Nav.Link>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
-            <SuitcaseLgFill className="fs-5" fill="grey" />
-            Lavoro
-          </Nav.Link>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
-            <ChatDotsFill className="fs-5" fill="grey" />
-            Messaggistica
-          </Nav.Link>
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
-            <BellFill className="fs-5" fill="grey" />
-            Notifiche
-          </Nav.Link>
+        <Nav className="me-auto ms-5 align-items-center gap-1">
+          {/* Elementi navigazione */}
+          {[
+            { icon: HouseFill, text: "Home" },
+            { icon: PeopleFill, text: "Rete" },
+            { icon: SuitcaseLgFill, text: "Lavoro" },
+            { icon: ChatDotsFill, text: "Messaggistica", badge: 3 },
+            { icon: BellFill, text: "Notifiche" },
+          ].map((item, index) => (
+            <Nav.Link
+              key={index}
+              href="#"
+              className="text-center px-2"
+              style={{
+                minWidth: "80px",
+                color: item.active ? "black" : "#666",
+                fontSize: "0.75rem",
+              }}
+            >
+              <div className="position-relative">
+                <item.icon className="mb-1" style={{ fontSize: "1.5rem" }} />
+                {item.badge && (
+                  <span
+                    style={{ top: "5px" }}
+                    className="position-absolute  start-75 translate-middle badge rounded-pill bg-danger"
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </div>
+              {item.text}
+            </Nav.Link>
+          ))}
+
+          {/* Dropdown Profilo */}
           <NavDropdown
             title={
-              <img
-                style={{
-                  width: "35px",
-                  height: "35px",
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                }}
-                src={profile.image}
-              ></img>
+              <div className="d-flex flex-column align-items-center" style={{ minWidth: "80px" }}>
+                <img
+                  style={{
+                    width: "24px",
+                    height: "24px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    marginBottom: "2px",
+                  }}
+                  src={profile.image}
+                />
+                <span style={{ fontSize: "0.75rem" }}>
+                  Tu <CaretDownFill />
+                </span>
+              </div>
             }
             id="navbarScrollingDropdown"
+            className="px-2"
           >
             <NavDropdown.Item href="#action3">
               <div className="d-flex align-items-center mt-3">
@@ -103,18 +150,32 @@ function TopBar() {
               <Nav.Link>Esci</Nav.Link>
             </NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Per le Aziende" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+
+          {/* Dropdown Grid */}
+          <NavDropdown
+            title={
+              <div className="d-flex flex-column align-items-center" style={{ minWidth: "80px" }}>
+                <Grid3x3GapFill
+                  style={{
+                    fontSize: "1.5rem",
+                    marginBottom: "2px",
+                  }}
+                />
+                <span style={{ fontSize: "0.75rem" }}>
+                  Per le aziende <CaretDownFill />
+                </span>
+              </div>
+            }
+            id="navbarScrollingDropdown"
+            className="px-2"
+          >
+            {/* ... contenuto dropdown ... */}
           </NavDropdown>
         </Nav>
+        <p style={{ color: "#CC7E09", textDecoration: "underline" }}>Prova premium per 0 euro</p>
       </Container>
     </Navbar>
   );
 }
 
 export default TopBar;
-
-<p></p>;
