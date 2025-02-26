@@ -26,7 +26,11 @@ function TopBar() {
           <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
         </Form>
         <Nav className="me-auto">
-          <Nav.Link href="#home" className="d-flex flex-column align-items-center py-0">
+          <Nav.Link
+            as={Link} // Usa il Link come componente
+            to="/"
+            className="d-flex flex-column align-items-center py-0"
+          >
             <HouseFill className="fs-5" fill="grey" />
             Home
           </Nav.Link>
@@ -79,7 +83,7 @@ function TopBar() {
 
               <Button
                 as={Link} // Usa il Link come componente
-                to="/"
+                to="/mainsection"
                 className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100"
               >
                 Visualizza Profilo
