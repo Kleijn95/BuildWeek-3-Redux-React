@@ -3,6 +3,7 @@ import { Button, Card, Container } from "react-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
+import { ArrowRepeat, ChatText, HandThumbsUp, SendFill } from "react-bootstrap-icons";
 
 function HomePost() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function HomePost() {
         <Card>
           <Card.Body className=" d-flex ">
             <img
-              className="rounded-pill img-fluid object-fit-cover"
+              className=" img-fluid object-fit-cover"
               src={profile.image || "https://via.placeholder.com/150"}
               alt="Profile"
               style={{
@@ -58,10 +59,18 @@ function HomePost() {
             }}
           />
           <Card.Body className="d-flex ">
-            <Button className="me-2  mb-0 button-style ">Consiglia</Button>
-            <Button className="me-2  mb-0 button-style ">commenta</Button>
-            <Button className="me-2  mb-0 button-style ">Diffondi il post</Button>
-            <Button className="me-2  mb-0 button-style ">Invia</Button>
+            <Button className="me-2  mb-0 button-style ">
+              <HandThumbsUp style={{ color: "black", marginRight: "5px" }} /> Consiglia
+            </Button>
+            <Button className="me-2  mb-0 button-style ">
+              <ChatText style={{ color: "black", marginRight: "5px" }} /> commenta
+            </Button>
+            <Button className="me-2  mb-0 button-style ">
+              <ArrowRepeat style={{ color: "black", marginRight: "5px" }} /> Diffondi il post
+            </Button>
+            <Button className="me-2  mb-0 button-style ">
+              <SendFill style={{ color: "black", marginRight: "5px" }} /> Invia
+            </Button>
           </Card.Body>
         </Card>
       </Container>
