@@ -3,6 +3,7 @@ import { Button, Card, Container } from "react-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
+import { Image } from "react-bootstrap-icons";
 
 function CreaPost() {
   const dispatch = useDispatch();
@@ -47,7 +48,9 @@ function CreaPost() {
             </Button>
           </Card.Body>
           <Card.Body className=" ">
-            <Button className="me-2 mt-2 mb-0 button-style ">Contenuti Multimediali</Button>
+            <Button className="me-2 mt-2 mb-0 button-style ">
+              <Image style={{ color: "blue", marginRight: "5px" }} /> Contenuti Multimediali
+            </Button>
             <Button className="me-2 mt-2 mb-0 button-style ">Evento</Button>
             <Button className="me-2 mt-2 mb-0 button-style ">Scrivi un articolo</Button>
           </Card.Body>
