@@ -3,7 +3,7 @@ import { Button, Card, Container } from "react-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
-import { ArrowRepeat, ChatText, HandThumbsUp, SendFill } from "react-bootstrap-icons";
+import { ArrowRepeat, ChatText, HandThumbsUp, HandThumbsUpFill, HeartFill, LightbulbFill, SendFill } from "react-bootstrap-icons";
 
 function HomePost() {
   const dispatch = useDispatch();
@@ -45,7 +45,11 @@ function HomePost() {
             <img src="https://i.ytimg.com/vi/19T_szBhCCg/maxresdefault.jpg" className="w-100 img-fluid object-fit-cover" />
           </Card.Body>
           <Card.Body className="d-flex justify-content-between">
-            <p>500</p>
+            <p>
+              <HandThumbsUpFill style={{ color: "blue", marginRight: "5px" }} />
+              <HeartFill style={{ color: "red", marginRight: "5px" }} />
+              <LightbulbFill style={{ color: "orange", marginRight: "5px" }} /> 500
+            </p>
             <p>2 diffusioni post</p>
           </Card.Body>
           <hr
@@ -58,7 +62,7 @@ function HomePost() {
               marginRight: "auto",
             }}
           />
-          <Card.Body className="d-flex ">
+          <Card.Body className="">
             <Button className="me-2  mb-0 button-style ">
               <HandThumbsUp style={{ color: "black", marginRight: "5px" }} /> Consiglia
             </Button>
