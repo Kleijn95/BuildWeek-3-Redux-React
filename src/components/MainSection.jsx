@@ -3,6 +3,7 @@ import MainProfile from "./MainProfile";
 import AsideProfile from "./AsideProfile";
 import Experience from "./Experience";
 import Formazione from "./Formazione";
+import Competenze from "./Competenze";
 
 function MainSection() {
   return (
@@ -13,7 +14,7 @@ function MainSection() {
             <MainProfile />
             <Experience />
             <Formazione />
-            {/* <Competenze /> */}
+            <Competenze />
           </Col>
           <Col className="col-3">
             <AsideProfile />

@@ -4,6 +4,8 @@ import AsideProfile from "./AsideProfile";
 import { useParams } from "react-router-dom";
 import UtenteProfile from "./UtenteProfile";
 import UtenteExperience from "./UtenteExperience";
+import Formazione from "./Formazione";
+import Competenze from "./Competenze";
 
 function ProfileSection() {
   const { userId } = useParams();
@@ -14,6 +16,8 @@ function ProfileSection() {
           <Col className="col-9">
             <UtenteProfile userId={userId} />
             <UtenteExperience />
+            <Formazione />
+            <Competenze />
           </Col>
           <Col className="col-3">
             <AsideProfile />

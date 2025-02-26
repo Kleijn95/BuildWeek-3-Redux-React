@@ -13,8 +13,8 @@ function Formazione() {
         <div className="d-flex justify-content-between align-items-center">
           <Card.Title className="mb-0">Formazione</Card.Title>
           <div>
-            <PencilSquare className="me-2" />
-            <Plus />
+            <Plus className="fs-2 mx-2" />
+            <PencilSquare className="me-2 fs-5 mx-2" />
           </div>
         </div>
 

@@ -4,13 +4,12 @@ import { Button, Card, CardLink, Modal } from "react-bootstrap";
 import { PatchCheck } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUtente } from "../redux/actions/profileActions";
-import BioUtente from "./BioUtente";
+import Bio from "./Bio";
 
 function UtenteProfile({ userId }) {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.utente.data);
   const [showModal, setShowModal] = useState(false);
-  const competenzeData = useSelector((state) => state.education.jobs) || []; // Assicurati che sia un array vuoto se undefined
 
   console.log(userId);
 
@@ -21,16 +20,6 @@ function UtenteProfile({ userId }) {
   if (!profile) {
     return <p>Caricamento...</p>;
   }
-
-  // Funzione per ottenere un numero casuale di lavori
-  const getRandomJobs = (data) => {
-    const randomCount = Math.floor(Math.random() * data.length) + 1;
-    const shuffled = [...data].sort(() => 0.5 - Math.random()); // Crea una copia dell'array e mescola
-    return shuffled.slice(0, randomCount); // Restituisci un numero casuale di lavori
-  };
-
-  // Ottieni lavori casuali
-  const randomJobs = getRandomJobs(competenzeData);
 
   return (
     <>
@@ -63,7 +52,7 @@ function UtenteProfile({ userId }) {
             <p>
               {profile.name} {profile.surname} <PatchCheck />
             </p>
-            <p>Epicode</p>
+            <p>I.I.S. Concetto Marchesi - Mascalucia (CT)</p>
           </Card.Title>
           <Card.Text>{profile.title}</Card.Text>
           <Card.Text>
@@ -84,10 +73,8 @@ function UtenteProfile({ userId }) {
           <Card.Body style={{ backgroundColor: "#DDE7F1" }} className=" rounded-3 mt-3">
             <Card.Text>
               <p>
-                <strong>Disponibile a lavorare</strong>
-              </p>
-              <p>
-                <strong>Ruoli di:</strong> {randomJobs.map((job) => job.lavoro).join(", ")}
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ea amet inventore ullam impedit vero alias aliquid autem. Dolor corrupti
+                temporibus modi? Aut dignissimos molestias incidunt ullam delectus quos quia?
               </p>
               <Card.Text>
                 <CardLink>Mostra Dettagli</CardLink>
@@ -96,7 +83,7 @@ function UtenteProfile({ userId }) {
           </Card.Body>
         </Card.Body>
       </Card>
-      <BioUtente />
+      <Bio />
       {/* MODALE */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
@@ -117,11 +104,7 @@ function UtenteProfile({ userId }) {
           </p>
           <p>
             <strong>LinkedIn:</strong>
-            <a
-              href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7" target="_blank" rel="noopener noreferrer">
               {" "}
               Vai al profilo{" "}
             </a>
