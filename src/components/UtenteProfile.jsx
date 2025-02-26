@@ -4,7 +4,7 @@ import { Button, Card, CardLink, Modal } from "react-bootstrap";
 import { PatchCheck } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUtente } from "../redux/actions/profileActions";
-import Bio from "./Bio";
+import BioUtente from "./BioUtente";
 
 function UtenteProfile({ userId }) {
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ function UtenteProfile({ userId }) {
             <p>
               {profile.name} {profile.surname} <PatchCheck />
             </p>
-            <p>I.I.S. Concetto Marchesi - Mascalucia (CT)</p>
+            <p>Epicode</p>
           </Card.Title>
           <Card.Text>{profile.title}</Card.Text>
           <Card.Text>
@@ -96,7 +96,7 @@ function UtenteProfile({ userId }) {
           </Card.Body>
         </Card.Body>
       </Card>
-      <Bio />
+      <BioUtente />
       {/* MODALE */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
