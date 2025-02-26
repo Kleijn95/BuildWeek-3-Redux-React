@@ -4,6 +4,7 @@ import HomeProfile from "./HomeProfile";
 import MiniCardHome from "./MiniCardHome";
 import CreaPost from "./CreaPost";
 import HomePost from "./HomePost";
+import AsideCard from "./AsideHome";
 
 const Home = () => {
   return (
@@ -18,7 +19,9 @@ const Home = () => {
             <CreaPost />
             <HomePost />
           </Col>
-          <Col className="col-4"></Col>
+          <Col className="col-3">
+            <AsideCard />
+          </Col>
         </Row>
       </Container>
     </>
