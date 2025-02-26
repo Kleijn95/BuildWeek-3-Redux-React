@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Image, Modal, Row, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import { Button, Col, Container, Form, Image, Modal, Row, FormControl, FormGroup, FormLabel, ModalTitle, ModalBody } from "react-bootstrap";
 import { ArrowLeft, PencilSquare, Plus, Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteExperience, fetchExperience, postExperience, putExperience } from "../redux/actions/profileActions";
+import { deleteExperience, fetchExperience, postExperience, putExperience, uploadPhoto } from "../redux/actions/profileActions";
 import { useNavigate } from "react-router-dom";
 
 function ExperienceEditSection() {
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate();
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [uploadImage, setUploadImage] = useState({});
   const [expId, setExpId] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+  const experiences = useSelector((state) => state.experience.content);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleChangePhoto = (e) => {
+    setUploadImage(e.target.files[0]);
+  };
 
   const [formData, setFormData] = useState({
     role: "",
@@ -18,17 +27,14 @@ function ExperienceEditSection() {
     endDate: "",
     area: "",
     description: "",
-    // image: null,
   });
-  // const [imageForm, setImageForm] = useState(null);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(() => ({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
-      //   endDate: name === "currentRole" && checked ? "" : prevForm.endDate,
     }));
-    // setImageForm(URL.createObjectURL(imageForm));
   };
   const handleShowModal = (experience = null) => {
     if (experience) {
@@ -67,13 +73,20 @@ function ExperienceEditSection() {
     setSubmitted(true);
   };
 
-  const dispatch = useDispatch();
-  const experiences = useSelector((state) => state.experience.content);
+  const handleSubmitPhoto = (e) => {
+    e.preventDefault();
+    const formDataToSend = new FormData();
+    formDataToSend.append("image", uploadImage);
+    dispatch(uploadPhoto(expId, formDataToSend));
+    setShowModal(false);
+    setExpId("");
+  };
 
   useEffect(() => {
     dispatch(fetchExperience());
     setSubmitted(false);
-  }, [submitted, dispatch]);
+    setDeleted(false);
+  }, [submitted, dispatch, deleted]);
   return (
     <Container style={{ backgroundColor: "white" }} className="border rounded-3 px-3 pt-3">
       <div className="d-flex justify-content-between align-items-center">
@@ -93,7 +106,26 @@ function ExperienceEditSection() {
         {experiences.map((exp) => (
           <Row key={exp._id}>
             <Col xs={2}>
-              <Image fluid src={exp.image} />
+              {exp.image ? (
+                <Image fluid src={exp.image} />
+              ) : (
+                <div className="position-relative">
+                  <Image
+                    fluid
+                    src="https://images.unsplash.com/photo-1528810289438-283f885c31ef?q=80&w=3424&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  />
+                  <Button
+                    variant="outline-light"
+                    className="position-absolute start-50 top-50 translate-middle btn-sm"
+                    onClick={() => {
+                      setShowUploadModal(true);
+                      setExpId(exp._id);
+                    }}
+                  >
+                    upload picture
+                  </Button>
+                </div>
+              )}
             </Col>
             <Col xs={9} className="ps-0">
               <h5>{exp.role}</h5>
@@ -111,6 +143,7 @@ function ExperienceEditSection() {
                 onClick={() => {
                   dispatch(deleteExperience(exp._id));
                   alert("Sei sicuro a voler cancellare l'esperienza?");
+                  setDeleted(true);
                 }}
               />
             </Col>
@@ -118,6 +151,24 @@ function ExperienceEditSection() {
           </Row>
         ))}
       </Container>
+      <Modal show={showUploadModal} onHide={() => setShowUploadModal(false)} centered size="lg">
+        <Modal.Header closeButton>
+          <ModalTitle>Add photo</ModalTitle>
+        </Modal.Header>
+        <ModalBody>
+          <Form onSubmit={handleSubmitPhoto}>
+            <FormGroup className="mt-2">
+              <FormControl className="mt-4" type="file" name="image" onChange={handleChangePhoto} />
+            </FormGroup>
+            <div className="d-flex justify-content-end mt-4">
+              <Button className="me-3 mb-1 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
+                Save
+              </Button>
+            </div>
+          </Form>
+        </ModalBody>
+      </Modal>
+
       <Modal show={showModal} onHide={() => setShowModal(false)} centered size="lg">
         <Container>
           <Modal.Header closeButton>
