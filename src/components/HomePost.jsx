@@ -45,12 +45,13 @@ function HomePost() {
             <Card.Body className="d-flex">
               <img
                 className="img-fluid object-fit-cover"
-                src={profile.image || "https://via.placeholder.com/150"}
+                src={post.user.image || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
                 alt="Profile"
                 style={{
                   width: "50px",
                   height: "50px",
                   border: "4px solid white",
+                  borderRadius: "50%",
                 }}
               />
               <h5 className="ms-3">{post.username}</h5>
