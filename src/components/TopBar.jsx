@@ -54,7 +54,7 @@ function TopBar() {
         <Nav className="me-auto ms-5 align-items-center gap-1">
           {/* Elementi navigazione */}
           {[
-            { icon: HouseFill, text: "Home" },
+            { icon: HouseFill, text: "Home", link: "/" },
             { icon: PeopleFill, text: "Rete" },
             { icon: SuitcaseLgFill, text: "Lavoro" },
             { icon: ChatDotsFill, text: "Messaggistica", badge: 3 },
@@ -62,12 +62,14 @@ function TopBar() {
           ].map((item, index) => (
             <Nav.Link
               key={index}
-              href="#"
+              as={Link}
+              to={item.link || "#"}
               className="text-center px-2"
               style={{
                 minWidth: "80px",
-                color: item.active ? "black" : "#666",
+                color: "#666",
                 fontSize: "0.75rem",
+                textDecoration: "none",
               }}
             >
               <div className="position-relative">
