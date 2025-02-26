@@ -44,15 +44,12 @@ export const fetchAside = (url) => {
 export const fetchExperience = () => {
   return async (dispatch) => {
     try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences",
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-          },
-        }
-      );
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences", {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+        },
+      });
 
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
 
@@ -101,6 +98,28 @@ export const fetchUtenteExperience = (id) => {
       const data = await response.json();
       console.log(data);
       dispatch({ type: "SET_UTENTE_EXPERIENCE", payload: data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+export const postExperience = (experience) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+        },
+        body: JSON.stringify(experience),
+      });
+
+      if (!response.ok) throw new Error("Errore nel recupero del profilo");
+      const data = await response.json();
+      dispatch({ type: "ADD_EXPERIENCE", payload: data });
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
