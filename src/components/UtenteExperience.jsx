@@ -19,7 +19,7 @@ function Experience() {
   }, [dispatch, userId]); // Aggiungi userId alle dipendenze
 
   if (experiences.length === 0) {
-    return <p>Non ci sono esperienze</p>;
+    return <p className="mt-2">Non sono state inserite esperienze lavorative passate</p>;
   }
 
   return (
@@ -30,7 +30,10 @@ function Experience() {
         {experiences.map((exp) => (
           <Row key={exp._id}>
             <Col xs="2">
-              <Image fluid src={exp.image || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"} />
+              <Image
+                fluid
+                src={exp.image || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+              />
             </Col>
             <Col xs="10" className="ps-0">
               <h5>{exp.role}</h5>

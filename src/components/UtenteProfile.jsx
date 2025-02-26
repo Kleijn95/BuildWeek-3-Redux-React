@@ -63,7 +63,7 @@ function UtenteProfile({ userId }) {
             <p>
               {profile.name} {profile.surname} <PatchCheck />
             </p>
-            <p>I.I.S. Concetto Marchesi - Mascalucia (CT)</p>
+            <p>Epicode</p>
           </Card.Title>
           <Card.Text>{profile.title}</Card.Text>
           <Card.Text>
