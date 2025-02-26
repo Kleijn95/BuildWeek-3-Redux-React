@@ -1,78 +1,109 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
-
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "../redux/actions/profileActions";
-import { ArrowRepeat, ChatText, HandThumbsUp, SendFill } from "react-bootstrap-icons";
+import { fetchPost } from "../redux/actions/profileActions";
+import {
+  ArrowDownCircle,
+  ArrowRepeat,
+  ArrowUpCircle,
+  ChatText,
+  HandThumbsUp,
+  HandThumbsUpFill,
+  HeartFill,
+  LightbulbFill,
+  SendFill,
+} from "react-bootstrap-icons";
 
 function HomePost() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.myprofile.data);
+  const posts = useSelector((state) => state.post.content);
+
+  const [visiblePosts, setVisiblePosts] = useState(3); // Stato per gestire il numero di post visibili
 
   useEffect(() => {
-    dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
+    dispatch(fetchPost("//striveschool-api.herokuapp.com/api/posts/"));
   }, [dispatch]);
 
   if (!profile) {
     return <p>Caricamento...</p>;
   }
+  if (!posts || posts.length === 0) {
+    return <p>Nessun post disponibile.</p>;
+  }
+
+  // Funzione per gestire il toggle di visibilità dei post
+  const togglePosts = () => {
+    setVisiblePosts(visiblePosts === 3 ? posts.length : 3);
+  };
 
   return (
     <>
       <Container className="mt-3">
-        <Card>
-          <Card.Body className=" d-flex ">
-            <img
-              className=" img-fluid object-fit-cover"
-              src={profile.image || "https://via.placeholder.com/150"}
-              alt="Profile"
-              style={{
-                width: "50px",
-                height: "50px",
+        {posts.slice(0, visiblePosts).map((post, index) => (
+          <Card key={index} className="mb-4">
+            <Card.Body className="d-flex">
+              <img
+                className="img-fluid object-fit-cover"
+                src={profile.image || "https://via.placeholder.com/150"}
+                alt="Profile"
+                style={{
+                  width: "50px",
+                  height: "50px",
+                  border: "4px solid white",
+                }}
+              />
+              <h5 className="ms-3">{post.username}</h5>
+            </Card.Body>
 
-                border: "4px solid white",
+            <Card.Body>
+              <p>{post.text}</p>
+              <Button className="me-2 mt-2 mb-0 button-style">Mostra traduzione</Button>
+              {post.image && <img src={post.image} className="w-100 img-fluid object-fit-cover" alt="Post" />}
+            </Card.Body>
+
+            <Card.Body className="d-flex justify-content-between">
+              <p>
+                <HandThumbsUpFill style={{ color: "blue", marginRight: "5px" }} />
+                <HeartFill style={{ color: "red", marginRight: "5px" }} />
+                <LightbulbFill style={{ color: "orange", marginRight: "5px" }} /> {post.likes}
+              </p>
+              <p>{post.shares} diffusioni post</p>
+            </Card.Body>
+
+            <hr
+              style={{
+                width: "80%",
+                border: "1px solid #ccc",
+                marginTop: "10px",
+                marginBottom: "10px",
+                marginLeft: "auto",
+                marginRight: "auto",
               }}
             />
-            <h5 className="ms-3">Adobe Creative Cloud</h5>
-          </Card.Body>
-          <Card.Body>
-            <p>
-              Every frame tells a story. 🎥✨ A galactic dream, captured with vision and enhanced with creativity. hashtag#MadeWithCC hashtag#VisualJourney
-              hashtag#CinematicVibes hashtag#StoryInMotion 🎨: Charles Lopez (IG @vagabondiary) CC App: hashtag#PremierePro hashtag#AfterEffects
-              hashtag#Photoshop
-            </p>
-            <Button className="me-2 mt-2 mb-0 button-style ">Mostra traduzione</Button>
-            <img src="https://i.ytimg.com/vi/19T_szBhCCg/maxresdefault.jpg" className="w-100 img-fluid object-fit-cover" />
-          </Card.Body>
-          <Card.Body className="d-flex justify-content-between">
-            <p>500</p>
-            <p>2 diffusioni post</p>
-          </Card.Body>
-          <hr
-            style={{
-              width: "80%",
-              border: "1px solid #ccc",
-              marginTop: "10px",
-              marginBottom: "10px",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          />
-          <Card.Body className="d-flex ">
-            <Button className="me-2  mb-0 button-style ">
-              <HandThumbsUp style={{ color: "black", marginRight: "5px" }} /> Consiglia
-            </Button>
-            <Button className="me-2  mb-0 button-style ">
-              <ChatText style={{ color: "black", marginRight: "5px" }} /> commenta
-            </Button>
-            <Button className="me-2  mb-0 button-style ">
-              <ArrowRepeat style={{ color: "black", marginRight: "5px" }} /> Diffondi il post
-            </Button>
-            <Button className="me-2  mb-0 button-style ">
-              <SendFill style={{ color: "black", marginRight: "5px" }} /> Invia
-            </Button>
-          </Card.Body>
-        </Card>
+
+            <Card.Body>
+              <Button className="me-2 mb-0 button-style">
+                <HandThumbsUp style={{ color: "black", marginRight: "5px" }} /> Consiglia
+              </Button>
+              <Button className="me-2 mb-0 button-style">
+                <ChatText style={{ color: "black", marginRight: "5px" }} /> commenta
+              </Button>
+              <Button className="me-2 mb-0 button-style">
+                <ArrowRepeat style={{ color: "black", marginRight: "5px" }} /> Diffondi il post
+              </Button>
+              <Button className="me-2 mb-0 button-style">
+                <SendFill style={{ color: "black", marginRight: "5px" }} /> Invia
+              </Button>
+            </Card.Body>
+          </Card>
+        ))}
+
+        {/* Aggiungi il bottone per alternare la visibilità dei post */}
+        <Button onClick={togglePosts} className="mt-3 btn-light text-muted">
+          {visiblePosts === 3 ? <ArrowDownCircle size={24} /> : <ArrowUpCircle size={24} />}
+          {visiblePosts === 3 ? "Mostra altri post" : "Mostra meno"}
+        </Button>
       </Container>
     </>
   );
