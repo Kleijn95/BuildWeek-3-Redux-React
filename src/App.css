@@ -92,21 +92,7 @@ body {
   margin-top: 2px;
 }
 /* Spazio tra <p> e <small> */
-.custom-dropdown .dropdown-toggle::after {
-  display: none; /* Nascondi la freccia predefinita di Bootstrap */
-  padding-top: 0;
-}
 
-.custom-dropdown .dropdown-arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 4px; /* Spazio tra il testo "Tu" e la freccia */
-  vertical-align: middle;
-  border-top: 4px solid; /* Stile della freccia */
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
-}
 /* Stile per gli header */
 .dropdown-header {
   color: black; /* Colore del testo */
@@ -154,6 +140,10 @@ body {
 .nodecoration:hover {
   color: #000000 !important; /* Aggiungi il colore desiderato durante l'hover */
   text-decoration: underline !important; /* (Opzionale) Sottolineatura al passaggio del mouse */
+}
+
+.navbar .dropdown-toggle::after {
+  display: none !important;
 }
 
 .button-style {
