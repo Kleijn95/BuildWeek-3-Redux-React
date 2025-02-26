@@ -341,6 +341,7 @@ function MainProfile() {
                   value={formData.bio}
                   onChange={handleChange}
                   placeholder="List your major duties and successes, highlighting specific projects"
+                  rows={5}
                   required
                 />
               </FormGroup>
