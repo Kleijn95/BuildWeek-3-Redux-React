@@ -168,3 +168,15 @@ body {
 .custom-link:hover {
   border-bottom: 2px solid black; /* Linea nera quando si passa sopra */
 }
+
+.btnchiaro:hover {
+  border: solid blue 2px !important;
+  color: #0077b5;
+  background-color: azure;
+}
+
+.btnscuro:hover {
+  border: solid black 2px !important;
+  background-color: lightgray !important;
+  color: black !important;
+}

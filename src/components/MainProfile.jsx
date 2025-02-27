@@ -110,9 +110,9 @@ function MainProfile() {
       <Card style={{ position: "relative" }}>
         <Card.Body
           style={{
-            backgroundImage:
-              'url("https://images.unsplash.com/photo-1487088678257-3a541e6e3922?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+            backgroundImage: 'url("https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq")',
             backgroundSize: "cover",
+            overflow: "hidden",
             backgroundPosition: "center",
             height: "200px",
           }}
@@ -138,31 +138,34 @@ function MainProfile() {
             </Button>{" "}
           </div>
 
-          <Card.Title className="d-flex justify-content-between mt-5 pt-4">
-            <p>
+          <Card.Title className="d-flex justify-content-between mt-5 pt-4 mb-0">
+            <p className="mb-0 fs-4">
               {profile.name} {profile.surname} <PatchCheck />
             </p>
-            <p className="me-5">Epicode</p>
+            <p className="me-5 mb-0 fs-5">Epicode</p>
           </Card.Title>
-          <Card.Text>{profile.title}</Card.Text>
+          <Card.Text className="mb-0">{profile.title}</Card.Text>
           <Card.Text>
-            {profile.area} + <CardLink onClick={() => setShowModal(true)}>Informazioni di Contatto</CardLink>
+            <span className="text-secondary ">{profile.area}</span> -{" "}
+            <CardLink className="text-decoration-none" onClick={() => setShowModal(true)}>
+              <span className=" fw-semibold">Informazioni di Contatto</span>
+            </CardLink>
           </Card.Text>
-          <Button variant="primary" className="me-2 rounded-pill">
+          <Button variant="primary" className="me-2 rounded-pill fw-semibold">
             Disponibile per
           </Button>
           <Button
-            variant="primary"
-            className="me-2 rounded-pill"
+            variant="outline-primary"
+            className="me-2 rounded-pill fw-semibold btn btnchiaro"
             onClick={() => setShowAddSectionsModal(true)}
             style={{ cursor: "pointer" }}
           >
-            Aggiorna sezione del Profilo
+            Aggiungi sezione del Profilo
           </Button>
-          <Button variant="primary" className="me-2 rounded-pill">
+          <Button variant="outline-primary" className="me-2 rounded-pill fw-semibold btnchiaro">
             Migliora Profilo
           </Button>
-          <Button variant="primary" className="me-2 rounded-pill">
+          <Button variant="outline-secondary" className="me-2 rounded-pill fw-semibold btnscuro text-secondary">
             Risorse
           </Button>
 
@@ -224,14 +227,10 @@ function MainProfile() {
 
           <Card.Body style={{ backgroundColor: "#DDE7F1" }} className=" rounded-3 mt-3">
             <Card.Text>
-              <p>
-                <strong>Disponibile a lavorare</strong>
-              </p>
-              <p>
-                <strong>Ruoli di:</strong> {randomJobs.map((job) => job.lavoro).join(", ")}
-              </p>
+              <p className="mb-0 fw-semibold">Disponibile a lavorare</p>
+              <p className="mb-0">Ruoli di {randomJobs.map((job) => job.lavoro).join(", ")}</p>
               <Card.Text>
-                <CardLink>Mostra Dettagli</CardLink>
+                <CardLink className="text-decoration-none fw-semibold">Mostra Dettagli</CardLink>
               </Card.Text>
             </Card.Text>
           </Card.Body>

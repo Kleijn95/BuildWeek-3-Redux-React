@@ -24,9 +24,7 @@ const Competenze = () => {
       </div>
       {randomJobs.map((job, index) => (
         <div key={index}>
-          <h6 className="mb-2">
-            <strong>{job.lavoro}</strong>
-          </h6>
+          <h6 className="mb-2 fs-semibold">{job.lavoro}</h6>
           {job.competenze.map((comp, i) => (
             <p key={i} className="d-flex align-items-center mb-1">
               <img
@@ -42,7 +40,7 @@ const Competenze = () => {
           {index < 1 && <hr className="text-secondary" />}
         </div>
       ))}
-      <button className="btn btn-light w-100 mt-2">Mostra tutte le competenze</button>
+      <button className="btn border-top w-100 mt-2">Mostra tutte le competenze</button>
     </Card>
   );
 };

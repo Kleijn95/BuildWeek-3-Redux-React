@@ -37,8 +37,9 @@ function Aside2() {
               </Link>
             </Col>
             <Col>
-              <div>
-                <strong>{element.name}</strong> <strong>{element.surname}</strong>
+              <div className="fw-semibold">
+                {element.name}
+                {element.surname}
               </div>
               <p>{element.title}</p>
               <Button className="rounded-pill bg-white border-black border text-black asideButton">
@@ -74,8 +75,8 @@ function Aside2() {
                   </Link>
                 </Col>
                 <Col>
-                  <div>
-                    <strong>{element.name}</strong> <strong>{element.surname}</strong>
+                  <div className="fw-semibold">
+                    {element.name} {element.surname}
                   </div>
                   <p>{element.title}</p>
                   <Button className="rounded-pill bg-white border-black border text-black asideButton">

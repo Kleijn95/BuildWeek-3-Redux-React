@@ -42,8 +42,8 @@ function Bio() {
     <>
       <Card className="mt-3">
         <Card.Body>
-          <Card.Title className="d-flex justify-content-between">
-            <p>Informazioni</p>
+          <Card.Title className="d-flex justify-content-between align-items-center mb-4">
+            <p className="mb-0">Informazioni</p>
             <Button variant="outline-*" className="p-0 mx-2" onClick={() => setShowModal(true)}>
               <PencilSquare className="fs-2" />
             </Button>{" "}

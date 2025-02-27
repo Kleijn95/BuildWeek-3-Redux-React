@@ -27,9 +27,9 @@ function Formazione() {
               style={{ width: "50px", height: "50px", borderRadius: "50%" }}
             />
             <div>
-              <p className="mb-1 fw-bold">{randomSchool.scuola}</p>
-              <p className="mb-1">{randomSchool.indirizzo}</p>
-              <p className="mb-0">
+              <p className=" fw-semibold mb-0">{randomSchool.scuola}</p>
+              <p className="mb-0">{randomSchool.indirizzo}</p>
+              <p className="mb-0 text-secondary">
                 {randomSchool.start_date} - {randomSchool.end_date}
               </p>
             </div>

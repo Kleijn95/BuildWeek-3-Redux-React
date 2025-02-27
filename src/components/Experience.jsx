@@ -1,5 +1,18 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Image, Modal, Row, FormControl, FormGroup, FormLabel, ModalTitle, ModalBody } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Image,
+  Modal,
+  Row,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  ModalTitle,
+  ModalBody,
+} from "react-bootstrap";
 import { PencilSquare, Plus } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchExperience, postExperience, uploadPhoto } from "../redux/actions/profileActions";
@@ -107,12 +120,12 @@ function Experience() {
               )}
             </Col>
             <Col xs="10" className="ps-0">
-              <h5>{exp.role}</h5>
+              <h5 className="mb-0">{exp.role}</h5>
               <p className="mb-0">{exp.company}</p>
-              <p className="mb-0">
-                {exp.startDate.slice(0, 10)} - {exp.endDate ? exp.endDate.slice(0, 10) : "up to this day"}
+              <p className="mb-0 text-secondary">
+                {exp.startDate.slice(0, 10)} - {exp.endDate ? exp.endDate.slice(0, 10) : "Presente"}
               </p>
-              <p className="mb-0">{exp.area}</p>
+              <p className="mb-0 text-secondary">{exp.area}</p>
               <p className="mt-2">{exp.description}</p>
             </Col>
             <hr style={{ color: "gray" }} />
@@ -129,7 +142,12 @@ function Experience() {
               <FormControl className="mt-4" type="file" name="image" onChange={handleChangePhoto} />
             </FormGroup>
             <div className="d-flex justify-content-end mt-4">
-              <Button className="me-3 mb-1 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
+              <Button
+                className="me-3 mb-1 rounded-5 px-3 py-1"
+                type="submit"
+                variant="primary"
+                style={{ backgroundColor: "#0C66C2" }}
+              >
                 Save
               </Button>
             </div>
@@ -177,7 +195,13 @@ function Experience() {
               </Form.Group>
               <FormGroup className="mt-2">
                 <FormLabel>Start date*</FormLabel>
-                <FormControl type="date" name="startDate" value={formData.startDate} onChange={(e) => handleChange("startDate", e.target.value)} required />
+                <FormControl
+                  type="date"
+                  name="startDate"
+                  value={formData.startDate}
+                  onChange={(e) => handleChange("startDate", e.target.value)}
+                  required
+                />
               </FormGroup>
               <FormGroup className="mt-2">
                 <FormLabel>End date</FormLabel>
@@ -222,7 +246,12 @@ function Experience() {
               </FormGroup> */}
             </Container>
             <div className="d-flex justify-content-end">
-              <Button className="me-3 mb-3 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
+              <Button
+                className="me-3 mb-3 rounded-5 px-3 py-1"
+                type="submit"
+                variant="primary"
+                style={{ backgroundColor: "#0C66C2" }}
+              >
                 Save
               </Button>
             </div>
