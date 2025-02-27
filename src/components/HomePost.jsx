@@ -26,7 +26,7 @@ function HomePost() {
   const [visiblePosts, setVisiblePosts] = useState(3); // Stato per gestire il numero di post visibili
   const [showEditModal, setShowEditModal] = useState(false); // Stato per il modale di modifica
   const [showDeleteModal, setShowDeleteModal] = useState(false); // Stato per il modale di cancellazione
-  const [currentPost, setCurrentPost] = useState(null); // Stato per il post che si sta modificando
+  const [currentPost, setCurrentPost] = useState(null); // Stato per il post che si sta modificando o cancellando
 
   useEffect(() => {
     // Carica i post solo una volta (se necessario)
