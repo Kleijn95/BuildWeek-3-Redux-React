@@ -11,7 +11,7 @@ const Jobs = () => {
           <HomeProfile />
           <Card3Jobs />
         </Col>
-        ={" "}
+
         <Col xs={12} lg={9} className="right-content">
           <JobsMain />
         </Col>
