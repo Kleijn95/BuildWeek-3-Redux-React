@@ -1,3 +1,5 @@
+// reducers/createPostReducer.js
+
 const initialState = {
   content: [],
 };
@@ -13,6 +15,18 @@ const createPostReducer = (state = initialState, action) => {
       return {
         ...state,
         content: action.payload,
+      };
+    case "UPDATE_POST":
+      return {
+        ...state,
+        content: state.content.map((post) =>
+          post._id === action.payload._id ? { ...post, text: action.payload.text } : post
+        ),
+      };
+    case "DELETE_POST":
+      return {
+        ...state,
+        content: state.content.filter((post) => post._id !== action.payload),
       };
     default:
       return state;
