@@ -44,12 +44,15 @@ export const fetchAside = (url) => {
 export const fetchExperience = () => {
   return async (dispatch) => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences", {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-        },
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences",
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+          },
+        }
+      );
 
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
 
@@ -106,15 +109,18 @@ export const fetchUtenteExperience = (id) => {
 export const postExperience = (experience) => {
   return async (dispatch) => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-        },
-        body: JSON.stringify(experience),
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+          },
+          body: JSON.stringify(experience),
+        }
+      );
 
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
       const data = await response.json();
@@ -129,15 +135,18 @@ export const postExperience = (experience) => {
 export const putExperience = (expId, experience) => {
   return async (dispatch) => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/" + expId, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-        },
-        body: JSON.stringify(experience),
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/" + expId,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+          },
+          body: JSON.stringify(experience),
+        }
+      );
 
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
       const data = await response.json();
@@ -198,14 +207,17 @@ export const fetchPost = () => {
 export const uploadPhoto = (expId, formData) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/${expId}/picture`, {
-        method: "POST",
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-        },
-        body: formData,
-      });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/${expId}/picture`,
+        {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+          },
+          body: formData,
+        }
+      );
 
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
       const data = await response.json();
@@ -220,13 +232,16 @@ export const uploadPhoto = (expId, formData) => {
 export const deleteExperience = (expId) => {
   return async (dispatch) => {
     try {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/" + expId, {
-        method: "DELETE",
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-        },
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/" + expId,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+          },
+        }
+      );
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
       dispatch({ type: "DELETE_EXPERIENCE", payload: expId });
     } catch (error) {
@@ -235,18 +250,18 @@ export const deleteExperience = (expId) => {
   };
 };
 
-export const createPost = (newPost) => {
+export const createPost = (newPost, imageFile) => {
   return async (dispatch) => {
     try {
+      // Primo step: Creazione del post con solo testo
       const response = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // aggiungi il tuo token di autenticazione se necessario
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
         },
-        body: JSON.stringify({ text: newPost.text }), // invia il nuovo post come corpo della richiesta
+        body: JSON.stringify({ text: newPost.text }),
       });
 
       if (!response.ok) {
@@ -254,17 +269,35 @@ export const createPost = (newPost) => {
       }
 
       const result = await response.json();
+      const postId = result._id; // Recupera l'ID del post creato
 
-      // Quando il post è stato creato correttamente, aggiorna lo store
+      // Se c'è un'immagine, caricala
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("post", imageFile);
+
+        const uploadResponse = await fetch(`https://striveschool-api.herokuapp.com/api/posts/${postId}`, {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+          },
+          body: formData,
+        });
+
+        if (!uploadResponse.ok) {
+          throw new Error("Errore durante il caricamento dell'immagine");
+        }
+      }
+
       dispatch({
         type: "CREATE_POST",
-        payload: result, // Qui puoi usare il risultato della risposta, che contiene il post creato
+        payload: result,
       });
 
       dispatch(fetchPost("https://striveschool-api.herokuapp.com/api/posts/"));
     } catch (error) {
       console.error("Errore nella creazione del post:", error);
-      // Potresti voler dispatchare un'azione per gestire l'errore
     }
   };
 };

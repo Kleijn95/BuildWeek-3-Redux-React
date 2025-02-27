@@ -10,6 +10,7 @@ function CreaPost() {
 
   const [showModal, setShowModal] = useState(false);
   const [postText, setPostText] = useState("");
+  const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
   useEffect(() => {
@@ -25,12 +26,12 @@ function CreaPost() {
       const newPost = {
         text: postText,
         user: { username: profile.username, image: profile.image },
-        image: imagePreview.image,
         likes: 0,
         shares: 0,
       };
-      dispatch(createPost(newPost));
+      dispatch(createPost(newPost, imageFile)); // Passa anche il file immagine
       setPostText("");
+      setImageFile(null);
       setImagePreview(null);
       setShowModal(false);
     }
@@ -39,9 +40,10 @@ function CreaPost() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setImageFile(file); // Salva il file per l'upload
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result); // Setta l'anteprima dell'immagine
+        setImagePreview(reader.result); // Mostra l'anteprima
       };
       reader.readAsDataURL(file);
     }
@@ -60,11 +62,7 @@ function CreaPost() {
               className="rounded-pill img-fluid object-fit-cover"
               src={profile.image || "https://via.placeholder.com/150"}
               alt="Profile"
-              style={{
-                width: "50px",
-                height: "50px",
-                border: "4px solid white",
-              }}
+              style={{ width: "50px", height: "50px", border: "4px solid white" }}
             />
             <Button
               className="text-muted fw-bold"
@@ -81,21 +79,9 @@ function CreaPost() {
               Crea un post
             </Button>
           </Card.Body>
-          <Card.Body>
-            <Button className="me-2 mt-2 mb-0 button-style ">
-              <Image style={{ color: "blue", marginRight: "5px" }} /> Contenuti Multimediali
-            </Button>
-            <Button className="me-2 mt-2 mb-0 button-style ">
-              <Calendar2Event style={{ color: "rgb(184, 134, 11)", marginRight: "5px" }} /> Evento
-            </Button>
-            <Button className="me-2 mt-2 mb-0 button-style ">
-              <ListColumnsReverse style={{ color: "orange", marginRight: "5px" }} /> Scrivi un articolo
-            </Button>
-          </Card.Body>
         </Card>
       </Container>
 
-      {/* Modale per creare un post */}
       <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
         <Modal.Header closeButton>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -103,12 +89,7 @@ function CreaPost() {
               className="rounded-pill img-fluid object-fit-cover"
               src={profile.image || "https://via.placeholder.com/150"}
               alt="Profile"
-              style={{
-                width: "50px",
-                height: "50px",
-                border: "4px solid white",
-                marginRight: "10px",
-              }}
+              style={{ width: "50px", height: "50px", border: "4px solid white", marginRight: "10px" }}
             />
             <h5>
               {profile.name} {profile.surname}
@@ -121,7 +102,7 @@ function CreaPost() {
               <Form.Label>Scrivi il tuo post:</Form.Label>
               <Form.Control
                 as="textarea"
-                rows={4} // Aumentato il numero di righe per ingrandire il campo di testo
+                rows={4}
                 value={postText}
                 onChange={handlePostChange}
                 placeholder="Cosa hai in mente?"
@@ -132,14 +113,17 @@ function CreaPost() {
                 </div>
               )}
             </Form.Group>
-            <input id="imageInput" type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageChange} />
+            <input
+              id="imageInput"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="outline-secondary"
-            onClick={() => document.getElementById("imageInput").click()} // Simula il click sull'input di file
-          >
+          <Button variant="outline-secondary" onClick={() => document.getElementById("imageInput").click()}>
             <Camera style={{ marginRight: "5px" }} /> Aggiungi Immagine
           </Button>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
