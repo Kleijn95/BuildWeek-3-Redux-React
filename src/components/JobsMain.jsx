@@ -22,6 +22,18 @@ function JobsMain() {
     dispatch(fetchJobs());
   }, [dispatch]);
 
+  const handleCompanyClick = async (job) => {
+    SetShowCompanyModal(true); // Mostra il modal
+    setCurrentTitle(job); // Imposta il job corrente come currentTitle
+
+    const companyName = job.company_name; // Estrai il nome della compagnia
+
+    // Esegui la fetch asincrona con il company_name
+    await dispatch(fetchCompany(companyName)); // Fetch dei dati aziendali
+
+    // Ora i dati saranno disponibili nello stato globalmente, nella proprietà currentCompany
+  };
+
   const handleShowMore = () => {
     setIsExpanded(!isExpanded);
     if (isExpanded) {
@@ -77,17 +89,8 @@ function JobsMain() {
                   <X className="fs-3" />
                 </div>
                 <p className="text-muted mb-1">
-                  <span
-                    onClick={() => {
-                      SetShowCompanyModal(true);
-                      // fetchCurrentCompany(data);
-                      setCurrentTitle(job);
-                      fetchCompany(job.company_name);
-                    }}
-                  >
-                    {job.company_name}
-                  </span>{" "}
-                  - {job.candidate_required_location} {job.job_type}
+                  <span onClick={() => handleCompanyClick(job)}>{job.company_name}</span> -{" "}
+                  {job.candidate_required_location} {job.job_type}
                 </p>
                 <p className="text-muted mb-1">{job.category}</p>
                 <small className="text-muted">
@@ -188,6 +191,7 @@ function JobsMain() {
           </Button>
         </Modal.Footer>
       </Modal>
+
       <Modal show={showCompanyModal} onHide={() => SetShowCompanyModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -200,8 +204,7 @@ function JobsMain() {
               {currentCompany.map((job, index) => (
                 <li key={index}>
                   <h5>{job.title}</h5>
-                  <p>{job.description}</p>
-                  <p>{job.location}</p>
+                  <p dangerouslySetInnerHTML={{ __html: job.description }} />
                 </li>
               ))}
             </ul>

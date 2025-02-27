@@ -442,18 +442,17 @@ export const fetchJobs = () => {
   };
 };
 
-export const fetchCompany = (companyname) => {
+export const fetchCompany = (companyName) => {
   return async (dispatch) => {
     dispatch({ type: "FETCH_COMPANY_LOADING" });
+
     try {
-      const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?company=${companyname}`);
+      const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?company=${companyName}`);
       if (!response.ok) {
         throw new Error("Errore nel recupero degli annunci di lavoro");
       }
 
       const data = await response.json();
-      console.log("Data ricevuta:", data); // Verifica la risposta
-
       if (data && Array.isArray(data.data)) {
         dispatch({
           type: "FETCH_COMPANY_SUCCESS",
