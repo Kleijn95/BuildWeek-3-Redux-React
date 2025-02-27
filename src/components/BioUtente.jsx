@@ -16,7 +16,7 @@ function BioUtente() {
           <p>Informazioni</p>
           <PencilSquare />
         </Card.Title>
-        <p>{profile.bio}</p>
+        <p>{profile.bio ? profile.bio : "L'utente non ha inserito alcuna bio."}</p>
       </Card.Body>
     </Card>
   );
