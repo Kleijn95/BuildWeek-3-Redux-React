@@ -1,37 +1,49 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Container, Form, Modal } from "react-bootstrap";
-
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, fetchProfile } from "../redux/actions/profileActions";
-import { Calendar2Event, Image, ListColumnsReverse } from "react-bootstrap-icons";
+import { Calendar2Event, Image, ListColumnsReverse, Camera } from "react-bootstrap-icons";
 
 function CreaPost() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.myprofile.data);
 
-  const [showModal, setShowModal] = useState(false); // Stato per aprire il modale
+  const [showModal, setShowModal] = useState(false);
   const [postText, setPostText] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
 
   useEffect(() => {
     dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
   }, [dispatch]);
 
   const handlePostChange = (e) => {
-    setPostText(e.target.value); // Aggiorna il testo del post mentre l'utente scrive
+    setPostText(e.target.value);
   };
 
   const handleCreatePost = () => {
     if (postText.trim()) {
-      // Crea il post (simula l'invio al server)
       const newPost = {
         text: postText,
         user: { username: profile.username, image: profile.image },
+        image: imagePreview.image,
         likes: 0,
         shares: 0,
       };
-      dispatch(createPost(newPost)); // Aggiungi l'azione per creare il post
-      setPostText(""); // Resetta il campo di testo
-      setShowModal(false); // Chiudi il modale
+      dispatch(createPost(newPost));
+      setPostText("");
+      setImagePreview(null);
+      setShowModal(false);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result); // Setta l'anteprima dell'immagine
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -43,7 +55,7 @@ function CreaPost() {
     <>
       <Container>
         <Card style={{ position: "relative" }}>
-          <Card.Body className="">
+          <Card.Body>
             <img
               className="rounded-pill img-fluid object-fit-cover"
               src={profile.image || "https://via.placeholder.com/150"}
@@ -51,7 +63,6 @@ function CreaPost() {
               style={{
                 width: "50px",
                 height: "50px",
-
                 border: "4px solid white",
               }}
             />
@@ -70,7 +81,7 @@ function CreaPost() {
               Crea un post
             </Button>
           </Card.Body>
-          <Card.Body className=" ">
+          <Card.Body>
             <Button className="me-2 mt-2 mb-0 button-style ">
               <Image style={{ color: "blue", marginRight: "5px" }} /> Contenuti Multimediali
             </Button>
@@ -83,19 +94,54 @@ function CreaPost() {
           </Card.Body>
         </Card>
       </Container>
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+
+      {/* Modale per creare un post */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Crea un Nuovo Post</Modal.Title>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              className="rounded-pill img-fluid object-fit-cover"
+              src={profile.image || "https://via.placeholder.com/150"}
+              alt="Profile"
+              style={{
+                width: "50px",
+                height: "50px",
+                border: "4px solid white",
+                marginRight: "10px",
+              }}
+            />
+            <h5>
+              {profile.name} {profile.surname}
+            </h5>
+          </div>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="postText">
               <Form.Label>Scrivi il tuo post:</Form.Label>
-              <Form.Control as="textarea" rows={3} value={postText} onChange={handlePostChange} placeholder="Cosa hai in mente?" />
+              <Form.Control
+                as="textarea"
+                rows={4} // Aumentato il numero di righe per ingrandire il campo di testo
+                value={postText}
+                onChange={handlePostChange}
+                placeholder="Cosa hai in mente?"
+              />
+              {imagePreview && (
+                <div style={{ marginTop: "10px" }}>
+                  <img src={imagePreview} alt="Preview" style={{ maxWidth: "100%" }} />
+                </div>
+              )}
             </Form.Group>
+            <input id="imageInput" type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageChange} />
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          <Button
+            variant="outline-secondary"
+            onClick={() => document.getElementById("imageInput").click()} // Simula il click sull'input di file
+          >
+            <Camera style={{ marginRight: "5px" }} /> Aggiungi Immagine
+          </Button>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Annulla
           </Button>
