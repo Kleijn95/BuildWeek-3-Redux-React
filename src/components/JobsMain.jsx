@@ -2,7 +2,7 @@ import { Card, Button, ListGroup, Container, Row, Col, Modal, OverlayTrigger, To
 import { ArrowRight, Linkedin, X, Search } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchJobs, fetchProfile } from "../redux/actions/profileActions";
+import { fetchCompany, fetchJobs, fetchProfile } from "../redux/actions/profileActions";
 
 function JobsMain() {
   const dispatch = useDispatch();
@@ -11,8 +11,11 @@ function JobsMain() {
   const [visibleJobsCount, setVisibleJobsCount] = useState(5);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showTitleModal, SetShowTitleModal] = useState(false);
-
+  const [showCompanyModal, SetShowCompanyModal] = useState(false);
   const [currentTitle, setCurrentTitle] = useState();
+  const currentCompany = useSelector((state) => state.company.data);
+  console.log(currentCompany);
+
   console.log(currentTitle);
   useEffect(() => {
     dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
@@ -74,7 +77,17 @@ function JobsMain() {
                   <X className="fs-3" />
                 </div>
                 <p className="text-muted mb-1">
-                  {job.company_name} - {job.candidate_required_location} {job.job_type}
+                  <span
+                    onClick={() => {
+                      SetShowCompanyModal(true);
+                      // fetchCurrentCompany(data);
+                      setCurrentTitle(job);
+                      fetchCompany(job.company_name);
+                    }}
+                  >
+                    {job.company_name}
+                  </span>{" "}
+                  - {job.candidate_required_location} {job.job_type}
                 </p>
                 <p className="text-muted mb-1">{job.category}</p>
                 <small className="text-muted">
@@ -171,6 +184,33 @@ function JobsMain() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => SetShowTitleModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showCompanyModal} onHide={() => SetShowCompanyModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {currentTitle ? `Offerte di lavoro per ${currentTitle.company_name}` : "Offerte di lavoro..."}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {currentCompany && currentCompany.length > 0 ? (
+            <ul>
+              {currentCompany.map((job, index) => (
+                <li key={index}>
+                  <h5>{job.title}</h5>
+                  <p>{job.description}</p>
+                  <p>{job.location}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Nessuna offerta di lavoro trovata per questa compagnia.</p>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => SetShowCompanyModal(false)}>
             Close
           </Button>
         </Modal.Footer>
