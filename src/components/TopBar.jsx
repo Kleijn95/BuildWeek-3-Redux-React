@@ -1,14 +1,5 @@
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import {
-  BellFill,
-  CaretDownFill,
-  ChatDotsFill,
-  Grid3x3GapFill,
-  HouseFill,
-  Linkedin,
-  PeopleFill,
-  SuitcaseLgFill,
-} from "react-bootstrap-icons";
+import { BellFill, CaretDownFill, ChatDotsFill, Grid3x3GapFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../redux/actions/profileActions";
 import { useEffect } from "react";
@@ -43,12 +34,7 @@ function TopBar() {
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
               </svg>
             </span>
-            <Form.Control
-              type="search"
-              placeholder="Cerca"
-              className="border-0 bg-light rounded-pill py-2"
-              style={{ boxShadow: "none" }}
-            />
+            <Form.Control type="search" placeholder="Cerca" className="border-0 bg-light rounded-pill py-2" style={{ boxShadow: "none" }} />
           </div>
         </Form>
         <Nav className="ms-auto  align-items-center flex-end gap-1">
@@ -56,7 +42,7 @@ function TopBar() {
           {[
             { icon: HouseFill, text: "Home", link: "/" },
             { icon: PeopleFill, text: "Rete" },
-            { icon: SuitcaseLgFill, text: "Lavoro" },
+            { icon: SuitcaseLgFill, text: "Lavoro", link: "/jobs" },
             { icon: ChatDotsFill, text: "Messaggistica", badge: 3 },
             { icon: BellFill, text: "Notifiche" },
           ].map((item, index) => (
@@ -75,10 +61,7 @@ function TopBar() {
               <div className="position-relative">
                 <item.icon className="mb-1" style={{ fontSize: "1.5rem" }} />
                 {item.badge && (
-                  <span
-                    style={{ top: "5px" }}
-                    className="position-absolute  start-75 translate-middle badge rounded-pill bg-danger"
-                  >
+                  <span style={{ top: "5px" }} className="position-absolute  start-75 translate-middle badge rounded-pill bg-danger">
                     {item.badge}
                   </span>
                 )}

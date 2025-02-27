@@ -7,6 +7,7 @@ import UtenteExperienceReducer from "../reducers/utenteExperienceReducer";
 import educationReducer from "../reducers/educationReducer";
 import HomePostReducer from "../reducers/homePostReducer";
 import createPostReducer from "../reducers/createPostReducer";
+import jobReducer from "../reducers/jobsReducer";
 
 const rootReducer = combineReducers({
   myprofile: profileReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   education: educationReducer,
   post: HomePostReducer,
   create: createPostReducer,
+  jobs: jobReducer,
 });
 
 const store = configureStore({
