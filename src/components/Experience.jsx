@@ -56,6 +56,7 @@ function Experience() {
     formDataToSend.append("experience", uploadImage);
     dispatch(uploadPhoto(expId, formDataToSend));
     setShowModal(false);
+    setShowUploadModal(false);
     setExpId("");
   };
 
