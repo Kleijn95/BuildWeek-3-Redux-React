@@ -7,12 +7,15 @@ import {
   ArrowRepeat,
   ArrowUpCircle,
   ChatText,
+  GlobeEuropeAfrica,
   HandThumbsUp,
   HandThumbsUpFill,
   HeartFill,
   LightbulbFill,
+  PencilSquare,
   SendFill,
   ThreeDots,
+  Trash3,
 } from "react-bootstrap-icons";
 
 function HomePost() {
@@ -65,7 +68,7 @@ function HomePost() {
       <Container className="mt-3">
         {posts.slice(0, visiblePosts).map((post, index) => (
           <Card key={index} className="mb-4">
-            <Card.Body className="d-flex">
+            <Card.Body className="d-flex align-items-center">
               <img
                 className="img-fluid object-fit-cover"
                 src={post.user.image || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
@@ -77,12 +80,31 @@ function HomePost() {
                   borderRadius: "50%",
                 }}
               />
-              <h5 className="ms-3">{post.username}</h5>
+              <div>
+                <h5 className=" mb-0">{post.username}</h5>
+                <p className="text-secondary mb-0">{post.user.title}</p>
+                <p className="mb-0 text-secondary">
+                  {new Date(post.createdAt).toLocaleString("it-IT", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                  })}{" "}
+                  • <GlobeEuropeAfrica />
+                </p>
+              </div>
 
-              {/* Aggiungi i 3 puntini per i post dell'utente */}
+              {/* Aggiungi i 3 puntini grigi per i post dell'utente */}
               {post.username === profile.username && (
                 <Dropdown className="ms-auto">
-                  <Dropdown.Toggle variant="link" id="dropdown-custom-components">
+                  <Dropdown.Toggle
+                    variant="link"
+                    id="dropdown-custom-components"
+                    style={{ color: "gray", border: "none" }} // Colore grigio e rimozione del bordo
+                    className="p-0"
+                  >
                     <ThreeDots />
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -92,7 +114,7 @@ function HomePost() {
                         setShowEditModal(true);
                       }}
                     >
-                      Modifica
+                      <PencilSquare /> Modifica
                     </Dropdown.Item>
                     <Dropdown.Item
                       onClick={() => {
@@ -100,7 +122,7 @@ function HomePost() {
                         setShowDeleteModal(true);
                       }}
                     >
-                      Cancella
+                      <Trash3 /> Cancella
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
@@ -180,11 +202,8 @@ function HomePost() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
-            Annulla
-          </Button>
           <Button variant="primary" onClick={handleEditPost}>
-            Salva Modifiche
+            Salva
           </Button>
         </Modal.Footer>
       </Modal>

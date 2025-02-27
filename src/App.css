@@ -180,3 +180,8 @@ body {
   background-color: lightgray !important;
   color: black !important;
 }
+
+/* Rimuovi la freccetta dal Dropdown.Toggle */
+#dropdown-custom-components::after {
+  content: none;
+}
