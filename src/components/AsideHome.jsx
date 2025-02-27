@@ -57,7 +57,6 @@ const AsideCard = () => {
           </div>
         </Card.Body>
       </Card>
-
       <Card.Footer className="text-center mt-3 ms-4  " style={{ maxWidth: "15rem", backgroundColor: "#F4F2EE" }}>
         <div className="d-flex justify-content-center flex-wrap gap-2 mb-2 text-muted " style={{ fontSize: "0.8rem" }}>
           <span>About</span>

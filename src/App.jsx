@@ -6,6 +6,7 @@ import TopBar from "./components/TopBar";
 import ProfileSection from "./components/ProfileSection";
 import ExperienceSection from "./components/ExperienceSection";
 import Home from "./components/Home";
+import Jobs from "./components/Jobs";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/mainsection" element={<MainSection />} />
           <Route path="/:userId" element={<ProfileSection />} />
           <Route path="/experience" element={<ExperienceSection />} />
+          <Route path="jobs" element={<Jobs />} />
         </Routes>
         <Footer />
       </BrowserRouter>
