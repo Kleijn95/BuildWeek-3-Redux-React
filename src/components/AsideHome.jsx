@@ -8,10 +8,10 @@ const AsideCard = () => {
       <Card className="p-3" style={{ width: "100%", borderRadius: "10px" }}>
         <Card.Body className="p-0">
           <div className="d-flex align-items-center justify-content-between">
-            <Card.Title className="fw-bold fs-5 pb-2 m">In primo piano</Card.Title>
+            <Card.Title className="fw-medium fs-5 pb-2 m">In primo piano</Card.Title>
             <InfoSquareFill className="mb-5 rounded" />
           </div>
-          <Card.Subtitle className="text-muted mb-2" style={{ fontSize: "0.85rem" }}>
+          <Card.Subtitle className="text-secondary mb-2" style={{ fontSize: "0.85rem" }}>
             a cura di LinkedIn Notizie
           </Card.Subtitle>
           <div>
