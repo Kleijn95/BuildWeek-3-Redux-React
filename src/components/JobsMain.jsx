@@ -1,4 +1,4 @@
-import { Card, Button, ListGroup, Container, Row, Col } from "react-bootstrap";
+import { Card, Button, ListGroup, Container, Row, Col, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ArrowRight, Linkedin, X, Search } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,10 @@ function JobsMain() {
   const { jobs, loading, error } = useSelector((state) => state.jobs);
   const [visibleJobsCount, setVisibleJobsCount] = useState(5);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showTitleModal, SetShowTitleModal] = useState(false);
 
+  const [currentTitle, setCurrentTitle] = useState();
+  console.log(currentTitle);
   useEffect(() => {
     dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
     dispatch(fetchJobs());
@@ -52,9 +55,22 @@ function JobsMain() {
             jobs.slice(0, visibleJobsCount).map((job, index) => (
               <ListGroup.Item key={index}>
                 <div className="d-flex justify-content-between">
-                  <h6 className="fw-bold" style={{ color: "#0B66C2" }}>
-                    {job.title}
+                  <h6
+                    className="fw-bold "
+                    style={{ color: "#0B66C2", cursor: "pointer" }}
+                    onClick={() => {
+                      SetShowTitleModal(true);
+                      setCurrentTitle(job);
+                    }}
+                  >
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={<Tooltip id="tooltip-top">Informazioni sul lavoro</Tooltip>}
+                    >
+                      <span> {job.title} </span>
+                    </OverlayTrigger>
                   </h6>
+
                   <X className="fs-3" />
                 </div>
                 <p className="text-muted mb-1">
@@ -62,7 +78,8 @@ function JobsMain() {
                 </p>
                 <p className="text-muted mb-1">{job.category}</p>
                 <small className="text-muted">
-                  {job.promoted && "Promosso"} • <Linkedin style={{ marginBottom: "0.2rem", color: "#0B66C2" }} /> Candidatura semplice
+                  {job.promoted && "Promosso"} • <Linkedin style={{ marginBottom: "0.2rem", color: "#0B66C2" }} />{" "}
+                  Candidatura semplice
                 </small>
               </ListGroup.Item>
             ))
@@ -84,7 +101,9 @@ function JobsMain() {
           <Card.Title className="fw-bold fs-5">Lasciati trovare dalle offerte di lavoro</Card.Title>
           <X className="fs-3" />
         </div>
-        <Card.Text className="text-muted mb-0">Ricevi segnalazioni più rilevanti tenendo aggiornate le tue preferenze.</Card.Text>
+        <Card.Text className="text-muted mb-0">
+          Ricevi segnalazioni più rilevanti tenendo aggiornate le tue preferenze.
+        </Card.Text>
 
         <Card.Body className="mt-0 d-flex align-items-center">
           <img
@@ -104,7 +123,11 @@ function JobsMain() {
           </div>{" "}
         </Card.Body>
 
-        <Button className="rounded-pill fw-semibold" size="sm" style={{ maxWidth: "12rem", backgroundColor: "#0B66C2" }}>
+        <Button
+          className="rounded-pill fw-semibold"
+          size="sm"
+          style={{ maxWidth: "12rem", backgroundColor: "#0B66C2" }}
+        >
           Aggiorna le preferenze
         </Button>
       </Card>
@@ -114,17 +137,44 @@ function JobsMain() {
       <Card className="p-3">
         <Card.Title className="fw-bold fs-5">Ricerche di offerte di lavoro suggerite</Card.Title>
         <Row className="g-2">
-          {["English Second Language Tutor", "English Tutor", "English Specialist", "Reading Tutor", "Language Tutor", "English Language Instructor"].map(
-            (job, index) => (
-              <Col key={index} xs={12} sm={6} md={6}>
-                <Button variant="outline-primary" size="sm" className="rounded-pill d-flex align-items-center ">
-                  <Search className="me-1" /> {job}
-                </Button>
-              </Col>
-            )
-          )}
+          {[
+            "English Second Language Tutor",
+            "English Tutor",
+            "English Specialist",
+            "Reading Tutor",
+            "Language Tutor",
+            "English Language Instructor",
+          ].map((job, index) => (
+            <Col key={index} xs={12} sm={6} md={6}>
+              <Button variant="outline-primary" size="sm" className="rounded-pill d-flex align-items-center ">
+                <Search className="me-1" /> {job}
+              </Button>
+            </Col>
+          ))}
         </Row>
       </Card>
+
+      <Modal show={showTitleModal} onHide={() => SetShowTitleModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{currentTitle ? `Informazioni su ${currentTitle.title}` : "Informazioni su..."}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {currentTitle ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: currentTitle.description,
+              }}
+            />
+          ) : (
+            "Caricamento..."
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => SetShowTitleModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
