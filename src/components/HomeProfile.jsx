@@ -22,8 +22,7 @@ function HomeProfile() {
         <Card style={{ position: "relative" }}>
           <Card.Body
             style={{
-              backgroundImage:
-                'url("https://images.unsplash.com/photo-1487088678257-3a541e6e3922?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+              backgroundImage: 'url("https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq")',
               backgroundSize: "cover",
               backgroundPosition: "center",
               height: "100px",
@@ -49,10 +48,11 @@ function HomeProfile() {
               {profile.name} {profile.surname}
             </Card.Title>
 
-            <Card.Text>
-              <p>I.I.S. Concetto Marchesi - Mascalucia (CT)</p>
+            <Card.Text className="mb-0">
+              <p className="mb-0">Epicode</p>
+              <p className="mb-0 text-secondary">{profile.area}</p>
             </Card.Text>
-            <Card.Text>{profile.title}</Card.Text>
+            <Card.Text className="fw-medium mt-1 lh-1">{profile.title}</Card.Text>
           </Card.Body>
         </Card>
       </Container>
