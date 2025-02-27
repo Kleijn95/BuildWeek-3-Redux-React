@@ -48,10 +48,15 @@ function Experience() {
 
   const handleSubmitPhoto = (e) => {
     e.preventDefault();
+    if (!expId) {
+      console.error("No experience ID set");
+      return;
+    }
     const formDataToSend = new FormData();
-    formDataToSend.append("image", uploadImage);
+    formDataToSend.append("experience", uploadImage);
     dispatch(uploadPhoto(expId, formDataToSend));
     setShowModal(false);
+    setShowUploadModal(false);
     setExpId("");
   };
 

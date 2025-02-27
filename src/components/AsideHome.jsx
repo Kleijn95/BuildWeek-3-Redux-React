@@ -1,5 +1,6 @@
 import { Card, NavDropdown } from "react-bootstrap";
-import { InfoSquareFill, Linkedin } from "react-bootstrap-icons";
+import { InfoSquareFill } from "react-bootstrap-icons";
+import { Linkedin } from "react-bootstrap-icons";
 
 const AsideCard = () => {
   return (
