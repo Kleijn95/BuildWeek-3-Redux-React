@@ -111,14 +111,26 @@ function CreaPost() {
           <Form>
             <Form.Group controlId="postText">
               <Form.Label>Scrivi il tuo post:</Form.Label>
-              <Form.Control as="textarea" rows={4} value={postText} onChange={handlePostChange} placeholder="Cosa hai in mente?" />
+              <Form.Control
+                as="textarea"
+                rows={4}
+                value={postText}
+                onChange={handlePostChange}
+                placeholder="Cosa hai in mente?"
+              />
               {imagePreview && (
                 <div style={{ marginTop: "10px" }}>
                   <img src={imagePreview} alt="Preview" style={{ maxWidth: "100%" }} />
                 </div>
               )}
             </Form.Group>
-            <input id="imageInput" type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageChange} />
+            <input
+              id="imageInput"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
           </Form>
         </Modal.Body>
         <Modal.Footer>
