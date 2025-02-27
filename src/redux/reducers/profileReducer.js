@@ -7,10 +7,7 @@ const profileReducer = (state = initialState, action) => {
     case "SET_PROFILE":
       return { ...state, data: action.payload };
     case "PUT_PROFILE":
-      return {
-        ...state,
-        data: state.data.map((obj) => (obj._id === action.payload._id ? action.payload : obj)),
-      };
+      return { ...state, data: action.payload };
     default:
       return state;
   }

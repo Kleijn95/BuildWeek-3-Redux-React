@@ -1,16 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  CardLink,
-  Container,
-  Form,
-  FormControl,
-  FormGroup,
-  FormLabel,
-  ListGroup,
-  Modal,
-} from "react-bootstrap";
+import { Button, Card, CardLink, Container, Form, FormControl, FormGroup, FormLabel, ListGroup, Modal } from "react-bootstrap";
 import { PatchCheck, PencilSquare } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile, putProfile } from "../redux/actions/profileActions";
@@ -25,6 +14,7 @@ function MainProfile() {
   const [randomJobs, setRandomJobs] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showAddSectionsModal, setShowAddSectionsModal] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState({});
   const [showModal2, setShowModal2] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -34,7 +24,7 @@ function MainProfile() {
     bio: "",
     title: "",
     area: "",
-    image: null,
+    // image: null,
   });
 
   useEffect(() => {
@@ -55,21 +45,6 @@ function MainProfile() {
     dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
   }, [dispatch]);
 
-  useEffect(() => {
-    if (profile) {
-      setFormData({
-        name: profile.name || "",
-        surname: profile.surname || "",
-        email: profile.email || "",
-        username: profile.username || "",
-        bio: profile.bio || "",
-        title: profile.title || "",
-        area: profile.area || "",
-        image: profile.image || null,
-      });
-    }
-  }, [profile]);
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -77,10 +52,16 @@ function MainProfile() {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-
+  const handleChangePhoto = (e) => {
+    setProfilePhoto(e.target.files[0]);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(putProfile(formData)); // Salva i dati
+    if (profilePhoto) {
+      dispatch(putProfile(formData, profilePhoto));
+    } else {
+      dispatch(putProfile(formData));
+    } // Salva i dati
     setShowModal2(false); // Chiudi il modal dopo il salvataggio
 
     // Dopo il salvataggio, ricarica i dati
@@ -98,6 +79,21 @@ function MainProfile() {
       image: null,
     });
   };
+
+  useEffect(() => {
+    if (profile) {
+      setFormData({
+        name: profile.name || "",
+        surname: profile.surname || "",
+        email: profile.email || "",
+        username: profile.username || "",
+        bio: profile.bio || "",
+        title: profile.title || "",
+        area: profile.area || "",
+        image: profile.image || null,
+      });
+    }
+  }, [profile]);
 
   if (!profile) {
     return <p>Caricamento...</p>;
@@ -175,10 +171,7 @@ function MainProfile() {
             </Modal.Header>
             <Modal.Body>
               <h6 className="fs-5">Sezioni principali</h6>
-              <p>
-                Iniziamo dalle basi. Se compili queste sezioni, sarà più facile trovarti per i recruiter e le persone
-                che potresti conoscere.
-              </p>
+              <p>Iniziamo dalle basi. Se compili queste sezioni, sarà più facile trovarti per i recruiter e le persone che potresti conoscere.</p>
 
               <ListGroup variant="flush">
                 <ListGroup.Item className="mb-3 ">
@@ -258,11 +251,7 @@ function MainProfile() {
           </p>
           <p>
             <strong>LinkedIn:</strong>
-            <a
-              href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7" target="_blank" rel="noopener noreferrer">
               {" "}
               Vai al profilo{" "}
             </a>
@@ -287,25 +276,11 @@ function MainProfile() {
             <Container className="mb-4">
               <FormGroup className="mt-2">
                 <FormLabel>Name</FormLabel>
-                <FormControl
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Antonio"
-                  required
-                />
+                <FormControl type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Antonio" required />
               </FormGroup>
               <FormGroup className="mt-2">
                 <FormLabel>Surname</FormLabel>
-                <FormControl
-                  type="text"
-                  name="surname"
-                  value={formData.surname}
-                  onChange={handleChange}
-                  placeholder="Kleijn"
-                  required
-                />
+                <FormControl type="text" name="surname" value={formData.surname} onChange={handleChange} placeholder="Kleijn" required />
               </FormGroup>
 
               <FormGroup className="mt-2">
@@ -323,14 +298,7 @@ function MainProfile() {
 
               <FormGroup className="mt-2">
                 <FormLabel>Area</FormLabel>
-                <FormControl
-                  type="text"
-                  name="area"
-                  value={formData.area}
-                  onChange={handleChange}
-                  placeholder="Pedara"
-                  required
-                />
+                <FormControl type="text" name="area" value={formData.area} onChange={handleChange} placeholder="Pedara" required />
               </FormGroup>
 
               <FormGroup className="mt-2">
@@ -348,40 +316,21 @@ function MainProfile() {
 
               <FormGroup className="mt-2">
                 <FormLabel>Email</FormLabel>
-                <FormControl
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Inserisci la tua email"
-                  required
-                />
+                <FormControl type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Inserisci la tua email" required />
               </FormGroup>
 
               <FormGroup className="mt-2">
                 <FormLabel>Title</FormLabel>
-                <FormControl
-                  type="text"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  placeholder="Inserisci il tuo titolo"
-                  required
-                />
+                <FormControl type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Inserisci il tuo titolo" required />
               </FormGroup>
 
               <FormGroup className="mt-2">
                 <FormLabel>Media (Opzionale)</FormLabel>
-                <FormControl type="file" name="image" onChange={handleChange} />
+                <FormControl type="file" name="image" onChange={handleChangePhoto} />
               </FormGroup>
             </Container>
             <div className="d-flex justify-content-end">
-              <Button
-                className="me-3 mb-3 rounded-5 px-3 py-1"
-                type="submit"
-                variant="primary"
-                style={{ backgroundColor: "#0C66C2" }}
-              >
+              <Button className="me-3 mb-3 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
                 Save
               </Button>
             </div>
