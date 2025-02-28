@@ -2,7 +2,8 @@ import { Card, Button, ListGroup, Container, Row, Col, Modal, OverlayTrigger, To
 import { ArrowRight, Linkedin, X, Search } from "react-bootstrap-icons";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCompany, fetchJobs, fetchProfile } from "../redux/actions/profileActions";
+import { fetchCompany, fetchJobs, fetchJobsByCategory, fetchProfile } from "../redux/actions/profileActions";
+import { useNavigate } from "react-router-dom";
 
 function JobsMain() {
   const dispatch = useDispatch();
@@ -15,6 +16,14 @@ function JobsMain() {
   const [currentTitle, setCurrentTitle] = useState();
   const currentCompany = useSelector((state) => state.company.data);
   console.log(currentCompany);
+
+  const navigate = useNavigate();
+
+  const handleJobCategoryClick = (jobCategory) => {
+    console.log("Job Type Clicked:", jobCategory);
+    dispatch(fetchJobsByCategory(jobCategory));
+    navigate(`/jobs/${jobCategory}`);
+  };
 
   console.log(currentTitle);
   useEffect(() => {
@@ -94,7 +103,13 @@ function JobsMain() {
                   </span>{" "}
                   - {job.candidate_required_location} {job.job_type}
                 </p>
-                <p className="text-muted mb-1">{job.category}</p>
+                <p
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleJobCategoryClick(job.category)}
+                  className="text-muted mb-1"
+                >
+                  {job.category}
+                </p>
                 <small className="text-muted">
                   {job.promoted && "Promosso"} • <Linkedin style={{ marginBottom: "0.2rem", color: "#0B66C2" }} />{" "}
                   Candidatura semplice

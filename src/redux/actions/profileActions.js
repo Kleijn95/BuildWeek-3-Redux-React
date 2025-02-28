@@ -1,3 +1,7 @@
+export const FETCH_JOBS_BY_CATEGORY_REQUEST = "FETCH_JOBS_BY_CATEGORY_REQUEST";
+export const FETCH_JOBS_BY_CATEGORY_SUCCESS = "FETCH_JOBS_BY_CATEGORY_SUCCESS";
+export const FETCH_JOBS_BY_CATEGORY_FAILURE = "FETCH_JOBS_BY_CATEGORY_FAILURE";
+
 export const fetchProfile = (url) => {
   return async (dispatch) => {
     try {
@@ -472,4 +476,17 @@ export const fetchCompany = (companyName) => {
       });
     }
   };
+};
+
+export const fetchJobsByCategory = (jobType) => async (dispatch) => {
+  dispatch({ type: FETCH_JOBS_BY_CATEGORY_REQUEST });
+
+  try {
+    const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?category=${jobType}&limit=10`);
+    const data = await response.json();
+
+    dispatch({ type: FETCH_JOBS_BY_CATEGORY_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: FETCH_JOBS_BY_CATEGORY_FAILURE, payload: error.message });
+  }
 };

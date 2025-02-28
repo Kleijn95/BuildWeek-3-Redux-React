@@ -7,6 +7,7 @@ import ProfileSection from "./components/ProfileSection";
 import ExperienceSection from "./components/ExperienceSection";
 import Home from "./components/Home";
 import Jobs from "./components/Jobs";
+import JobCategoryResults from "./components/JobCategoryResults";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/:userId" element={<ProfileSection />} />
           <Route path="/experience" element={<ExperienceSection />} />
           <Route path="jobs" element={<Jobs />} />
+          <Route path="/jobs/:type" element={<JobCategoryResults />} />
         </Routes>
         <Footer />
       </BrowserRouter>
