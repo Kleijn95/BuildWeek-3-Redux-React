@@ -173,6 +173,11 @@ function TopBar() {
               </Button>
               <hr style={{ borderColor: "lightgray" }} />
             </NavDropdown.Item>
+            <NavDropdown.Item>Impostazioni e Privacy</NavDropdown.Item>
+            <NavDropdown.Item>Guida</NavDropdown.Item>
+            <NavDropdown.Item>Lingua</NavDropdown.Item>
+            <NavDropdown.Item>Post e attività</NavDropdown.Item>
+            <NavDropdown.Item>Account per la pubblicazione</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
             title={
