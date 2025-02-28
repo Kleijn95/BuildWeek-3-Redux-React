@@ -26,7 +26,17 @@ function TopBar() {
     return <p>Caricamento...</p>;
   }
   return (
-    <Navbar bg="white py-0">
+    <Navbar
+      bg="white py-0"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        zIndex: 1000,
+        boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
+      }}
+    >
       <Container>
         <Navbar.Brand href="#home">
           <Linkedin

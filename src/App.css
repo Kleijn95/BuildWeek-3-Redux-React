@@ -185,3 +185,7 @@ body {
 #dropdown-custom-components::after {
   content: none;
 }
+
+body {
+  padding-top: 30px; /* Regola in base all'altezza della TopBar */
+}
