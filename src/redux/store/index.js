@@ -23,6 +23,8 @@ const rootReducer = combineReducers({
   create: createPostReducer,
   jobs: jobReducer,
   company: companyReducer,
+  jobsByCategory: jobsByCategoryReducer,
+  jobSearch: jobSearchReducer,
 });
 
 const store = configureStore({
