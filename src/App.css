@@ -176,7 +176,7 @@ body {
 }
 
 body {
-  padding-top: 30px;
+  padding-top: 50px; /* Regola in base all'altezza della TopBar */
 }
 
 .clickableSpan {
