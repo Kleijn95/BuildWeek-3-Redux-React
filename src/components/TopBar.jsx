@@ -13,7 +13,6 @@ import {
 } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile, searchJobs } from "../redux/actions/profileActions";
-import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function TopBar() {
