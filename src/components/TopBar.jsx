@@ -1,17 +1,25 @@
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { BellFill, CaretDownFill, ChatDotsFill, Grid3x3GapFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "../redux/actions/profileActions";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { fetchProfile, searchJobs } from "../redux/actions/profileActions";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function TopBar() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.myprofile.data);
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     dispatch(fetchProfile("https://striveschool-api.herokuapp.com/api/profile/me"));
   }, [dispatch]);
+
+  const handleSearch = (e) => {
+    e.preventDefault(); // Previene il comportamento di default del form
+    dispatch(searchJobs(searchTerm)); // Esegui la ricerca dei lavori
+    navigate("/searchresults"); // Naviga alla pagina dei risultati
+  };
 
   if (!profile) {
     return <p>Caricamento...</p>;
@@ -27,14 +35,21 @@ function TopBar() {
             }}
           />
         </Navbar.Brand>
-        <Form className=" ">
+        <Form onSubmit={handleSearch}>
           <div className="input-group bg-light">
             <span className="input-group-text bg-transparent border-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#666" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
               </svg>
             </span>
-            <Form.Control type="search" placeholder="Cerca" className="border-0 bg-light rounded-pill py-2" style={{ boxShadow: "none" }} />
+            <Form.Control
+              type="search"
+              placeholder="Cerca"
+              className="border-0 bg-light rounded-pill py-2"
+              style={{ boxShadow: "none" }}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
         </Form>
         <Nav className="ms-auto  align-items-center flex-end gap-1">
