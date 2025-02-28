@@ -1,5 +1,3 @@
-// reducers/createPostReducer.js
-
 const initialState = {
   content: [],
 };

@@ -7,21 +7,26 @@ import Competenze from "./Competenze";
 
 function MainSection() {
   return (
-    <>
-      <Container className="mt-5">
-        <Row>
-          <Col className="col-9">
-            <MainProfile />
+    <Container fluid className="mt-5 p-4 main-section-container">
+      <Row className="g-4">
+        <Col xs={12} lg={9} className="main-content">
+          <MainProfile />
+          <div className="mt-4">
             <Experience />
+          </div>
+          <div className="mt-4">
             <Formazione />
+          </div>
+          <div className="mt-4">
             <Competenze />
-          </Col>
-          <Col className="col-3">
-            <AsideProfile />
-          </Col>
-        </Row>
-      </Container>
-    </>
+          </div>
+        </Col>
+
+        <Col xs={12} lg={3} className="d-none d-lg-block aside-content">
+          <AsideProfile />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

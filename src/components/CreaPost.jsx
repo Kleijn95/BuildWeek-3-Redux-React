@@ -29,7 +29,7 @@ function CreaPost() {
         likes: 0,
         shares: 0,
       };
-      dispatch(createPost(newPost, imageFile)); // Passa anche il file immagine
+      dispatch(createPost(newPost, imageFile));
       setPostText("");
       setImageFile(null);
       setImagePreview(null);
@@ -40,10 +40,10 @@ function CreaPost() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImageFile(file); // Salva il file per l'upload
+      setImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result); // Mostra l'anteprima
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }

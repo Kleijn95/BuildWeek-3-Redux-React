@@ -6,17 +6,16 @@ import { useParams } from "react-router-dom";
 
 function Experience() {
   const dispatch = useDispatch();
-  const { userId } = useParams(); // Ottieni l'`userId` dall'URL
+  const { userId } = useParams();
   const experiences = useSelector((state) => state.experienceUtente.content);
 
   console.log({ userId });
 
   useEffect(() => {
     if (userId) {
-      // Controlla se userId è valido
-      dispatch(fetchUtenteExperience(userId)); // Passa userId alla funzione
+      dispatch(fetchUtenteExperience(userId));
     }
-  }, [dispatch, userId]); // Aggiungi userId alle dipendenze
+  }, [dispatch, userId]);
 
   if (experiences.length === 0) {
     return <p className="mt-2">Non sono state inserite esperienze lavorative passate</p>;

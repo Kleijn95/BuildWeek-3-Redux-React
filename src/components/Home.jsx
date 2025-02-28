@@ -11,15 +11,17 @@ const Home = () => {
     <>
       <Container className="mt-4">
         <Row>
-          <Col className="col-3">
+          <Col xs={12} sm={3} className="d-none d-sm-block d-md-block">
             <HomeProfile />
             <MiniCardHome />
           </Col>
-          <Col className="col-6">
+
+          <Col xs={10} sm={9} md={6} className="mx-auto">
             <CreaPost />
             <HomePost />
           </Col>
-          <Col className="col-3">
+
+          <Col xs={12} sm={3} className="d-none d-md-block">
             <AsideCard />
           </Col>
         </Row>

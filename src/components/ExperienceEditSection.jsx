@@ -1,8 +1,27 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Image, Modal, Row, FormControl, FormGroup, FormLabel, ModalTitle, ModalBody } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Image,
+  Modal,
+  Row,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  ModalTitle,
+  ModalBody,
+} from "react-bootstrap";
 import { ArrowLeft, PencilSquare, Plus, Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteExperience, fetchExperience, postExperience, putExperience, uploadPhoto } from "../redux/actions/profileActions";
+import {
+  deleteExperience,
+  fetchExperience,
+  postExperience,
+  putExperience,
+  uploadPhoto,
+} from "../redux/actions/profileActions";
 import { useNavigate } from "react-router-dom";
 
 function ExperienceEditSection() {
@@ -166,7 +185,12 @@ function ExperienceEditSection() {
               <FormControl className="mt-4" type="file" name="image" onChange={handleChangePhoto} />
             </FormGroup>
             <div className="d-flex justify-content-end mt-4">
-              <Button className="me-3 mb-1 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
+              <Button
+                className="me-3 mb-1 rounded-5 px-3 py-1"
+                type="submit"
+                variant="primary"
+                style={{ backgroundColor: "#0C66C2" }}
+              >
                 Save
               </Button>
             </div>
@@ -185,14 +209,32 @@ function ExperienceEditSection() {
             <Container className="mb-4">
               <FormGroup className="mt-2">
                 <FormLabel>Title*</FormLabel>
-                <FormControl type="text" name="role" value={formData.role} onChange={handleChange} placeholder="ex. Web Developer" required />
+                <FormControl
+                  type="text"
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  placeholder="ex. Web Developer"
+                  required
+                />
               </FormGroup>
               <FormGroup className="mt-2">
                 <FormLabel>Company or Organization*</FormLabel>
-                <FormControl type="text" name="company" value={formData.company} onChange={handleChange} placeholder="ex. AlmaViva" />
+                <FormControl
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="ex. AlmaViva"
+                />
               </FormGroup>
               <Form.Group className="mb-3 mt-2" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" name="currentRole" onChange={handleChange} label="I'm currently working in this role" />
+                <Form.Check
+                  type="checkbox"
+                  name="currentRole"
+                  onChange={handleChange}
+                  label="I'm currently working in this role"
+                />
               </Form.Group>
               <FormGroup className="mt-2">
                 <FormLabel>Start date*</FormLabel>
@@ -200,11 +242,23 @@ function ExperienceEditSection() {
               </FormGroup>
               <FormGroup className="mt-2">
                 <FormLabel>End date</FormLabel>
-                <FormControl type="date" name="endDate" value={formData.endDate} onChange={handleChange} disabled={formData.currentRole} />
+                <FormControl
+                  type="date"
+                  name="endDate"
+                  value={formData.endDate}
+                  onChange={handleChange}
+                  disabled={formData.currentRole}
+                />
               </FormGroup>
               <FormGroup className="mt-2">
                 <FormLabel>Location</FormLabel>
-                <FormControl type="text" name="area" value={formData.area} onChange={handleChange} placeholder="ex. Rome, Italy" />
+                <FormControl
+                  type="text"
+                  name="area"
+                  value={formData.area}
+                  onChange={handleChange}
+                  placeholder="ex. Rome, Italy"
+                />
               </FormGroup>
               <FormGroup className="mt-2">
                 <FormLabel>Description*</FormLabel>
@@ -223,7 +277,12 @@ function ExperienceEditSection() {
               </FormGroup> */}
             </Container>
             <div className="d-flex justify-content-end">
-              <Button className="me-3 mb-3 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
+              <Button
+                className="me-3 mb-3 rounded-5 px-3 py-1"
+                type="submit"
+                variant="primary"
+                style={{ backgroundColor: "#0C66C2" }}
+              >
                 Save
               </Button>
             </div>

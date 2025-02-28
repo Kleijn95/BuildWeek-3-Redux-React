@@ -5,12 +5,10 @@ import { useSelector } from "react-redux";
 const Competenze = () => {
   const competenzeData = useSelector((state) => state.education.jobs) || [];
 
-  // Funzione per mescolare l'array senza mutare l'originale
   const shuffleArray = (array) => {
-    return array.slice().sort(() => Math.random() - 0.5); // Crea una copia dell'array con slice()
+    return array.slice().sort(() => Math.random() - 0.5);
   };
 
-  // Ottieni due elementi casuali
   const randomJobs = shuffleArray(competenzeData).slice(0, 2);
 
   return (

@@ -1,23 +1,20 @@
 import { Col, Container, Row } from "react-bootstrap";
-
 import AsideProfile from "./AsideProfile";
-
 import ExperienceEditSection from "./ExperienceEditSection";
 
 function ExperienceSection() {
   return (
-    <>
-      <Container className="mt-5">
-        <Row className="d-flex justify-content-center">
-          <Col className="col-8">
-            <ExperienceEditSection />
-          </Col>
-          <Col className="col-3">
-            <AsideProfile />
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container fluid className="mt-5 p-4 experience-section-container">
+      <Row className="g-4">
+        <Col xs={12} lg={8} className="main-content">
+          <ExperienceEditSection />
+        </Col>
+
+        <Col xs={12} lg={4} className="d-none d-lg-block aside-content">
+          <AsideProfile />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

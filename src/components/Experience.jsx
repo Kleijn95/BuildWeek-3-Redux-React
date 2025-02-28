@@ -73,10 +73,6 @@ function Experience() {
     setExpId("");
   };
 
-  // const fileSelectedHandler = (event) => {
-  //   console.log(event.target.files[0]);
-  // };
-
   useEffect(() => {
     dispatch(fetchExperience());
   }, [dispatch]);

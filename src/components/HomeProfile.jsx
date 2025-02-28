@@ -21,6 +21,7 @@ function HomeProfile() {
       <Container>
         <Card style={{ position: "relative" }}>
           <Card.Body
+            className="rounded-top"
             style={{
               backgroundImage: 'url("https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq")',
               backgroundSize: "cover",

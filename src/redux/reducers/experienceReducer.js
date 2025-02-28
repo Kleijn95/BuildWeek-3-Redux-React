@@ -16,7 +16,7 @@ const ExperienceReducer = (state = initialState, action) => {
     case "REMOVE_EXPERIENCE":
       return {
         ...state,
-        // content: state.content.filter((exp) => exp._id !== action.payload),
+
         content: [...state.content.slice(0, action.payload), ...state.content.slice(action.payload + 1)],
       };
     default:
