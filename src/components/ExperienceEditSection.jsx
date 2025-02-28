@@ -65,9 +65,10 @@ function ExperienceEditSection() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (expId) {
-      dispatch(putExperience(expId, formData));
+      console.log("sono uploadImage", uploadImage);
+      dispatch(putExperience(expId, formData, uploadImage));
     } else {
-      dispatch(postExperience(formData));
+      dispatch(postExperience(formData, uploadImage));
     }
     setShowModal(false);
     setSubmitted(true);
@@ -96,7 +97,7 @@ function ExperienceEditSection() {
     <Container style={{ backgroundColor: "white" }} className="border rounded-3 px-3 pt-3">
       <div className="d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-center">
-          <Button variant="outline-*" className="mb-2 me-3 fs-3" onClick={() => navigate("/")}>
+          <Button variant="outline-*" className="mb-2 me-3 fs-3" onClick={() => navigate("/mainsection")}>
             <ArrowLeft />
           </Button>
           <h4>Experience</h4>
@@ -177,37 +178,40 @@ function ExperienceEditSection() {
       <Modal show={showModal} onHide={() => setShowModal(false)} centered size="lg">
         <Container>
           <Modal.Header closeButton>
-            <Modal.Title>Add Experience</Modal.Title>
+            <Modal.Title>Aggiungi esperienza</Modal.Title>
           </Modal.Header>
         </Container>
         <Modal.Body className="pb-0">
           <Form onSubmit={handleSubmit}>
             <Container className="mb-4">
+              <p className="text-secondary mb-0" style={{ fontSize: "15px" }}>
+                * Indica che è obbligatorio
+              </p>
               <FormGroup className="mt-2">
-                <FormLabel>Title*</FormLabel>
+                <FormLabel>Qualifica*</FormLabel>
                 <FormControl type="text" name="role" value={formData.role} onChange={handleChange} placeholder="ex. Web Developer" required />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>Company or Organization*</FormLabel>
+                <FormLabel>Azienda o organizzazione*</FormLabel>
                 <FormControl type="text" name="company" value={formData.company} onChange={handleChange} placeholder="ex. AlmaViva" />
               </FormGroup>
               <Form.Group className="mb-3 mt-2" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" name="currentRole" onChange={handleChange} label="I'm currently working in this role" />
               </Form.Group>
               <FormGroup className="mt-2">
-                <FormLabel>Start date*</FormLabel>
+                <FormLabel>Data di inizio*</FormLabel>
                 <FormControl type="date" name="startDate" value={formData.startDate} onChange={handleChange} required />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>End date</FormLabel>
+                <FormLabel>Data di fine</FormLabel>
                 <FormControl type="date" name="endDate" value={formData.endDate} onChange={handleChange} disabled={formData.currentRole} />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>Location</FormLabel>
+                <FormLabel>Località</FormLabel>
                 <FormControl type="text" name="area" value={formData.area} onChange={handleChange} placeholder="ex. Rome, Italy" />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>Description*</FormLabel>
+                <FormLabel>Descrizione*</FormLabel>
                 <FormControl
                   as="textarea"
                   name="description"
@@ -217,10 +221,10 @@ function ExperienceEditSection() {
                   required
                 />
               </FormGroup>
-              {/* <FormGroup className="mt-2">
-                <FormLabel>Media</FormLabel>
-                <FormControl type="file" name="image" value={formData.image} onChange={handleChange} />
-              </FormGroup> */}
+              <FormGroup className="mt-2">
+                <FormLabel>Media (optional)</FormLabel>
+                <FormControl type="file" name="image" value={formData.image} onChange={handleChangePhoto} />
+              </FormGroup>
             </Container>
             <div className="d-flex justify-content-end">
               <Button className="me-3 mb-3 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>

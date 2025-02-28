@@ -1,18 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Image,
-  Modal,
-  Row,
-  FormControl,
-  FormGroup,
-  FormLabel,
-  ModalTitle,
-  ModalBody,
-} from "react-bootstrap";
+import { Button, Col, Container, Form, Image, Modal, Row, FormControl, FormGroup, FormLabel, ModalTitle, ModalBody } from "react-bootstrap";
 import { PencilSquare, Plus } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchExperience, postExperience, uploadPhoto } from "../redux/actions/profileActions";
@@ -21,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Experience() {
   const [showModal, setShowModal] = useState(false);
   const [showUploadModal, setShowUploadModal] = useState(false);
-  const [expId, setExpId] = useState(null);
+  const [expId, setExpId] = useState("");
   const [uploadImage, setUploadImage] = useState({});
   const experiences = useSelector((state) => state.experience.content);
   const navigate = useNavigate();
@@ -47,7 +34,7 @@ function Experience() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postExperience(formData));
+    dispatch(postExperience(formData, uploadImage));
     setFormData({
       role: "",
       company: "",
@@ -142,12 +129,7 @@ function Experience() {
               <FormControl className="mt-4" type="file" name="image" onChange={handleChangePhoto} />
             </FormGroup>
             <div className="d-flex justify-content-end mt-4">
-              <Button
-                className="me-3 mb-1 rounded-5 px-3 py-1"
-                type="submit"
-                variant="primary"
-                style={{ backgroundColor: "#0C66C2" }}
-              >
+              <Button className="me-3 mb-1 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
                 Save
               </Button>
             </div>
@@ -158,14 +140,17 @@ function Experience() {
       <Modal show={showModal} onHide={() => setShowModal(false)} centered size="lg">
         <Container>
           <Modal.Header closeButton>
-            <Modal.Title>Add Experience</Modal.Title>
+            <Modal.Title>Aggiungi esperienza</Modal.Title>
           </Modal.Header>
         </Container>
         <Modal.Body className="pb-0">
           <Form onSubmit={handleSubmit}>
             <Container className="mb-4">
+              <p className="text-secondary mb-0" style={{ fontSize: "15px" }}>
+                * Indica che è obbligatorio
+              </p>
               <FormGroup className="mt-2">
-                <FormLabel>Title*</FormLabel>
+                <FormLabel>Qualifica*</FormLabel>
                 <FormControl
                   type="text"
                   name="role"
@@ -176,7 +161,7 @@ function Experience() {
                 />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>Company or Organization*</FormLabel>
+                <FormLabel>Azienda o Organizzazione*</FormLabel>
                 <FormControl
                   type="text"
                   name="company"
@@ -190,21 +175,15 @@ function Experience() {
                   type="checkbox"
                   name="currentRole"
                   onChange={(e) => handleChange("currentRole", e.target.checked)}
-                  label="I'm currently working in this role"
+                  label="Attualmente ricopro questo ruolo"
                 />
               </Form.Group>
               <FormGroup className="mt-2">
-                <FormLabel>Start date*</FormLabel>
-                <FormControl
-                  type="date"
-                  name="startDate"
-                  value={formData.startDate}
-                  onChange={(e) => handleChange("startDate", e.target.value)}
-                  required
-                />
+                <FormLabel>Data di Inizio*</FormLabel>
+                <FormControl type="date" name="startDate" value={formData.startDate} onChange={(e) => handleChange("startDate", e.target.value)} required />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>End date</FormLabel>
+                <FormLabel>Data di fine</FormLabel>
                 <FormControl
                   type="date"
                   name="endDate"
@@ -214,7 +193,7 @@ function Experience() {
                 />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>Location</FormLabel>
+                <FormLabel>Località</FormLabel>
                 <FormControl
                   type="text"
                   name="area"
@@ -224,7 +203,7 @@ function Experience() {
                 />
               </FormGroup>
               <FormGroup className="mt-2">
-                <FormLabel>Description*</FormLabel>
+                <FormLabel>Descrizione*</FormLabel>
                 <FormControl
                   as="textarea"
                   name="description"
@@ -234,24 +213,19 @@ function Experience() {
                   required
                 />
               </FormGroup>
-              {/* <FormGroup className="mt-2">
-                <FormLabel>Media</FormLabel>
-                <FormControl type="file" name="image" value={formData.image} onChange={(e) => handleChange("image", e.target.value)} />
+              <FormGroup className="mt-2">
+                <FormLabel>Media (optional)</FormLabel>
+                <FormControl type="file" name="image" onChange={handleChangePhoto} />
                 {formData.image && (
                   <div className="mt-2">
                     <h5>Image Preview:</h5>
                     <Image src={URL.createObjectURL(formData.image)} fluid />
                   </div>
                 )}
-              </FormGroup> */}
+              </FormGroup>
             </Container>
             <div className="d-flex justify-content-end">
-              <Button
-                className="me-3 mb-3 rounded-5 px-3 py-1"
-                type="submit"
-                variant="primary"
-                style={{ backgroundColor: "#0C66C2" }}
-              >
+              <Button className="me-3 mb-3 rounded-5 px-3 py-1" type="submit" variant="primary" style={{ backgroundColor: "#0C66C2" }}>
                 Save
               </Button>
             </div>

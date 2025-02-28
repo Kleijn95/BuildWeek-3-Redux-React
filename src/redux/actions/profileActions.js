@@ -44,15 +44,12 @@ export const fetchAside = (url) => {
 export const fetchExperience = () => {
   return async (dispatch) => {
     try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences",
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-          },
-        }
-      );
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences", {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+        },
+      });
 
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
 
@@ -106,52 +103,86 @@ export const fetchUtenteExperience = (id) => {
     }
   };
 };
-export const postExperience = (experience) => {
+export const postExperience = (experience, expImage) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-          },
-          body: JSON.stringify(experience),
-        }
-      );
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+        },
+        body: JSON.stringify(experience),
+      });
 
-      if (!response.ok) throw new Error("Errore nel recupero del profilo");
-      const data = await response.json();
-      dispatch({ type: "ADD_EXPERIENCE", payload: data });
-      console.log(data);
+      if (response.ok) {
+        const data = await response.json();
+        const expId = data._id;
+        dispatch({ type: "ADD_EXPERIENCE", payload: data });
+        console.log(data);
+        if (expImage instanceof File) {
+          const formData = new FormData();
+          formData.append("experience", expImage);
+
+          const resp = await fetch(`https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/${expId}/picture`, {
+            method: "POST",
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+            },
+            body: formData,
+          });
+
+          if (!resp.ok) throw new Error("Errore nel recupero del profilo");
+          const imageUpload = await resp.json();
+          console.log("sono l'imageUpload", imageUpload);
+          dispatch({ type: "PUT_EXPERIENCE", payload: imageUpload });
+        }
+      } else {
+        throw new Error("Errore nel recupero del profilo");
+      }
     } catch (error) {
       console.error(error);
     }
   };
 };
 
-export const putExperience = (expId, experience) => {
+export const putExperience = (expId, experience, expImage) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/" + expId,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-          },
-          body: JSON.stringify(experience),
-        }
-      );
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/" + expId, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+        },
+        body: JSON.stringify(experience),
+      });
 
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
       const data = await response.json();
       dispatch({ type: "PUT_EXPERIENCE", payload: data });
       console.log(data);
+
+      if (expImage instanceof File) {
+        const formData = new FormData();
+        formData.append("experience", expImage);
+
+        const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/${expId}/picture`, {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+          },
+          body: formData,
+        });
+
+        if (!response.ok) throw new Error("Errore nel recupero del profilo");
+        const data = await response.json();
+        dispatch({ type: "PUT_EXPERIENCE", payload: data });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -182,17 +213,14 @@ export const putProfile = (profile, profilePicture) => {
         const formData = new FormData();
         formData.append("profile", profilePicture);
 
-        const uploadProfilePicture = await fetch(
-          `https://striveschool-api.herokuapp.com/api/profile/${profileId}/picture`,
-          {
-            method: "POST",
-            headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-            },
-            body: formData,
-          }
-        );
+        const uploadProfilePicture = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${profileId}/picture`, {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+          },
+          body: formData,
+        });
         if (!uploadProfilePicture.ok) {
           throw new Error("Errore durante il caricamento dell'immagine");
         }
@@ -233,17 +261,14 @@ export const fetchPost = () => {
 export const uploadPhoto = (expId, formData) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/${expId}/picture`,
-        {
-          method: "POST",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-          },
-          body: formData,
-        }
-      );
+      const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/${expId}/picture`, {
+        method: "POST",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+        },
+        body: formData,
+      });
 
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
       const data = await response.json();
@@ -258,16 +283,13 @@ export const uploadPhoto = (expId, formData) => {
 export const deleteExperience = (expId) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/" + expId,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
-          },
-        }
-      );
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/67bc4959e703370015316dac/experiences/" + expId, {
+        method: "DELETE",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2JjNDk1OWU3MDMzNzAwMTUzMTZkYWMiLCJpYXQiOjE3NDAzOTI3OTMsImV4cCI6MTc0MTYwMjM5M30._fl65S3JCzslkdBZlG2ONYBHywufbwWQ_Q2R2N1WXCY",
+        },
+      });
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
       dispatch({ type: "DELETE_EXPERIENCE", payload: expId });
     } catch (error) {
