@@ -1,11 +1,26 @@
 /* eslint-disable react/prop-types */
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, ListGroup, Button } from "react-bootstrap";
+import { useState } from "react";
 
-function JobsResults({ jobs }) {
+function JobsResults({ jobs, onJobSelect }) {
   console.log("Jobs passed to JobsResults:", jobs); // Verifica se i dati sono corretti
 
+  // Impostiamo inizialmente 5 lavori visibili
+  const [visibleJobs, setVisibleJobs] = useState(5);
+
+  // Funzione per alternare la visibilità dei lavori
+  const toggleJobs = () => {
+    // Se sono visibili 5 lavori, mostra i successivi 5, altrimenti nascondili
+    setVisibleJobs((prev) => (prev === jobs.length ? 5 : Math.min(prev + 5, jobs.length)));
+  };
+
+  const handleJobClick = (job) => {
+    // Quando un lavoro viene cliccato, passiamo i dettagli tramite la funzione onJobSelect
+    onJobSelect(job);
+  };
+
   if (!Array.isArray(jobs)) {
-    return <p>Nessun risultato trovato.</p>; // Gestisci il caso in cui jobs non è un array
+    return <p>Nessun risultato trovato.</p>;
   }
 
   return (
@@ -13,18 +28,20 @@ function JobsResults({ jobs }) {
       <Card.Body>
         <h5>Risultati della ricerca</h5>
         <ListGroup variant="flush">
-          {jobs.length === 0 ? (
-            <p>Nessun lavoro trovato.</p>
-          ) : (
-            jobs.map((job, index) => (
-              <ListGroup.Item key={index}>
-                <h6>{job.title}</h6>
-                <p>{job.company_name}</p>
-                <p>{job.location}</p>
-              </ListGroup.Item>
-            ))
-          )}
+          {jobs.slice(0, visibleJobs).map((job, index) => (
+            <ListGroup.Item key={index} onClick={() => handleJobClick(job)} style={{ cursor: "pointer" }}>
+              <h6>{job.title}</h6>
+              <p>{job.company_name}</p>
+              <p>{job.location}</p>
+            </ListGroup.Item>
+          ))}
         </ListGroup>
+
+        <div className="mt-3">
+          <Button variant="light" className="text-dark" onClick={toggleJobs}>
+            {visibleJobs === jobs.length ? "Mostra meno" : "Mostra altri lavori"}
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

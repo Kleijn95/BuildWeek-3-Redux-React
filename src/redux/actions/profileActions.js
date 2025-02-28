@@ -463,9 +463,12 @@ export const searchJobs = (query) => async (dispatch) => {
     console.log("Data received from API:", data); // Controlla la risposta dell'API
 
     if (data && Array.isArray(data.data)) {
+      // Fai lo slice per ottenere solo i primi 10 elementi
+      const slicedJobs = data.data.slice(0, 10); // Prendi solo i primi 10
+
       dispatch({
         type: "SEARCH_JOBS_SUCCESS",
-        payload: data.data,
+        payload: slicedJobs, // Passa solo i 10 elementi
       });
     }
   } catch (error) {
