@@ -20,14 +20,13 @@ body {
 .footer-sections {
   display: flex;
   flex-wrap: wrap;
-  /* Distribuisce le colonne */
 
   margin: 0 auto;
 }
 
 .footer-column {
   flex: 1;
-  max-width: 200px; /* Evita che le colonne diventino troppo strette */
+  max-width: 200px;
   margin: 10px;
 }
 
@@ -43,7 +42,6 @@ body {
   color: #0a66c2;
 }
 
-/* Stile per le sezioni con icona */
 .footer-item {
   display: flex;
   align-items: center;
@@ -61,28 +59,28 @@ body {
   margin-top: 20px;
   color: #666;
 }
-/* footer icone  */
+
 .footer-item {
   display: flex;
-  align-items: flex-start; /* Allinea icona e testo in alto */
-  gap: 8px; /* Distanza tra icona e testo */
+  align-items: flex-start;
+  gap: 8px;
   margin-bottom: 10px;
 }
 
 .icon-style {
   font-size: 20px;
-  color: #666; /* Colore icona */
+  color: #666;
 }
 
 .footer-text {
   display: flex;
-  flex-direction: column; /* Metti il <small> sotto il <p> */
+  flex-direction: column;
 }
 
 .footer-title {
   font-size: 14px;
   font-weight: bold;
-  color: #915edb; /* Colore viola */
+  color: #915edb;
   margin: 0;
 }
 
@@ -91,27 +89,22 @@ body {
   color: #666;
   margin-top: 2px;
 }
-/* Spazio tra <p> e <small> */
 
-/* Stile per gli header */
 .dropdown-header {
-  color: black; /* Colore del testo */
-  font-size: 1.1rem; /* Dimensione del testo */
-  font-weight: 500; /* Grassetto */
-  padding: 8px 16px; /* Padding per allineare con i dropdown item */
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 8px 16px;
 }
-
-/* Stile per i dropdown item */
 .dropdown-item {
-  color: grey; /* Colore del testo */
-  padding: 8px 16px; /* Padding per allineare con gli header */
-  text-decoration: none; /* Rimuove la sottolineatura predefinita */
+  color: grey;
+  padding: 8px 16px;
+  text-decoration: none;
 }
 
-/* Effetto hover sui dropdown item */
 .dropdown-item:hover {
-  text-decoration: underline; /* Aggiunge la sottolineatura */
-  background-color: transparent; /* Rimuove lo sfondo al passaggio del mouse */
+  text-decoration: underline;
+  background-color: transparent;
   color: grey;
 }
 
@@ -120,7 +113,7 @@ body {
 }
 
 .footer a:visited {
-  color: #8443ce99; /* Colore per i link visitati */
+  color: #8443ce99;
 }
 
 .footer a {
@@ -132,14 +125,13 @@ body {
 }
 
 .nodecoration {
-  text-decoration: none !important; /* Rimuove la sottolineatura */
-  color: inherit !important; /* Eredita il colore del testo del genitore */
+  text-decoration: none !important;
+  color: inherit !important;
 }
 
-/* (Opzionale) Cambia il colore del link al passaggio del mouse */
 .nodecoration:hover {
-  color: #000000 !important; /* Aggiungi il colore desiderato durante l'hover */
-  text-decoration: underline !important; /* (Opzionale) Sottolineatura al passaggio del mouse */
+  color: #000000 !important;
+  text-decoration: underline !important;
 }
 
 .navbar .dropdown-toggle::after {
@@ -148,25 +140,23 @@ body {
 
 .button-style {
   background-color: white;
-  border: none; /* Rimuovi i bordi */
+  border: none;
   font-weight: bold;
   color: #666;
 
-  transition: background-color 0.3s ease; /* Transizione fluida */
+  transition: background-color 0.3s ease;
 }
 
 .button-style:hover {
-  background-color: #f0f0f0; /* Colore grigio al passaggio del mouse */
+  background-color: #f0f0f0;
 }
-
 .custom-link {
-  text-decoration: none; /* Rimuove la sottolineatura */
-  color: inherit; /* Mantiene il colore del testo di default */
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Linea nera al passaggio del mouse */
 .custom-link:hover {
-  border-bottom: 2px solid black; /* Linea nera quando si passa sopra */
+  border-bottom: 2px solid black;
 }
 
 .btnchiaro:hover {
@@ -181,11 +171,10 @@ body {
   color: black !important;
 }
 
-/* Rimuovi la freccetta dal Dropdown.Toggle */
 #dropdown-custom-components::after {
   content: none;
 }
 
 body {
-  padding-top: 30px; /* Regola in base all'altezza della TopBar */
+  padding-top: 30px;
 }

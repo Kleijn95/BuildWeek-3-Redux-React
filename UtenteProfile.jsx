@@ -73,8 +73,9 @@ function UtenteProfile({ userId }) {
           <Card.Body style={{ backgroundColor: "#DDE7F1" }} className=" rounded-3 mt-3">
             <Card.Text>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ea amet inventore ullam impedit vero alias aliquid autem. Dolor corrupti
-                temporibus modi? Aut dignissimos molestias incidunt ullam delectus quos quia?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ea amet inventore ullam impedit vero
+                alias aliquid autem. Dolor corrupti temporibus modi? Aut dignissimos molestias incidunt ullam delectus
+                quos quia?
               </p>
               <Card.Text>
                 <CardLink>Mostra Dettagli</CardLink>
@@ -84,7 +85,7 @@ function UtenteProfile({ userId }) {
         </Card.Body>
       </Card>
       <Bio />
-      {/* MODALE */}
+
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -104,7 +105,11 @@ function UtenteProfile({ userId }) {
           </p>
           <p>
             <strong>LinkedIn:</strong>
-            <a href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/in/antonio-kleijn-hesselink-8247882b7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {" "}
               Vai al profilo{" "}
             </a>

@@ -219,8 +219,8 @@ export const fetchPost = () => {
       if (!response.ok) throw new Error("Errore nel recupero del profilo");
 
       const data = await response.json();
-      const reversedData = [...data].reverse(); // Inverte l'array senza modificare l'originale
-      const obj = reversedData.slice(0, 10); // Prendi i primi 10 post invertiti
+      const reversedData = [...data].reverse();
+      const obj = reversedData.slice(0, 10);
       console.log(obj);
 
       dispatch({ type: "SET_POST", payload: obj });
@@ -279,7 +279,6 @@ export const deleteExperience = (expId) => {
 export const createPost = (newPost, imageFile) => {
   return async (dispatch) => {
     try {
-      // Primo step: Creazione del post con solo testo
       const response = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
         method: "POST",
         headers: {
@@ -295,9 +294,8 @@ export const createPost = (newPost, imageFile) => {
       }
 
       const result = await response.json();
-      const postId = result._id; // Recupera l'ID del post creato
+      const postId = result._id;
 
-      // Se c'è un'immagine, caricala
       if (imageFile) {
         const formData = new FormData();
         formData.append("post", imageFile);
@@ -328,12 +326,9 @@ export const createPost = (newPost, imageFile) => {
   };
 };
 
-// actions/profileActions.js
-
 export const updatePost = (postId, updatedText, imageFile) => {
   return async (dispatch) => {
     try {
-      // Primo step: Aggiornamento del testo del post
       const response = await fetch(`https://striveschool-api.herokuapp.com/api/posts/${postId}`, {
         method: "PUT",
         headers: {
@@ -350,7 +345,6 @@ export const updatePost = (postId, updatedText, imageFile) => {
 
       const result = await response.json();
 
-      // Se c'è un'immagine, aggiorna anche l'immagine
       if (imageFile) {
         const formData = new FormData();
         formData.append("post", imageFile);
@@ -418,13 +412,12 @@ export const fetchJobs = () => {
       }
 
       const data = await response.json();
-      console.log(data); // Verifica la struttura dei dati
+      console.log(data);
 
-      // Assumiamo che la risposta abbia una proprietà "data" che contiene gli annunci di lavoro
       if (data && Array.isArray(data.data)) {
         dispatch({
           type: "FETCH_JOBS_SUCCESS",
-          payload: data.data, // Estrai l'array di lavori
+          payload: data.data,
         });
       } else {
         dispatch({

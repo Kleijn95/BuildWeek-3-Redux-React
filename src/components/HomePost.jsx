@@ -23,13 +23,12 @@ function HomePost() {
   const profile = useSelector((state) => state.myprofile.data);
   const posts = useSelector((state) => state.post.content);
 
-  const [visiblePosts, setVisiblePosts] = useState(3); // Stato per gestire il numero di post visibili
-  const [showEditModal, setShowEditModal] = useState(false); // Stato per il modale di modifica
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // Stato per il modale di cancellazione
-  const [currentPost, setCurrentPost] = useState(null); // Stato per il post che si sta modificando o cancellando
+  const [visiblePosts, setVisiblePosts] = useState(3);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [currentPost, setCurrentPost] = useState(null);
 
   useEffect(() => {
-    // Carica i post solo una volta (se necessario)
     if (!posts || posts.length === 0) {
       dispatch(fetchPost("//striveschool-api.herokuapp.com/api/posts/"));
     }
@@ -42,24 +41,21 @@ function HomePost() {
     return <p>Nessun post disponibile.</p>;
   }
 
-  // Funzione per gestire il toggle di visibilità dei post
   const togglePosts = () => {
     setVisiblePosts(visiblePosts === 3 ? posts.length : 3);
   };
 
-  // Funzione per gestire la modifica del post
   const handleEditPost = () => {
     if (currentPost && currentPost.text.trim()) {
-      dispatch(updatePost(currentPost._id, currentPost.text, currentPost.image)); // Invio della richiesta di aggiornamento post
-      setShowEditModal(false); // Chiudi il modale dopo la modifica
+      dispatch(updatePost(currentPost._id, currentPost.text, currentPost.image));
+      setShowEditModal(false);
     }
   };
 
-  // Funzione per la cancellazione del post
   const handleDeletePost = () => {
     if (currentPost) {
-      dispatch(deletePost(currentPost._id)); // Invia la richiesta di cancellazione
-      setShowDeleteModal(false); // Chiudi il modale di conferma
+      dispatch(deletePost(currentPost._id));
+      setShowDeleteModal(false);
     }
   };
 
@@ -96,13 +92,12 @@ function HomePost() {
                 </p>
               </div>
 
-              {/* Aggiungi i 3 puntini grigi per i post dell'utente */}
               {post.username === profile.username && (
                 <Dropdown className="ms-auto">
                   <Dropdown.Toggle
                     variant="link"
                     id="dropdown-custom-components"
-                    style={{ color: "gray", border: "none" }} // Colore grigio e rimozione del bordo
+                    style={{ color: "gray", border: "none" }}
                     className="p-0"
                   >
                     <ThreeDots />
@@ -177,7 +172,6 @@ function HomePost() {
         </Button>
       </Container>
 
-      {/* Modal per modificare il post */}
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)} size="lg">
         <Modal.Header closeButton>
           <h5>Modifica Post</h5>
@@ -208,7 +202,6 @@ function HomePost() {
         </Modal.Footer>
       </Modal>
 
-      {/* Modal di conferma per la cancellazione */}
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} size="sm">
         <Modal.Header closeButton>
           <h5>Conferma Cancellazione</h5>

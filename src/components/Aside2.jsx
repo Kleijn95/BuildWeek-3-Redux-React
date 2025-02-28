@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Image, Row, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,7 +53,6 @@ function Aside2() {
         Mostra tutto
       </Button>
 
-      {/* Modale con più utenti */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Persone che potresti conoscere</Modal.Title>

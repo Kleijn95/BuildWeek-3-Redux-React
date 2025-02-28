@@ -62,7 +62,6 @@ function TopBar() {
           </div>
         </Form>
         <Nav className="ms-auto  align-items-center flex-end gap-1">
-          {/* Elementi navigazione */}
           {[
             { icon: HouseFill, text: "Home", link: "/" },
             { icon: PeopleFill, text: "Rete" },
@@ -97,7 +96,6 @@ function TopBar() {
             </Nav.Link>
           ))}
 
-          {/* Dropdown Profilo */}
           <NavDropdown
             title={
               <div className="d-flex flex-column align-items-center" style={{ minWidth: "80px" }}>
@@ -137,7 +135,7 @@ function TopBar() {
               </div>
 
               <Button
-                as={Link} // Usa il Link come componente
+                as={Link}
                 to="/mainsection"
                 className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100"
               >
@@ -163,7 +161,6 @@ function TopBar() {
             </NavDropdown.Item>
           </NavDropdown>
 
-          {/* Dropdown Grid */}
           <NavDropdown
             title={
               <div className="d-flex flex-column align-items-center" style={{ minWidth: "80px" }}>
@@ -180,9 +177,7 @@ function TopBar() {
             }
             id="navbarScrollingDropdown"
             className="px-2"
-          >
-            {/* ... contenuto dropdown ... */}
-          </NavDropdown>
+          ></NavDropdown>
         </Nav>
         <p style={{ color: "#CC7E09", textDecoration: "underline", fontSize: "0.75rem" }}>Prova premium per 0 euro</p>
       </Container>

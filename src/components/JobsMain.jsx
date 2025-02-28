@@ -23,15 +23,12 @@ function JobsMain() {
   }, [dispatch]);
 
   const handleCompanyClick = async (job) => {
-    SetShowCompanyModal(true); // Mostra il modal
-    setCurrentTitle(job); // Imposta il job corrente come currentTitle
+    SetShowCompanyModal(true);
+    setCurrentTitle(job);
 
-    const companyName = job.company_name; // Estrai il nome della compagnia
+    const companyName = job.company_name;
 
-    // Esegui la fetch asincrona con il company_name
-    await dispatch(fetchCompany(companyName)); // Fetch dei dati aziendali
-
-    // Ora i dati saranno disponibili nello stato globalmente, nella proprietà currentCompany
+    await dispatch(fetchCompany(companyName));
   };
 
   const handleShowMore = () => {
@@ -54,8 +51,6 @@ function JobsMain() {
     return <p>Errore: {error}</p>;
   }
   return (
-    //offerte lavoro
-
     <Container>
       <Card className="mb-3 shadow-sm border-0 p-3 ">
         <Card.Title className="fw-bold fs-5">Le principali offerte di lavoro per te</Card.Title>
@@ -104,13 +99,10 @@ function JobsMain() {
           )}
         </ListGroup>
 
-        {/* Bottone per mostrare/nascondere gli altri annunci */}
         <Button variant="link" className="mt-2 text-decoration-none text-black" onClick={handleShowMore}>
           {isExpanded ? "Mostra meno" : "Mostra tutto"} <ArrowRight />
         </Button>
       </Card>
-
-      {/* lasciati trova */}
 
       <Card className="mb-3 p-3">
         <div className="d-flex justify-content-between">
@@ -147,8 +139,6 @@ function JobsMain() {
           Aggiorna le preferenze
         </Button>
       </Card>
-
-      {/* ricerche lavoro */}
 
       <Card className="p-3">
         <Card.Title className="fw-bold fs-5">Ricerche di offerte di lavoro suggerite</Card.Title>

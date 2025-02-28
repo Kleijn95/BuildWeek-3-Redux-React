@@ -10,7 +10,7 @@ function UtenteProfile({ userId }) {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.utente.data);
   const [showModal, setShowModal] = useState(false);
-  const competenzeData = useSelector((state) => state.education.jobs) || []; // Assicurati che sia un array vuoto se undefined
+  const competenzeData = useSelector((state) => state.education.jobs) || [];
 
   console.log(userId);
 
@@ -22,14 +22,12 @@ function UtenteProfile({ userId }) {
     return <p>Caricamento...</p>;
   }
 
-  // Funzione per ottenere un numero casuale di lavori
   const getRandomJobs = (data) => {
     const randomCount = Math.floor(Math.random() * data.length) + 1;
-    const shuffled = [...data].sort(() => 0.5 - Math.random()); // Crea una copia dell'array e mescola
-    return shuffled.slice(0, randomCount); // Restituisci un numero casuale di lavori
+    const shuffled = [...data].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, randomCount);
   };
 
-  // Ottieni lavori casuali
   const randomJobs = getRandomJobs(competenzeData);
 
   return (
@@ -95,7 +93,7 @@ function UtenteProfile({ userId }) {
         </Card.Body>
       </Card>
       <BioUtente />
-      {/* MODALE */}
+
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>
