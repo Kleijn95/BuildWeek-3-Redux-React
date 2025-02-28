@@ -68,7 +68,7 @@ function TopBar() {
           <Linkedin style={{ color: "#0a66c2", fontSize: "2.5rem" }} />
         </Navbar.Brand>
 
-        <Form className="d-none d-lg-flex">
+        <Form className="d-none d-lg-flex" onSubmit={handleSearch}>
           <div className="input-group bg-light">
             <span className="input-group-text bg-transparent border-0">
               <Search color="#666" />
