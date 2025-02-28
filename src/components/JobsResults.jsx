@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Card, ListGroup, Button } from "react-bootstrap";
 import { useState } from "react";
+import { Linkedin } from "react-bootstrap-icons";
 
 function JobsResults({ jobs, onJobSelect }) {
   console.log("Jobs passed to JobsResults:", jobs); // Verifica se i dati sono corretti
@@ -26,13 +27,17 @@ function JobsResults({ jobs, onJobSelect }) {
   return (
     <Card className="mt-2">
       <Card.Body>
-        <h5>Risultati della ricerca</h5>
+        <h5 className="display-6 mb-5">Risultati della ricerca :</h5>
         <ListGroup variant="flush">
           {jobs.slice(0, visibleJobs).map((job, index) => (
             <ListGroup.Item key={index} onClick={() => handleJobClick(job)} style={{ cursor: "pointer" }}>
-              <h6>{job.title}</h6>
+              <h6 className="text-primary fs-5">{job.category}</h6>
               <p>{job.company_name}</p>
-              <p>{job.location}</p>
+              <p>{job.candidate_required_location}</p>
+              <p>
+                •
+                <Linkedin style={{ marginBottom: "0.2rem", color: "#0B66C2" }} /> Candidatura semplice
+              </p>
             </ListGroup.Item>
           ))}
         </ListGroup>
