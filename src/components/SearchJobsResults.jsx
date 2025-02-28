@@ -10,13 +10,13 @@ const SearchJobsResults = () => {
   const { jobs, loading, error } = useSelector((state) => state.jobSearch);
   const [selectedJob, setSelectedJob] = useState(null);
   const handleJobSelect = (job) => {
-    setSelectedJob(job); // Quando un lavoro viene cliccato, aggiorna lo stato con il lavoro selezionato
+    setSelectedJob(job);
   };
 
-  console.log("Jobs in SearchJobsResults:", jobs); // Verifica i dati prima di passarli
+  console.log("Jobs in SearchJobsResults:", jobs);
 
   useEffect(() => {
-    setSelectedJob(null); // Resetta quando cambia la ricerca
+    setSelectedJob(null);
   }, [jobs]);
 
   if (loading) {
@@ -31,15 +31,22 @@ const SearchJobsResults = () => {
     <Container className="mt-1">
       <Row className="d-flex justify-content-center bg-white">
         <Col className="col-12 d-flex justify-content-center gap-3 mt-4">
-          {["Lavoro", "Data di pubblicazione", "Livello di esperienza", "Azienda", "A distanza", "Candidatura semplice"].map((variant, index) => (
+          {[
+            "Lavoro",
+            "Data di pubblicazione",
+            "Livello di esperienza",
+            "Azienda",
+            "A distanza",
+            "Candidatura semplice",
+          ].map((variant, index) => (
             <DropdownButton
               as={ButtonGroup}
               key={variant}
               id={`dropdown-variants-${variant}`}
-              variant={index === 0 ? "success" : "light"} // Il primo bottone sarà verde
+              variant={index === 0 ? "success" : "light"}
               title={variant}
-              className="rounded-pill mb-3" // Aggiunge la forma a pillola
-              style={{ minWidth: "150px" }} // Impostiamo una larghezza minima per uniformare i bottoni
+              className="rounded-pill mb-3"
+              style={{ minWidth: "150px" }}
             >
               <Dropdown.Item eventKey="1">Tutto</Dropdown.Item>
               <Dropdown.Item eventKey="2">Persone</Dropdown.Item>

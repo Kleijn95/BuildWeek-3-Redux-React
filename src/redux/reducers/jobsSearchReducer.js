@@ -9,7 +9,7 @@ const jobSearchReducer = (state = initialState, action) => {
     case "SEARCH_JOBS_REQUEST":
       return { ...state, loading: true };
     case "SEARCH_JOBS_SUCCESS":
-      console.log("Jobs data received in reducer:", action.payload); // Aggiungi il log per debug
+      console.log("Jobs data received in reducer:", action.payload);
       return { ...state, loading: false, jobs: action.payload };
     case "SEARCH_JOBS_FAIL":
       return { ...state, loading: false, error: action.payload };

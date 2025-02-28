@@ -4,9 +4,9 @@ import { Card, Row, Col, Spinner, Alert, Container, Modal, Button } from "react-
 import { useState } from "react";
 
 function JobCategoryResults() {
-  const { type } = useParams(); // 'type' è già decodificato
+  const { type } = useParams();
   const { jobs, loading, error } = useSelector((state) => state.jobsByCategory);
-  const jobList = jobs.data || []; // Se 'data' esiste, usalo, altrimenti usa un array vuoto
+  const jobList = jobs.data || [];
 
   const [showModal, setShowModal] = useState(false);
   const [selectedDescription, setSelectedDescription] = useState("");

@@ -4,19 +4,15 @@ import { useState } from "react";
 import { Linkedin } from "react-bootstrap-icons";
 
 function JobsResults({ jobs, onJobSelect }) {
-  console.log("Jobs passed to JobsResults:", jobs); // Verifica se i dati sono corretti
+  console.log("Jobs passed to JobsResults:", jobs);
 
-  // Impostiamo inizialmente 5 lavori visibili
   const [visibleJobs, setVisibleJobs] = useState(5);
 
-  // Funzione per alternare la visibilità dei lavori
   const toggleJobs = () => {
-    // Se sono visibili 5 lavori, mostra i successivi 5, altrimenti nascondili
     setVisibleJobs((prev) => (prev === jobs.length ? 5 : Math.min(prev + 5, jobs.length)));
   };
 
   const handleJobClick = (job) => {
-    // Quando un lavoro viene cliccato, passiamo i dettagli tramite la funzione onJobSelect
     onJobSelect(job);
   };
 

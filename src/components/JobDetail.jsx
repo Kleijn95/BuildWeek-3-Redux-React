@@ -4,26 +4,21 @@ import { useState } from "react";
 import { BriefcaseFill, BuildingFill, Calendar3, GlobeAmericas } from "react-bootstrap-icons";
 
 function JobDetail({ job }) {
-  // Stato per gestire la visualizzazione del testo completo o ridotto
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Funzione per rimuovere i tag HTML e restituire solo il testo normale
   function stripHtmlTags(str) {
     if (!str) return "";
-    return str.replace(/<\/?[^>]+(>|$)/g, ""); // Rimuove i tag HTML
+    return str.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
   if (!job) {
-    return null; // Se non c'è nessun lavoro selezionato, non mostra nulla
+    return null;
   }
 
-  // Usa la funzione per "stripare" i tag HTML dalla descrizione
   const cleanedDescription = stripHtmlTags(job.description);
 
-  // Numero massimo di caratteri da mostrare
-  const MAX_CHARACTERS = 500; // Limite di caratteri per le prime righe
+  const MAX_CHARACTERS = 500;
 
-  // Funzione per gestire il toggle tra mostrare tutto e mostrare una parte
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev);
   };
@@ -72,7 +67,9 @@ function JobDetail({ job }) {
           </Card.Body>
           <Card.Title className=" mt-3 mb-4">Informazioni sull’offerta di lavoro</Card.Title>
 
-          <Card.Text>{isExpanded ? cleanedDescription : `${cleanedDescription.slice(0, MAX_CHARACTERS)}...`} </Card.Text>
+          <Card.Text>
+            {isExpanded ? cleanedDescription : `${cleanedDescription.slice(0, MAX_CHARACTERS)}...`}{" "}
+          </Card.Text>
 
           {cleanedDescription.length > MAX_CHARACTERS && (
             <Button variant="link" onClick={toggleExpand}>
