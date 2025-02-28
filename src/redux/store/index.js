@@ -11,6 +11,7 @@ import jobReducer from "../reducers/jobsReducer";
 import companyReducer from "../reducers/companyReducer";
 import jobsByCategoryReducer from "../reducers/JobByCategoryReducer";
 import jobSearchReducer from "../reducers/jobsSearchReducer";
+import commentsReducer from "../reducers/commentsReducer";
 
 const rootReducer = combineReducers({
   myprofile: profileReducer,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   company: companyReducer,
   jobsByCategory: jobsByCategoryReducer,
   jobSearch: jobSearchReducer,
+  comments: commentsReducer,
 });
 
 const store = configureStore({

@@ -560,3 +560,21 @@ export const searchJobs = (query) => async (dispatch) => {
     });
   }
 };
+
+export const getComments = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/comments/", {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2MxOGVhYjVjZDk5MjAwMTUwNTkyZjEiLCJpYXQiOjE3NDA3MzgyMjAsImV4cCI6MTc0MTk0NzgyMH0.fSFT5eYv-pJ3a35OaZ_ML-a0gQb8D3epyEod5QnYmcc",
+        },
+      });
+      if (!response.ok) throw new Error("Errore nel recupero dei commenti");
+      const commenti = await response.json();
+      dispatch({ type: "GET_COMMENTS", payload: commenti });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
