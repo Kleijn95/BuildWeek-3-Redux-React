@@ -9,6 +9,7 @@ import HomePostReducer from "../reducers/homePostReducer";
 import createPostReducer from "../reducers/createPostReducer";
 import jobReducer from "../reducers/jobsReducer";
 import companyReducer from "../reducers/companyReducer";
+import jobsByCategoryReducer from "../reducers/JobByCategoryReducer";
 import jobSearchReducer from "../reducers/jobsSearchReducer";
 
 const rootReducer = combineReducers({
@@ -22,7 +23,6 @@ const rootReducer = combineReducers({
   create: createPostReducer,
   jobs: jobReducer,
   company: companyReducer,
-  jobSearch: jobSearchReducer,
 });
 
 const store = configureStore({
