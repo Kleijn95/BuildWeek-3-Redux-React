@@ -1,5 +1,4 @@
 import { Col, Container, Row } from "react-bootstrap";
-
 import HomeProfile from "./HomeProfile";
 import MiniCardHome from "./MiniCardHome";
 import CreaPost from "./CreaPost";
@@ -8,25 +7,23 @@ import AsideCard from "./AsideHome";
 
 const Home = () => {
   return (
-    <>
-      <Container className="mt-4">
-        <Row>
-          <Col xs={12} sm={3} className="d-none d-sm-block d-md-block">
-            <HomeProfile />
-            <MiniCardHome />
-          </Col>
+    <Container className="mt-4">
+      <Row className="g-3">
+        <Col lg={3} md={4} className="d-none d-md-block">
+          <HomeProfile />
+          <MiniCardHome />
+        </Col>
 
-          <Col xs={10} sm={9} md={6} className="mx-auto">
-            <CreaPost />
-            <HomePost />
-          </Col>
+        <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+          <CreaPost />
+          <HomePost />
+        </Col>
 
-          <Col xs={12} sm={3} className="d-none d-md-block">
-            <AsideCard />
-          </Col>
-        </Row>
-      </Container>
-    </>
+        <Col lg={3} className="d-none d-lg-block">
+          <AsideCard />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
