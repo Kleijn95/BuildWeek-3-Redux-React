@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button, Card } from "react-bootstrap";
 import { useState } from "react";
+import { BriefcaseFill, BuildingFill, Calendar3, GlobeAmericas } from "react-bootstrap-icons";
 
 function JobDetail({ job }) {
   // Stato per gestire la visualizzazione del testo completo o ridotto
@@ -33,17 +34,32 @@ function JobDetail({ job }) {
         <Card.Body>
           <Card.Title>{job.title}</Card.Title>
           <Card.Title className="display-6 mb-3 mt-3">{job.category}</Card.Title>
-          <Card.Text>
-            <strong>Company:</strong> {job.company_name}
+          <Card.Text style={{ color: "gray" }}>
+            <strong>
+              {" "}
+              <BuildingFill /> Company:
+            </strong>{" "}
+            {job.company_name}
           </Card.Text>
-          <Card.Text>
-            <strong>Location:</strong> {job.candidate_required_location}
+          <Card.Text style={{ color: "gray" }}>
+            <strong>
+              {" "}
+              <GlobeAmericas /> Location:
+            </strong>{" "}
+            {job.candidate_required_location}
           </Card.Text>
-          <Card.Text>
-            <strong>Type:</strong> {job.job_type}
+          <Card.Text style={{ color: "gray" }}>
+            <strong>
+              {" "}
+              <BriefcaseFill /> Type:
+            </strong>{" "}
+            {job.job_type}
           </Card.Text>
-          <Card.Text>
-            <strong>Date:</strong> {job.publication_date}
+          <Card.Text style={{ color: "gray" }}>
+            <strong>
+              <Calendar3 /> Date:
+            </strong>{" "}
+            {new Date(job.publication_date).toLocaleDateString("it-IT")}
           </Card.Text>
           <Card.Body className="mt-2">
             <Button variant="primary" className="me-2 rounded-pill fw-semibold">

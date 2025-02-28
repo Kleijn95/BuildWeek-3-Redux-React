@@ -1,16 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import {
-  BellFill,
-  CaretDownFill,
-  ChatDotsFill,
-  Grid3x3GapFill,
-  HouseFill,
-  Linkedin,
-  PeopleFill,
-  SuitcaseLgFill,
-  Search,
-} from "react-bootstrap-icons";
+import { BellFill, CaretDownFill, ChatDotsFill, Grid3x3GapFill, HouseFill, Linkedin, PeopleFill, SuitcaseLgFill, Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile, searchJobs } from "../redux/actions/profileActions";
 import { Link, useNavigate } from "react-router-dom";
@@ -45,6 +35,7 @@ function TopBar() {
     e.preventDefault(); // Previene il comportamento di default del form
     dispatch(searchJobs(searchTerm)); // Esegui la ricerca dei lavori
     navigate("/searchresults"); // Naviga alla pagina dei risultati
+    setSearchTerm("");
   };
 
   if (!profile) {
@@ -89,11 +80,7 @@ function TopBar() {
         </Nav.Link>
 
         {searchExpanded && (
-          <div
-            ref={searchRef}
-            className="position-absolute top-0 start-0 w-100 h-100 bg-white d-flex align-items-center px-3"
-            style={{ zIndex: 1000 }}
-          >
+          <div ref={searchRef} className="position-absolute top-0 start-0 w-100 h-100 bg-white d-flex align-items-center px-3" style={{ zIndex: 1000 }}>
             <Search color="#666" className="me-2" />
             <Form onSubmit={handleSearch} className="d-flex flex-grow-1">
               <Form.Control
@@ -132,10 +119,7 @@ function TopBar() {
               <div className="position-relative">
                 <item.icon className="mb-1" style={{ fontSize: "1.5rem" }} />
                 {item.badge && (
-                  <span
-                    style={{ top: "5px" }}
-                    className="position-absolute start-75 translate-middle badge rounded-pill bg-danger"
-                  >
+                  <span style={{ top: "5px" }} className="position-absolute start-75 translate-middle badge rounded-pill bg-danger">
                     {item.badge}
                   </span>
                 )}

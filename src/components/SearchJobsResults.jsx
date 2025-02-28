@@ -1,9 +1,10 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, DropdownButton, ButtonGroup, Dropdown } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
 import JobsResults from "./JobsResults";
 import JobDetail from "./JobDetail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CardJob from "./CardJob";
 
 const SearchJobsResults = () => {
   const { jobs, loading, error } = useSelector((state) => state.jobSearch);
@@ -14,6 +15,10 @@ const SearchJobsResults = () => {
 
   console.log("Jobs in SearchJobsResults:", jobs); // Verifica i dati prima di passarli
 
+  useEffect(() => {
+    setSelectedJob(null); // Resetta quando cambia la ricerca
+  }, [jobs]);
+
   if (loading) {
     return <p>Caricamento...</p>;
   }
@@ -23,13 +28,40 @@ const SearchJobsResults = () => {
   }
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-1">
+      <Row className="d-flex justify-content-center bg-white">
+        <Col className="col-12 d-flex justify-content-center gap-3 mt-4">
+          {["Lavoro", "Data di pubblicazione", "Livello di esperienza", "Azienda", "A distanza", "Candidatura semplice"].map((variant, index) => (
+            <DropdownButton
+              as={ButtonGroup}
+              key={variant}
+              id={`dropdown-variants-${variant}`}
+              variant={index === 0 ? "success" : "light"} // Il primo bottone sarà verde
+              title={variant}
+              className="rounded-pill mb-3" // Aggiunge la forma a pillola
+              style={{ minWidth: "150px" }} // Impostiamo una larghezza minima per uniformare i bottoni
+            >
+              <Dropdown.Item eventKey="1">Tutto</Dropdown.Item>
+              <Dropdown.Item eventKey="2">Persone</Dropdown.Item>
+              <Dropdown.Item eventKey="3">Lavoro</Dropdown.Item>
+              <Dropdown.Item eventKey="4">Post</Dropdown.Item>
+              <Dropdown.Item eventKey="5" active>
+                Aziende
+              </Dropdown.Item>
+
+              <Dropdown.Item eventKey="4">Eventi</Dropdown.Item>
+            </DropdownButton>
+          ))}
+        </Col>
+      </Row>
       <Row>
-        <Col className="col-5 mt-5">
+        <Col xs={12} md={6} className="mt-5">
           <JobsResults jobs={jobs} onJobSelect={handleJobSelect} />
         </Col>
-        <Col className="col-5 mt-5">
+        <Col xs={12} md={6} className="mt-5">
           <JobDetail job={selectedJob} />
+
+          <CardJob />
         </Col>
       </Row>
     </Container>
