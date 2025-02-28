@@ -95,13 +95,17 @@ function TopBar() {
             style={{ zIndex: 1000 }}
           >
             <Search color="#666" className="me-2" />
-            <Form.Control
-              type="search"
-              placeholder="Cerca"
-              autoFocus
-              className="border-0 bg-light flex-grow-1 rounded-pill py-2"
-              style={{ boxShadow: "none" }}
-            />
+            <Form onSubmit={handleSearch} className="d-flex flex-grow-1">
+              <Form.Control
+                type="search"
+                placeholder="Cerca"
+                autoFocus
+                className="border-0 bg-light flex-grow-1 rounded-pill py-2"
+                style={{ boxShadow: "none" }}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </Form>
           </div>
         )}
 
