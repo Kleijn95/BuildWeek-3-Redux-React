@@ -178,3 +178,12 @@ body {
 body {
   padding-top: 30px;
 }
+
+.clickableSpan {
+  cursor: pointer;
+}
+.clickableSpan:hover {
+  font-size: larger;
+  color: black;
+  text-decoration: underline;
+}

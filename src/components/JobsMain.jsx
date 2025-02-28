@@ -84,8 +84,10 @@ function JobsMain() {
                   <X className="fs-3" />
                 </div>
                 <p className="text-muted mb-1">
-                  <span onClick={() => handleCompanyClick(job)}>{job.company_name}</span> -{" "}
-                  {job.candidate_required_location} {job.job_type}
+                  <span className="clickableSpan" onClick={() => handleCompanyClick(job)}>
+                    {job.company_name}
+                  </span>{" "}
+                  - {job.candidate_required_location} {job.job_type}
                 </p>
                 <p className="text-muted mb-1">{job.category}</p>
                 <small className="text-muted">
