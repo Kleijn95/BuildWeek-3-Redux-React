@@ -178,7 +178,6 @@ function TopBar() {
               </div>
               <Button
                 as={Link}
-                as={Link}
                 to="/mainsection"
                 className="me-2 py-0 dropLinkButton rounded-pill mt-2 border border-primary bg-white text-primary fw-semibold w-100"
               >
